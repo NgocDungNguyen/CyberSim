@@ -1,42 +1,59 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ransomware - CyberSec Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
         .visualization-card {
             transition: all 0.3s ease;
         }
+
         .visualization-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
+
         @keyframes encrypt {
-            0% { background-color: #10B981; }
-            100% { background-color: #EF4444; }
+            0% {
+                background-color: #10B981;
+            }
+
+            100% {
+                background-color: #EF4444;
+            }
         }
+
         .encrypting {
             animation: encrypt 2s forwards;
         }
     </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec
+                        Hub</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <button
+                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                             Threats <i class="fas fa-chevron-down ml-1"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -57,7 +74,8 @@
                             <a href="social-engineering.html">Social Engineering</a>
                         </div>
                     </div>
-                    <a href="about.com" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <a href="about.com"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
@@ -66,7 +84,8 @@
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -75,7 +94,8 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                    class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                     Threats <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -96,7 +116,8 @@
                     <a href="social-engineering.html">Social Engineering</a>
                 </div>
             </div>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <a href="about.html"
+                class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
         </div>
     </nav>
 
@@ -109,11 +130,17 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
-                    <p>Ransomware is a type of malicious software (malware) that encrypts a victim's files. The attacker then demands a ransom from the victim to restore access to the data upon payment. Users are shown instructions for how to pay a fee to get the decryption key. The costs can range from a few hundred dollars to thousands, payable to cybercriminals in cryptocurrency.</p>
+                    <p>Ransomware is a type of malicious software (malware) that encrypts a victim's files. The attacker
+                        then demands a ransom from the victim to restore access to the data upon payment. Users are
+                        shown instructions for how to pay a fee to get the decryption key. The costs can range from a
+                        few hundred dollars to thousands, payable to cybercriminals in cryptocurrency.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
-                    <p>Imagine coming home to find that all your possessions have been locked in an impenetrable safe. A stranger contacts you, claiming they have the only key, and demands payment for its return. This is similar to how ransomware operates, locking away your digital possessions (files) and demanding payment for their release.</p>
+                    <p>Imagine coming home to find that all your possessions have been locked in an impenetrable safe. A
+                        stranger contacts you, claiming they have the only key, and demands payment for its return. This
+                        is similar to how ransomware operates, locking away your digital possessions (files) and
+                        demanding payment for their release.</p>
                 </div>
             </div>
         </section>
@@ -141,10 +168,19 @@
                         <i class="fas fa-lock text-5xl text-yellow-500"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Encrypted Files</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Files locked by ransomware, inaccessible to the user.</p>
+                    <p class="text-gray-600 dark:text-gray-400">Files locked by ransomware, inaccessible to the user.
+                    </p>
                 </div>
             </div>
         </section>
+
+        <!-- Add a warning banner -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-yellow-700">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                This is an educational simulation. All demonstrations are safe and controlled.
+            </p>
+        </div>
 
         <!-- Simulation Section -->
         <section class="mb-12">
@@ -154,8 +190,12 @@
                 <div class="grid grid-cols-5 gap-4 mb-4" id="fileSystem">
                     <!-- File icons will be dynamically added here -->
                 </div>
-                <button id="simulateAttack" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Simulate Ransomware Attack</button>
-                <button id="resetSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition ml-4">Reset Simulation</button>
+                <button id="simulateAttack"
+                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Simulate Ransomware
+                    Attack</button>
+                <button id="resetSimulation"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition ml-4">Reset
+                    Simulation</button>
                 <div id="ransomNote" class="mt-8 p-4 bg-black text-green-500 font-mono text-sm hidden"></div>
             </div>
         </section>
@@ -167,17 +207,22 @@
                 <h3 class="text-xl font-semibold mb-4">Ransomware Encryption Speed Simulation</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label for="encryptionSpeed" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Encryption Speed (files/sec):</label>
+                        <label for="encryptionSpeed"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Encryption Speed
+                            (files/sec):</label>
                         <input type="range" id="encryptionSpeed" min="1" max="20" value="5" class="w-full">
-                        <span id="encryptionSpeedValue" class="text-sm text-gray-600 dark:text-gray-400">5 files/sec</span>
+                        <span id="encryptionSpeedValue" class="text-sm text-gray-600 dark:text-gray-400">5
+                            files/sec</span>
                     </div>
                     <div>
-                        <label for="fileCount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Total Files:</label>
+                        <label for="fileCount"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Total Files:</label>
                         <input type="range" id="fileCount" min="20" max="200" value="100" class="w-full">
                         <span id="fileCountValue" class="text-sm text-gray-600 dark:text-gray-400">100 files</span>
                     </div>
                 </div>
-                <div id="advancedSimulationArea" class="relative h-80 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden mb-6"></div>
+                <div id="advancedSimulationArea"
+                    class="relative h-80 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden mb-6"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
                         <h3 class="font-semibold mb-2">Encrypted Files</h3>
@@ -193,10 +238,15 @@
                 </div>
                 <div class="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 p-4 mb-6">
                     <h3 class="font-semibold text-blue-700 dark:text-blue-300 mb-2">Simulation Explanation</h3>
-                    <p id="simulationExplanation" class="text-sm text-blue-600 dark:text-blue-400">Adjust the sliders to see how encryption speed and file count affect the ransomware attack.</p>
+                    <p id="simulationExplanation" class="text-sm text-blue-600 dark:text-blue-400">Adjust the sliders to
+                        see how encryption speed and file count affect the ransomware attack.</p>
                 </div>
-                <button id="startAdvancedSimulation" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Start Advanced Simulation</button>
-                <button id="resetAdvancedSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition ml-4">Reset Advanced Simulation</button>
+                <button id="startAdvancedSimulation"
+                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Start Advanced
+                    Simulation</button>
+                <button id="resetAdvancedSimulation"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition ml-4">Reset Advanced
+                    Simulation</button>
             </div>
         </section>
 
@@ -208,32 +258,39 @@
                     <div>
                         <p class="font-semibold mb-2">1. What is the primary goal of ransomware?</p>
                         <div class="space-y-2">
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="a" class="mr-2">
                                 <span>To steal personal information</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="b" class="mr-2">
                                 <span>To encrypt files and demand payment for decryption</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="c" class="mr-2">
                                 <span>To improve system security</span>
                             </label>
                         </div>
                     </div>
                     <div>
-                        <p class="font-semibold mb-2">2. Which of the following is NOT a common way ransomware spreads?</p>
+                        <p class="font-semibold mb-2">2. Which of the following is NOT a common way ransomware spreads?
+                        </p>
                         <div class="space-y-2">
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="a" class="mr-2">
                                 <span>Phishing emails</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="b" class="mr-2">
                                 <span>Exploiting software vulnerabilities</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="c" class="mr-2">
                                 <span>Regular system updates</span>
                             </label>
@@ -242,22 +299,27 @@
                     <div>
                         <p class="font-semibold mb-2">3. What is the best way to protect against ransomware?</p>
                         <div class="space-y-2">
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="a" class="mr-2">
                                 <span>Pay the ransom immediately</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="b" class="mr-2">
                                 <span>Regularly backup data and keep software updated</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="c" class="mr-2">
                                 <span>Disconnect from the internet permanently</span>
                             </label>
                         </div>
                     </div>
                 </div>
-                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+                <button id="submitQuiz"
+                    class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit
+                    Answers</button>
             </div>
             <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
         </section>
@@ -432,4 +494,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>

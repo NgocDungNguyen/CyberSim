@@ -1,45 +1,62 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spoofing Attack - CyberSec Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
         .spoof-animation {
             width: 100px;
             height: 100px;
             background-image: url('https://placehold.co/100x100?text=Mask');
             animation: rotate 5s infinite linear;
         }
+
         @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
+
         .visualization-card {
             transition: all 0.3s ease;
         }
+
         .visualization-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec
+                        Hub</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <button
+                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                             Threats <i class="fas fa-chevron-down ml-1"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -60,7 +77,8 @@
                             <a href="social-engineering.html">Social Engineering</a>
                         </div>
                     </div>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <a href="about.html"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
@@ -69,7 +87,8 @@
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -78,7 +97,8 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                    class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                     Threats <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -99,7 +119,8 @@
                     <a href="social-engineering.html">Social Engineering</a>
                 </div>
             </div>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <a href="about.html"
+                class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
         </div>
     </nav>
 
@@ -112,11 +133,20 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
-                    <p>Spoofing is a type of cyber attack where an attacker disguises themselves as a trusted source to gain unauthorized access to systems, steal data, or spread malware. This can involve falsifying data to hide the sender's identity, routing traffic through proxy servers, or using a trusted IP address to bypass access controls. Common types include IP spoofing, email spoofing, and DNS spoofing.</p>
+                    <p>Spoofing is a type of cyber attack where an attacker disguises themselves as a trusted source to
+                        gain unauthorized access to systems, steal data, or spread malware. This can involve falsifying
+                        data to hide the sender's identity, routing traffic through proxy servers, or using a trusted IP
+                        address to bypass access controls. Common types include IP spoofing, email spoofing, and DNS
+                        spoofing.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
-                    <p>Imagine you're at a masquerade ball where everyone wears masks. A person wearing a mask of your best friend approaches you and asks for your house keys. You might be inclined to trust them because they look and sound like your friend. However, it's actually an impostor taking advantage of the disguise. Spoofing works similarly in the digital world: attackers disguise themselves as trusted entities to trick you into granting access or sharing sensitive information.</p>
+                    <p>Imagine you're at a masquerade ball where everyone wears masks. A person wearing a mask of your
+                        best friend approaches you and asks for your house keys. You might be inclined to trust them
+                        because they look and sound like your friend. However, it's actually an impostor taking
+                        advantage of the disguise. Spoofing works similarly in the digital world: attackers disguise
+                        themselves as trusted entities to trick you into granting access or sharing sensitive
+                        information.</p>
                 </div>
             </div>
         </section>
@@ -131,7 +161,8 @@
                         <i class="fas fa-mask text-2xl text-red-500 absolute top-0 right-0"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Email Spoofing</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Falsifying the sender's email address to appear as a trusted source</p>
+                    <p class="text-gray-600 dark:text-gray-400">Falsifying the sender's email address to appear as a
+                        trusted source</p>
                     <div class="mt-4 bg-gray-200 dark:bg-gray-700 p-2 rounded text-xs font-mono overflow-hidden">
                         From: ceo@<span class="text-red-500">fake-company.com</span>
                     </div>
@@ -163,6 +194,14 @@
             </div>
         </section>
 
+        <!-- Add a warning banner -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-yellow-700">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                This is an educational simulation. All demonstrations are safe and controlled.
+            </p>
+        </div>
+
         <!-- Simulation Section -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">Simulation</h2>
@@ -181,7 +220,9 @@
                             <input type="radio" name="spoofType" value="dns" class="mr-2"> DNS Spoofing
                         </label>
                     </div>
-                    <button id="generateSpoof" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Generate Spoofing Attack</button>
+                    <button id="generateSpoof"
+                        class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Generate
+                        Spoofing Attack</button>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Simulated Attack</h3>
@@ -190,7 +231,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Spoofing Identification Challenge -->
             <div class="mt-8">
                 <h3 class="text-xl font-semibold mb-4">Spoofing Identification Challenge</h3>
@@ -198,7 +239,9 @@
                 <div id="spoofChallenge" class="space-y-4">
                     <!-- Spoofing scenarios will be dynamically inserted here -->
                 </div>
-                <button id="checkSpoofing" class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">Check Answers</button>
+                <button id="checkSpoofing"
+                    class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">Check
+                    Answers</button>
                 <div id="spoofResults" class="mt-4 hidden"></div>
             </div>
         </section>
@@ -209,17 +252,21 @@
             <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
                 <div class="space-y-6">
                     <div>
-                        <p class="font-semibold mb-2">1. Which of the following is NOT a common type of spoofing attack?</p>
+                        <p class="font-semibold mb-2">1. Which of the following is NOT a common type of spoofing attack?
+                        </p>
                         <div class="space-y-2">
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="a" class="mr-2">
                                 <span>Email spoofing</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="b" class="mr-2">
                                 <span>IP spoofing</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="c" class="mr-2">
                                 <span>Browser spoofing</span>
                             </label>
@@ -228,15 +275,18 @@
                     <div>
                         <p class="font-semibold mb-2">2. What is the primary goal of DNS spoofing?</p>
                         <div class="space-y-2">
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="a" class="mr-2">
                                 <span>To overload DNS servers</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="b" class="mr-2">
                                 <span>To redirect users to malicious websites</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="c" class="mr-2">
                                 <span>To steal DNS server data</span>
                             </label>
@@ -245,22 +295,27 @@
                     <div>
                         <p class="font-semibold mb-2">3. How can you protect against email spoofing?</p>
                         <div class="space-y-2">
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="a" class="mr-2">
                                 <span>By using stronger passwords</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="b" class="mr-2">
                                 <span>By implementing SPF, DKIM, and DMARC</span>
                             </label>
-                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label
+                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="c" class="mr-2">
                                 <span>By using a different email provider</span>
                             </label>
                         </div>
                     </div>
                 </div>
-                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+                <button id="submitQuiz"
+                    class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit
+                    Answers</button>
             </div>
             <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
         </section>
@@ -275,7 +330,7 @@
             const spoofType = document.querySelector('input[name="spoofType"]:checked').value;
             let simulationContent = '';
 
-            switch(spoofType) {
+            switch (spoofType) {
                 case 'email':
                     simulationContent = `
                         <strong>From:</strong> ceo@legitimate-company.com<br>
@@ -318,10 +373,10 @@
         const spoofResults = document.getElementById('spoofResults');
 
         const spoofingScenarios = [
-            { content: "You receive an email from your bank asking you to update your password by clicking a link.", spoofed: true },
-            { content: "A coworker in the office asks to borrow your access card to enter a restricted area.", spoofed: false },
-            { content: "Your computer shows a security alert from 'Windows Defender' asking you to call a support number.", spoofed: true },
-            { content: "You get a text message from your phone company about your monthly bill.", spoofed: false }
+            {content: "You receive an email from your bank asking you to update your password by clicking a link.", spoofed: true},
+            {content: "A coworker in the office asks to borrow your access card to enter a restricted area.", spoofed: false},
+            {content: "Your computer shows a security alert from 'Windows Defender' asking you to call a support number.", spoofed: true},
+            {content: "You get a text message from your phone company about your monthly bill.", spoofed: false}
         ];
 
         spoofingScenarios.forEach((scenario, index) => {
@@ -392,4 +447,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>

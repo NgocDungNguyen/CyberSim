@@ -20,7 +20,10 @@
         .orbitron {
             font-family: 'Orbitron', sans-serif;
         }
-        .code-font { font-family: 'Courier New', monospace; }
+
+        .code-font {
+            font-family: 'Courier New', monospace;
+        }
 
 
         .visualization-card {
@@ -51,20 +54,48 @@
         }
 
         @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        .blink { animation: blink 1s infinite; }
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(5px); }
-            50% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-            100% { transform: translateX(0); }
-        }
-        .shake { animation: shake 0.5s; }
+            0% {
+                opacity: 1;
+            }
 
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(5px);
+            }
+
+            50% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
     </style>
 </head>
 
@@ -74,11 +105,13 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec
+                        Hub</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <button
+                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                             Threats <i class="fas fa-chevron-down ml-1"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -99,7 +132,8 @@
                             <a href="social-engineering.html">Social Engineering</a>
                         </div>
                     </div>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <a href="about.html"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
@@ -108,7 +142,8 @@
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -117,7 +152,8 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                    class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                     Threats <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -138,7 +174,8 @@
                     <a href="social-engineering.html">Social Engineering</a>
                 </div>
             </div>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <a href="about.html"
+                class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
         </div>
     </nav>
 
@@ -186,6 +223,15 @@
                 </div>
             </div>
         </section>
+
+        <!-- Add a warning banner -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-yellow-700">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                This is an educational simulation. All demonstrations are safe and controlled.
+            </p>
+        </div>
+
         <!-- AI-Generated Phishing Simulation -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">
@@ -249,13 +295,16 @@
                 <!-- Phishing Simulation -->
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                     <h3 class="text-xl font-semibold mb-4">Phishing Campaign Simulation</h3>
-                    <p class="mb-4">Simulate an AI-powered phishing campaign. Adjust the sophistication level and see how many users fall for the attack.</p>
+                    <p class="mb-4">Simulate an AI-powered phishing campaign. Adjust the sophistication level and see
+                        how many users fall for the attack.</p>
                     <div class="space-y-4">
                         <div>
                             <label for="phishingSophistication" class="block mb-2">Sophistication Level:</label>
                             <input type="range" id="phishingSophistication" min="1" max="5" value="3" class="w-full">
                         </div>
-                        <button id="startPhishingSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                        <button id="startPhishingSimulation"
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start
+                            Simulation</button>
                     </div>
                     <div class="mt-4">
                         <h4 class="text-lg font-semibold mb-2">Results:</h4>
@@ -267,13 +316,16 @@
                 <!-- Deepfake Simulation -->
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                     <h3 class="text-xl font-semibold mb-4">Deepfake Attack Simulation</h3>
-                    <p class="mb-4">Simulate a deepfake attack where AI generates fake videos or audio to impersonate someone.</p>
+                    <p class="mb-4">Simulate a deepfake attack where AI generates fake videos or audio to impersonate
+                        someone.</p>
                     <div class="space-y-4">
                         <div>
                             <label for="deepfakeRealism" class="block mb-2">Realism Level:</label>
                             <input type="range" id="deepfakeRealism" min="1" max="5" value="4" class="w-full">
                         </div>
-                        <button id="startDeepfakeSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                        <button id="startDeepfakeSimulation"
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start
+                            Simulation</button>
                     </div>
                     <div class="mt-4">
                         <h4 class="text-lg font-semibold mb-2">Results:</h4>

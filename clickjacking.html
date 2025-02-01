@@ -1,15 +1,21 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clickjacking - CyberSec Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
         .clickjack-container {
             position: relative;
             width: 400px;
@@ -20,6 +26,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
         .clickjack-overlay {
             position: absolute;
             top: 0;
@@ -36,6 +43,7 @@
             cursor: pointer;
             z-index: 10;
         }
+
         .hidden-frame {
             position: absolute;
             top: 0;
@@ -45,27 +53,32 @@
             opacity: 0.1;
             pointer-events: none;
         }
+
         .quiz-option:hover {
             background-color: #f3f4f6;
             cursor: pointer;
         }
-        .quiz-option input:checked + label {
+
+        .quiz-option input:checked+label {
             background-color: #3b82f6;
             color: white;
         }
     </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec
+                        Hub</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <button
+                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                             Threats <i class="fas fa-chevron-down ml-1"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -86,7 +99,8 @@
                             <a href="social-engineering.html">Social Engineering</a>
                         </div>
                     </div>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <a href="about.html"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
@@ -95,7 +109,8 @@
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -104,7 +119,8 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                    class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                     Threats <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -125,7 +141,8 @@
                     <a href="social-engineering.html">Social Engineering</a>
                 </div>
             </div>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <a href="about.html"
+                class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
         </div>
     </nav>
 
@@ -136,18 +153,30 @@
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">What is Clickjacking?</h2>
             <p class="mb-4">
-                Clickjacking, also known as UI redressing, is a malicious technique where an attacker tricks a user into clicking on something different from what the user perceives. This can lead to unintended actions such as revealing confidential information, transferring funds, or granting permissions.
+                Clickjacking, also known as UI redressing, is a malicious technique where an attacker tricks a user into
+                clicking on something different from what the user perceives. This can lead to unintended actions such
+                as revealing confidential information, transferring funds, or granting permissions.
             </p>
             <p>
-                Attackers achieve this by overlaying a transparent or disguised element over a legitimate button or link, making the user believe they are interacting with the visible element.
+                Attackers achieve this by overlaying a transparent or disguised element over a legitimate button or
+                link, making the user believe they are interacting with the visible element.
             </p>
         </section>
+
+        <!-- Add a warning banner -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-yellow-700">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                This is an educational simulation. All demonstrations are safe and controlled.
+            </p>
+        </div>
 
         <!-- Clickjacking Simulation -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">Interactive Clickjacking Simulation</h2>
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                <p class="mb-4">Try clicking the "Claim Prize" button below. Observe what happens when you interact with the button.</p>
+                <p class="mb-4">Try clicking the "Claim Prize" button below. Observe what happens when you interact with
+                    the button.</p>
                 <div class="clickjack-container">
                     <iframe src="https://example.com" class="hidden-frame" title="Hidden Frame"></iframe>
                     <div class="clickjack-overlay">
@@ -163,10 +192,14 @@
             <h2 class="orbitron text-2xl font-semibold mb-4">How Clickjacking Works</h2>
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <ol class="list-decimal list-inside space-y-2">
-                    <li>The attacker creates a malicious webpage that loads the target website in an invisible iframe.</li>
-                    <li>The malicious page is styled to make the iframe transparent and position it over a seemingly harmless button or link.</li>
-                    <li>When the user clicks on what they think is a harmless element, they're actually interacting with the hidden website.</li>
-                    <li>This can lead to unintended actions like making purchases, changing settings, or granting permissions.</li>
+                    <li>The attacker creates a malicious webpage that loads the target website in an invisible iframe.
+                    </li>
+                    <li>The malicious page is styled to make the iframe transparent and position it over a seemingly
+                        harmless button or link.</li>
+                    <li>When the user clicks on what they think is a harmless element, they're actually interacting with
+                        the hidden website.</li>
+                    <li>This can lead to unintended actions like making purchases, changing settings, or granting
+                        permissions.</li>
                 </ol>
             </div>
         </section>
@@ -176,10 +209,14 @@
             <h2 class="orbitron text-2xl font-semibold mb-4">Clickjacking Prevention Techniques</h2>
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <ul class="list-disc list-inside space-y-2">
-                    <li><strong>X-Frame-Options Header:</strong> Prevent your site from being framed by other websites.</li>
-                    <li><strong>Content Security Policy (CSP):</strong> Use the <code>frame-ancestors</code> directive to control which sites can embed your content.</li>
-                    <li><strong>Frame Busting Scripts:</strong> Use JavaScript to prevent your site from being loaded in an iframe.</li>
-                    <li><strong>SameSite Cookies:</strong> Prevent CSRF attacks that can be used alongside clickjacking.</li>
+                    <li><strong>X-Frame-Options Header:</strong> Prevent your site from being framed by other websites.
+                    </li>
+                    <li><strong>Content Security Policy (CSP):</strong> Use the <code>frame-ancestors</code> directive
+                        to control which sites can embed your content.</li>
+                    <li><strong>Frame Busting Scripts:</strong> Use JavaScript to prevent your site from being loaded in
+                        an iframe.</li>
+                    <li><strong>SameSite Cookies:</strong> Prevent CSRF attacks that can be used alongside clickjacking.
+                    </li>
                 </ul>
             </div>
         </section>
@@ -282,4 +319,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>

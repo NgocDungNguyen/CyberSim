@@ -1,54 +1,79 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Engineering - CyberSec Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
         .social-engineering-card {
             transition: all 0.3s ease;
         }
+
         .social-engineering-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
+
         @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
         }
+
         .typing-effect {
             overflow: hidden;
             border-right: .15em solid orange;
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .15em;
-            animation: 
+            animation:
                 typing 3.5s steps(40, end),
                 blink-caret .75s step-end infinite;
         }
+
         @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: orange; }
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: orange;
+            }
         }
     </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec
+                        Hub</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <button
+                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                             Threats <i class="fas fa-chevron-down ml-1"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -69,7 +94,8 @@
                             <a href="social-engineering.html">Social Engineering</a>
                         </div>
                     </div>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <a href="about.html"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
@@ -78,7 +104,8 @@
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -87,7 +114,8 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                    class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                     Threats <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -108,7 +136,8 @@
                     <a href="social-engineering.html">Social Engineering</a>
                 </div>
             </div>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <a href="about.html"
+                class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
         </div>
     </nav>
 
@@ -119,10 +148,13 @@
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">What is Social Engineering?</h2>
             <p class="mb-4">
-                Social engineering is the art of manipulating people into giving up confidential information or performing actions that may compromise security. Unlike technical hacking methods, social engineering relies on human interaction and often involves tricking people into breaking normal security procedures.
+                Social engineering is the art of manipulating people into giving up confidential information or
+                performing actions that may compromise security. Unlike technical hacking methods, social engineering
+                relies on human interaction and often involves tricking people into breaking normal security procedures.
             </p>
             <p>
-                These attacks exploit human psychology and natural tendencies to trust, help, or avoid conflict, making them particularly dangerous and effective.
+                These attacks exploit human psychology and natural tendencies to trust, help, or avoid conflict, making
+                them particularly dangerous and effective.
             </p>
         </section>
 
@@ -157,6 +189,14 @@
             </div>
         </section>
 
+        <!-- Add a warning banner -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-yellow-700">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                This is an educational simulation. All demonstrations are safe and controlled.
+            </p>
+        </div>
+
         <!-- Interactive Phishing Email Simulation -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">Interactive Phishing Email Simulation</h2>
@@ -168,7 +208,8 @@
                         <p><strong>Subject:</strong> <span id="emailSubject">Urgent: Verify Your Account</span></p>
                         <div id="emailBody" class="mt-4">
                             Dear Valued Customer,<br><br>
-                            We have detected unusual activity on your account. To ensure the security of your funds, please verify your account immediately by clicking the link below:<br><br>
+                            We have detected unusual activity on your account. To ensure the security of your funds,
+                            please verify your account immediately by clicking the link below:<br><br>
                             <a href="#" id="phishingLink" class="text-blue-500 underline">Verify Account Now</a><br><br>
                             Failure to verify within 24 hours may result in account suspension.<br><br>
                             Thank you for your prompt attention to this matter.<br><br>
@@ -178,7 +219,9 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <button id="identifyPhishing" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Identify Phishing Indicators</button>
+                    <button id="identifyPhishing"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Identify Phishing
+                        Indicators</button>
                 </div>
                 <div id="phishingIndicators" class="hidden mt-4 p-4 bg-red-100 dark:bg-red-900 rounded"></div>
             </div>
@@ -197,12 +240,18 @@
             <h2 class="orbitron text-2xl font-semibold mb-4">Social Engineering Prevention Techniques</h2>
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Education and Training:</strong> Regularly train employees to recognize and report social engineering attempts.</li>
-                    <li><strong>Implement Strong Policies:</strong> Establish clear procedures for handling sensitive information and verifying identities.</li>
-                    <li><strong>Use Multi-Factor Authentication:</strong> Add an extra layer of security beyond passwords.</li>
-                    <li><strong>Be Skeptical:</strong> Encourage a healthy level of skepticism towards unsolicited communications.</li>
-                    <li><strong>Keep Software Updated:</strong> Ensure all systems and software are up-to-date with the latest security patches.</li>
-                    <li><strong>Use Email Filters:</strong> Implement strong spam and phishing filters for email systems.</li>
+                    <li><strong>Education and Training:</strong> Regularly train employees to recognize and report
+                        social engineering attempts.</li>
+                    <li><strong>Implement Strong Policies:</strong> Establish clear procedures for handling sensitive
+                        information and verifying identities.</li>
+                    <li><strong>Use Multi-Factor Authentication:</strong> Add an extra layer of security beyond
+                        passwords.</li>
+                    <li><strong>Be Skeptical:</strong> Encourage a healthy level of skepticism towards unsolicited
+                        communications.</li>
+                    <li><strong>Keep Software Updated:</strong> Ensure all systems and software are up-to-date with the
+                        latest security patches.</li>
+                    <li><strong>Use Email Filters:</strong> Implement strong spam and phishing filters for email
+                        systems.</li>
                 </ul>
             </div>
         </section>
@@ -281,7 +330,7 @@
                         beginAtZero: true,
                         max: 100,
                         ticks: {
-                            callback: function(value) {
+                            callback: function (value) {
                                 return value + '%';
                             }
                         }
@@ -303,10 +352,10 @@
         const socialEngineeringScenario = {
             scenario: "You receive a phone call from someone claiming to be from your company's IT department. They say they're conducting a security audit and need your login credentials to verify system access. What do you do?",
             options: [
-                { text: "Provide your username and password", correct: false },
-                { text: "Ask for their employee ID and call back the IT department directly", correct: true },
-                { text: "Hang up immediately without saying anything", correct: false },
-                { text: "Tell them you'll email the information later", correct: false }
+                {text: "Provide your username and password", correct: false},
+                {text: "Ask for their employee ID and call back the IT department directly", correct: true},
+                {text: "Hang up immediately without saying anything", correct: false},
+                {text: "Tell them you'll email the information later", correct: false}
             ]
         };
 
@@ -413,4 +462,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>

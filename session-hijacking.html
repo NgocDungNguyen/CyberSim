@@ -1,23 +1,36 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Session Hijacking - CyberSec Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        .orbitron { font-family: 'Orbitron', sans-serif; }
-        @keyframes packet-transfer {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(100%); }
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
         }
+
+        @keyframes packet-transfer {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
         .packet {
             animation: packet-transfer 2s linear infinite;
         }
+
         .hacker-terminal {
             font-family: 'Courier New', monospace;
             background-color: #000;
@@ -29,17 +42,20 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec
+                        Hub</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <button
+                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                             Threats <i class="fas fa-chevron-down ml-1"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -60,7 +76,8 @@
                             <a href="social-engineering.html">Social Engineering</a>
                         </div>
                     </div>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <a href="about.html"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
@@ -69,7 +86,8 @@
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -78,7 +96,8 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                    class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                     Threats <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -99,7 +118,8 @@
                     <a href="social-engineering.html">Social Engineering</a>
                 </div>
             </div>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <a href="about.html"
+                class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
         </div>
     </nav>
 
@@ -110,12 +130,23 @@
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">What is Session Hijacking?</h2>
             <p class="mb-4">
-                Session hijacking, also known as cookie hijacking, is a cyber attack where an attacker takes over a valid user session. The attacker steals or predicts a valid session token to gain unauthorized access to the web server, impersonating the user.
+                Session hijacking, also known as cookie hijacking, is a cyber attack where an attacker takes over a
+                valid user session. The attacker steals or predicts a valid session token to gain unauthorized access to
+                the web server, impersonating the user.
             </p>
             <p>
-                This attack exploits the stateless nature of the HTTP protocol and the mechanisms used to authenticate users in subsequent requests after successful login.
+                This attack exploits the stateless nature of the HTTP protocol and the mechanisms used to authenticate
+                users in subsequent requests after successful login.
             </p>
         </section>
+
+        <!-- Add a warning banner -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-yellow-700">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                This is an educational simulation. All demonstrations are safe and controlled.
+            </p>
+        </div>
 
         <!-- Interactive Session Hijacking Simulation -->
         <section class="mb-12">
@@ -136,8 +167,12 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <button id="startSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
-                    <button id="interceptPacket" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition ml-4" disabled>Intercept Packet</button>
+                    <button id="startSimulation"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start
+                        Simulation</button>
+                    <button id="interceptPacket"
+                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition ml-4"
+                        disabled>Intercept Packet</button>
                 </div>
                 <div id="simulationStatus" class="mt-4 font-semibold"></div>
             </div>
@@ -157,8 +192,10 @@
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <ul class="list-disc list-inside space-y-2">
                     <li><strong>Session Sniffing:</strong> Intercepting network traffic to steal session tokens.</li>
-                    <li><strong>Man-in-the-Middle (MITM) Attack:</strong> Intercepting communication between the user and the server.</li>
-                    <li><strong>Cross-Site Scripting (XSS):</strong> Injecting malicious scripts to steal session cookies.</li>
+                    <li><strong>Man-in-the-Middle (MITM) Attack:</strong> Intercepting communication between the user
+                        and the server.</li>
+                    <li><strong>Cross-Site Scripting (XSS):</strong> Injecting malicious scripts to steal session
+                        cookies.</li>
                     <li><strong>Session Fixation:</strong> Tricking the user into using a predetermined session ID.</li>
                     <li><strong>Brute Force Attack:</strong> Guessing or generating valid session tokens.</li>
                 </ul>
@@ -171,11 +208,13 @@
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <ul class="list-disc list-inside space-y-2">
                     <li><strong>Use HTTPS:</strong> Encrypt all communication to prevent eavesdropping.</li>
-                    <li><strong>Secure Session Management:</strong> Use strong, random session IDs and regenerate them frequently.</li>
+                    <li><strong>Secure Session Management:</strong> Use strong, random session IDs and regenerate them
+                        frequently.</li>
                     <li><strong>HttpOnly Flag:</strong> Prevent JavaScript access to session cookies.</li>
                     <li><strong>Secure Flag:</strong> Ensure cookies are only sent over HTTPS.</li>
                     <li><strong>IP Binding:</strong> Associate session tokens with the user's IP address.</li>
-                    <li><strong>Multi-Factor Authentication:</strong> Add an extra layer of security beyond session tokens.</li>
+                    <li><strong>Multi-Factor Authentication:</strong> Add an extra layer of security beyond session
+                        tokens.</li>
                 </ul>
             </div>
         </section>
@@ -280,7 +319,7 @@
                         beginAtZero: true,
                         max: 100,
                         ticks: {
-                            callback: function(value) {
+                            callback: function (value) {
                                 return value + '%';
                             }
                         }
@@ -370,4 +409,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>

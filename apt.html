@@ -1,29 +1,44 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Persistent Threats (APT) - CyberSec Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
         .visualization-card {
             transition: all 0.3s ease;
         }
+
         .visualization-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
+
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
+
         .network-node {
             width: 40px;
             height: 40px;
@@ -35,33 +50,47 @@
             font-size: 20px;
             transition: all 0.3s ease;
         }
+
         .network-link {
             position: absolute;
             background-color: #888;
             height: 2px;
             transform-origin: left center;
         }
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
+
         .pulse {
             animation: pulse 1s infinite;
         }
     </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec
+                        Hub</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-4">
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <button
+                            class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                             Threats <i class="fas fa-chevron-down ml-1"></i>
                         </button>
                         <div class="dropdown-menu">
@@ -82,7 +111,8 @@
                             <a href="social-engineering.html">Social Engineering</a>
                         </div>
                     </div>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <a href="about.html"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
@@ -91,7 +121,8 @@
                     <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
                         <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
                     </button>
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton"
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -100,7 +131,8 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                    class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                     Threats <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -121,7 +153,8 @@
                     <a href="social-engineering.html">Social Engineering</a>
                 </div>
             </div>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <a href="about.html"
+                class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
         </div>
     </nav>
 
@@ -134,11 +167,17 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
-                    <p>An Advanced Persistent Threat (APT) is a prolonged and targeted cyberattack in which an intruder gains access to a network and remains undetected for an extended period. APTs are typically conducted by sophisticated threat actors, such as nation-state groups, and are aimed at high-value targets like large corporations or government entities.</p>
+                    <p>An Advanced Persistent Threat (APT) is a prolonged and targeted cyberattack in which an intruder
+                        gains access to a network and remains undetected for an extended period. APTs are typically
+                        conducted by sophisticated threat actors, such as nation-state groups, and are aimed at
+                        high-value targets like large corporations or government entities.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
-                    <p>Imagine a skilled burglar who doesn't just break into a house for a quick theft, but instead moves in secretly, living in the attic for months or even years. They slowly gather valuable information, make copies of important documents, and monitor the homeowners' activities. This long-term, stealthy approach is similar to how APTs operate in the digital world.</p>
+                    <p>Imagine a skilled burglar who doesn't just break into a house for a quick theft, but instead
+                        moves in secretly, living in the attic for months or even years. They slowly gather valuable
+                        information, make copies of important documents, and monitor the homeowners' activities. This
+                        long-term, stealthy approach is similar to how APTs operate in the digital world.</p>
                 </div>
             </div>
         </section>
@@ -152,24 +191,29 @@
                         <i class="fas fa-user-secret text-5xl text-red-500"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Stealthy Infiltration</h3>
-                    <p class="text-gray-600 dark:text-gray-400">APTs use sophisticated techniques to gain and maintain access without detection.</p>
+                    <p class="text-gray-600 dark:text-gray-400">APTs use sophisticated techniques to gain and maintain
+                        access without detection.</p>
                 </div>
                 <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
                     <div class="mb-4 relative">
                         <i class="fas fa-hourglass-half text-5xl text-yellow-500"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Long-Term Presence</h3>
-                    <p class="text-gray-600 dark:text-gray-400">APTs maintain a presence in the target network for extended periods, often months or years.</p>
+                    <p class="text-gray-600 dark:text-gray-400">APTs maintain a presence in the target network for
+                        extended periods, often months or years.</p>
                 </div>
                 <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
                     <div class="mb-4 relative">
                         <i class="fas fa-bullseye text-5xl text-green-500"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Targeted Attacks</h3>
-                    <p class="text-gray-600 dark:text-gray-400">APTs focus on specific high-value targets with clear objectives.</p>
+                    <p class="text-gray-600 dark:text-gray-400">APTs focus on specific high-value targets with clear
+                        objectives.</p>
                 </div>
             </div>
         </section>
+
+
 
         <!-- APT Lifecycle Section -->
         <section class="mb-12">
@@ -179,18 +223,31 @@
             </div>
         </section>
 
+        <!-- Add a warning banner -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
+            <p class="text-yellow-700">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                This is an educational simulation. All demonstrations are safe and controlled.
+            </p>
+        </div>
+
         <!-- Simulation Section -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">APT Simulation</h2>
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <div id="aptSimulation" class="mb-4">
-                    <div id="network" class="w-full h-96 bg-gray-200 dark:bg-gray-700 rounded-lg relative overflow-hidden">
+                    <div id="network"
+                        class="w-full h-96 bg-gray-200 dark:bg-gray-700 rounded-lg relative overflow-hidden">
                         <!-- Network visualization will go here -->
                     </div>
                 </div>
                 <div class="simulation-controls mt-4">
-                    <button id="startSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
-                    <button id="resetSimulation" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition ml-4">Reset Simulation</button>
+                    <button id="startSimulation"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start
+                        Simulation</button>
+                    <button id="resetSimulation"
+                        class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition ml-4">Reset
+                        Simulation</button>
                 </div>
                 <div id="simulationExplanation" class="mt-4 text-sm text-gray-600 dark:text-gray-400"></div>
             </div>
@@ -211,14 +268,14 @@
         function visualizeAPTLifecycle() {
             const aptLifecycle = document.getElementById('aptLifecycle');
             const stages = [
-                { name: 'Initial Reconnaissance', icon: 'fa-search', color: 'blue' },
-                { name: 'Initial Compromise', icon: 'fa-user-secret', color: 'red' },
-                { name: 'Establish Foothold', icon: 'fa-flag', color: 'green' },
-                { name: 'Escalate Privileges', icon: 'fa-level-up-alt', color: 'yellow' },
-                { name: 'Internal Reconnaissance', icon: 'fa-binoculars', color: 'purple' },
-                { name: 'Lateral Movement', icon: 'fa-arrows-alt-h', color: 'orange' },
-                { name: 'Maintain Presence', icon: 'fa-clock', color: 'teal' },
-                { name: 'Complete Mission', icon: 'fa-check-circle', color: 'pink' }
+                {name: 'Initial Reconnaissance', icon: 'fa-search', color: 'blue'},
+                {name: 'Initial Compromise', icon: 'fa-user-secret', color: 'red'},
+                {name: 'Establish Foothold', icon: 'fa-flag', color: 'green'},
+                {name: 'Escalate Privileges', icon: 'fa-level-up-alt', color: 'yellow'},
+                {name: 'Internal Reconnaissance', icon: 'fa-binoculars', color: 'purple'},
+                {name: 'Lateral Movement', icon: 'fa-arrows-alt-h', color: 'orange'},
+                {name: 'Maintain Presence', icon: 'fa-clock', color: 'teal'},
+                {name: 'Complete Mission', icon: 'fa-check-circle', color: 'pink'}
             ];
 
             let html = '<div class="flex flex-wrap justify-center">';
@@ -266,9 +323,9 @@
             node.className = `network-node ${type === 'normal' ? 'bg-blue-500' : type === 'attacker' ? 'bg-red-500' : 'bg-yellow-500'}`;
             node.style.left = `${x}%`;
             node.style.top = `${y}%`;
-            node.innerHTML = type === 'attacker' ? '<i class="fas fa-user-secret"></i>' : 
-                             type === 'target' ? '<i class="fas fa-database"></i>' : 
-                             '<i class="fas fa-desktop"></i>';
+            node.innerHTML = type === 'attacker' ? '<i class="fas fa-user-secret"></i>' :
+                type === 'target' ? '<i class="fas fa-database"></i>' :
+                    '<i class="fas fa-desktop"></i>';
             network.appendChild(node);
             return node;
         }
@@ -484,4 +541,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
