@@ -242,6 +242,75 @@
             </div>
         </section>
 
+        <!-- Case Studies Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Notable Zero-Day Attack Case Studies</h2>
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Stuxnet (2010)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">The Stuxnet worm exploited multiple
+                                zero-day vulnerabilities to target industrial control systems.</p>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400">
+                                <li>Targeted SCADA systems</li>
+                                <li>Exploited 4 zero-day vulnerabilities</li>
+                                <li>First known cyber weapon</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">Impact</h4>
+                            <ul class="text-sm space-y-2">
+                                <li>🏭 Affected thousands of industrial systems</li>
+                                <li>💻 Changed cybersecurity landscape</li>
+                                <li>🔒 Led to enhanced security measures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">EternalBlue (2017)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">A zero-day exploit targeting Windows SMB
+                                protocol, later used in WannaCry ransomware.</p>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400">
+                                <li>Affected Windows systems worldwide</li>
+                                <li>Led to massive ransomware attacks</li>
+                                <li>Caused billions in damages</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">Impact</h4>
+                            <ul class="text-sm space-y-2">
+                                <li>🌐 Global impact on businesses</li>
+                                <li>💰 Estimated $4 billion in damages</li>
+                                <li>🏥 Affected healthcare systems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Flowchart Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Attack Flow Analysis</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div id="flowchart" class="h-96 relative">
+                    <!-- Flowchart will be rendered here via JavaScript -->
+                </div>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <button id="prevStep"
+                        class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition">Previous
+                        Step</button>
+                    <button id="nextStep"
+                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Next Step</button>
+                </div>
+            </div>
+        </section>
+
         <!-- Visualize Section -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
@@ -356,6 +425,125 @@
             </div>
         </section>
 
+        <!-- Prevention Techniques Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Prevention Techniques</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Technical Measures</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-4">
+                                <i class="fas fa-shield-alt text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Advanced Endpoint Protection</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Implement AI-powered endpoint
+                                    security solutions</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-4">
+                                <i class="fas fa-code-branch text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Regular Patching</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Maintain up-to-date software and
+                                    security patches</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 dark:bg-purple-900 p-2 rounded-full mr-4">
+                                <i class="fas fa-network-wired text-purple-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Network Segmentation</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Isolate critical systems and limit
+                                    attack surface</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Organizational Measures</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-red-100 dark:bg-red-900 p-2 rounded-full mr-4">
+                                <i class="fas fa-users text-red-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Security Training</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Regular security awareness training
+                                    for staff</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 p-2 rounded-full mr-4">
+                                <i class="fas fa-clipboard-check text-yellow-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Security Policies</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Implement and enforce security
+                                    policies</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 dark:bg-indigo-900 p-2 rounded-full mr-4">
+                                <i class="fas fa-sync text-indigo-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Incident Response Plan</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Develop and regularly test response
+                                    procedures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Tool Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Zero-Day Exploit Types Comparison</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                    <thead>
+                        <tr class="bg-gray-50 dark:bg-gray-700">
+                            <th class="px-6 py-3 text-left">Type</th>
+                            <th class="px-6 py-3 text-left">Severity</th>
+                            <th class="px-6 py-3 text-left">Detection Difficulty</th>
+                            <th class="px-6 py-3 text-left">Common Targets</th>
+                            <th class="px-6 py-3 text-left">Mitigation Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4">Buffer Overflow</td>
+                            <td class="px-6 py-4">High</td>
+                            <td class="px-6 py-4">Medium</td>
+                            <td class="px-6 py-4">System Software</td>
+                            <td class="px-6 py-4">Memory Protection</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4">SQL Injection</td>
+                            <td class="px-6 py-4">Critical</td>
+                            <td class="px-6 py-4">Low</td>
+                            <td class="px-6 py-4">Web Applications</td>
+                            <td class="px-6 py-4">Input Validation</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <td class="px-6 py-4">Remote Code Execution</td>
+                            <td class="px-6 py-4">Critical</td>
+                            <td class="px-6 py-4">High</td>
+                            <td class="px-6 py-4">Network Services</td>
+                            <td class="px-6 py-4">Network Isolation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
         <!-- Quiz Section -->
         <section>
             <h2 class="orbitron text-2xl font-semibold mb-4">Zero-Day Exploit Quiz</h2>
@@ -427,6 +615,45 @@
                     Answers</button>
             </div>
             <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+
+        <!-- Downloadable Resources Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Downloadable Resources</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="/resources/zero-day-prevention-guide.pdf"
+                    class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-file-pdf text-red-500 text-2xl mr-3"></i>
+                        <h3 class="font-semibold">Prevention Guide</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Comprehensive guide on preventing zero-day
+                        exploits</p>
+                    <span class="text-blue-500 text-sm mt-2 inline-block">Download PDF (2.3 MB)</span>
+                </a>
+
+                <a href="/resources/zero-day-checklist.pdf"
+                    class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-tasks text-green-500 text-2xl mr-3"></i>
+                        <h3 class="font-semibold">Security Checklist</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Daily security checklist for IT professionals
+                    </p>
+                    <span class="text-blue-500 text-sm mt-2 inline-block">Download PDF (1.1 MB)</span>
+                </a>
+
+                <a href="/resources/zero-day-whitepaper.pdf"
+                    class="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-book text-purple-500 text-2xl mr-3"></i>
+                        <h3 class="font-semibold">Technical Whitepaper</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">In-depth analysis of zero-day vulnerabilities
+                    </p>
+                    <span class="text-blue-500 text-sm mt-2 inline-block">Download PDF (4.7 MB)</span>
+                </a>
+            </div>
         </section>
     </main>
 
@@ -728,6 +955,114 @@
             updateSimulation();
             addTooltipsToNodes();
         });
+    </script>
+
+    <script>
+        // Downloadable Resources Section
+        document.querySelectorAll('a[href$=".pdf"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('Download started for: ' + link.getAttribute('href'));
+                // In a real application, you would handle the actual file download here
+            });
+        });
+
+        // Interactive Flowchart Section
+        const flowchart = document.getElementById('flowchart');
+        const prevStepBtn = document.getElementById('prevStep');
+        const nextStepBtn = document.getElementById('nextStep');
+
+        const flowSteps = [
+            {id: 'step1', text: 'Attacker discovers zero-day vulnerability', x: 50, y: 10},
+            {id: 'step2', text: 'Exploit code is developed', x: 50, y: 80},
+            {id: 'step3', text: 'Attacker launches exploit against target', x: 50, y: 150},
+            {id: 'step4', text: 'Malicious payload is delivered', x: 50, y: 220},
+            {id: 'step5', text: 'System is compromised', x: 50, y: 290}
+        ];
+
+        let currentStep = 0;
+
+        function renderFlowchart() {
+            flowchart.innerHTML = '';
+            for (let i = 0; i <= currentStep; i++) {
+                const step = flowSteps[i];
+                const stepEl = document.createElement('div');
+                stepEl.id = step.id;
+                stepEl.className = 'absolute p-4 bg-blue-500 text-white rounded-lg shadow-lg';
+                stepEl.style.left = `${step.x}px`;
+                stepEl.style.top = `${step.y}px`;
+                stepEl.textContent = step.text;
+                flowchart.appendChild(stepEl);
+
+                if (i > 0) {
+                    const line = document.createElement('div');
+                    line.className = 'absolute bg-blue-500';
+                    line.style.width = '2px';
+                    line.style.height = '100px';
+                    line.style.left = `${step.x + 75}px`;
+                    line.style.top = `${step.y - 50}px`;
+                    flowchart.appendChild(line);
+                }
+            }
+        }
+
+        prevStepBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                renderFlowchart();
+            }
+            updateButtonStates();
+        });
+
+        nextStepBtn.addEventListener('click', () => {
+            if (currentStep < flowSteps.length - 1) {
+                currentStep++;
+                renderFlowchart();
+            }
+            updateButtonStates();
+        });
+
+        function updateButtonStates() {
+            prevStepBtn.disabled = currentStep === 0;
+            nextStepBtn.disabled = currentStep === flowSteps.length - 1;
+            prevStepBtn.classList.toggle('opacity-50', prevStepBtn.disabled);
+            nextStepBtn.classList.toggle('opacity-50', nextStepBtn.disabled);
+        }
+
+        // Comparison Tool Section
+        const comparisonTable = document.querySelector('table');
+        if (comparisonTable) {
+            comparisonTable.querySelectorAll('th').forEach(th => {
+                th.addEventListener('click', () => {
+                    const index = Array.from(th.parentNode.children).indexOf(th);
+                    sortTable(comparisonTable, index);
+                });
+            });
+        }
+
+        function sortTable(table, column) {
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const isNumeric = rows.every(row => !isNaN(row.children[column].textContent));
+
+            rows.sort((a, b) => {
+                const aValue = a.children[column].textContent;
+                const bValue = b.children[column].textContent;
+
+                if (isNumeric) {
+                    return parseFloat(aValue) - parseFloat(bValue);
+                } else {
+                    return aValue.localeCompare(bValue);
+                }
+            });
+
+            tbody.innerHTML = '';
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Initialize the flowchart
+        renderFlowchart();
+        updateButtonStates();
     </script>
     <script src="script.js"></script>
 
