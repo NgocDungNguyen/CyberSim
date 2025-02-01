@@ -75,6 +75,12 @@
         .pulse {
             animation: pulse 1s infinite;
         }
+        .traffic-line {
+            position: absolute;
+            height: 2px;
+            background-color: #4CAF50;
+            transition: width 0.5s linear;
+        }
     </style>
 </head>
 
@@ -182,6 +188,32 @@
             </div>
         </section>
 
+        <!-- Case Studies Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Real-World APT Case Studies</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Operation Aurora (2009)</h3>
+                    <p class="mb-4">A series of cyber attacks conducted by advanced persistent threats such as the Elderwood Group based in Beijing, China, with ties to the People's Liberation Army.</p>
+                    <ul class="list-disc list-inside">
+                        <li>Targeted: Google, Adobe, and dozens of other companies</li>
+                        <li>Goal: Intellectual property theft</li>
+                        <li>Method: Spear-phishing and zero-day exploits</li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Stuxnet (2010)</h3>
+                    <p class="mb-4">A malicious computer worm, first uncovered in 2010, thought to have been in development since at least 2005.</p>
+                    <ul class="list-disc list-inside">
+                        <li>Targeted: Iran's nuclear program</li>
+                        <li>Goal: Sabotage industrial systems</li>
+                        <li>Method: Exploited multiple zero-day vulnerabilities</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
         <!-- Visualize Section -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
@@ -213,8 +245,6 @@
             </div>
         </section>
 
-
-
         <!-- APT Lifecycle Section -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">APT Lifecycle</h2>
@@ -236,20 +266,66 @@
             <h2 class="orbitron text-2xl font-semibold mb-4">APT Simulation</h2>
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <div id="aptSimulation" class="mb-4">
-                    <div id="network"
-                        class="w-full h-96 bg-gray-200 dark:bg-gray-700 rounded-lg relative overflow-hidden">
+                    <div id="network" class="w-full h-96 bg-gray-200 dark:bg-gray-700 rounded-lg relative overflow-hidden">
                         <!-- Network visualization will go here -->
                     </div>
                 </div>
+                <div id="trafficVisualization" class="w-full h-24 bg-gray-200 dark:bg-gray-700 rounded-lg relative overflow-hidden mb-4">
+                    <!-- Network traffic visualization will go here -->
+                </div>
+                <div id="systemLogs" class="w-full h-48 bg-gray-200 dark:bg-gray-700 rounded-lg p-4 overflow-y-auto mb-4 font-mono text-sm">
+                    <!-- System logs will go here -->
+                </div>
                 <div class="simulation-controls mt-4">
-                    <button id="startSimulation"
-                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start
-                        Simulation</button>
-                    <button id="resetSimulation"
-                        class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition ml-4">Reset
-                        Simulation</button>
+                    <button id="startSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                    <button id="resetSimulation" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition ml-4">Reset Simulation</button>
+                    <button id="toggleDefense" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition ml-4">Enable Defense</button>
                 </div>
                 <div id="simulationExplanation" class="mt-4 text-sm text-gray-600 dark:text-gray-400"></div>
+            </div>
+        </section>
+
+        <!-- Mitigation Strategies Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">APT Mitigation Strategies</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Prevention</h3>
+                    <ul class="list-disc list-inside">
+                        <li>Implement strong access controls</li>
+                        <li>Regular security awareness training</li>
+                        <li>Keep systems and software up-to-date</li>
+                        <li>Use advanced threat detection tools</li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Detection</h3>
+                    <ul class="list-disc list-inside">
+                        <li>Implement network segmentation</li>
+                        <li>Use behavior-based detection systems</li>
+                        <li>Conduct regular vulnerability assessments</li>
+                        <li>Monitor for unusual data transfers</li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Response</h3>
+                    <ul class="list-disc list-inside">
+                        <li>Develop an incident response plan</li>
+                        <li>Isolate affected systems quickly</li>
+                        <li>Conduct thorough forensic analysis</li>
+                        <li>Improve defenses based on lessons learned</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Incident Response Scenarios -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Incident Response Scenarios</h2>
+            <div id="incidentResponseScenarios" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div id="scenarioDescription" class="mb-4"></div>
+                <div id="scenarioOptions" class="space-y-2"></div>
+                <button id="nextScenario" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Next Scenario</button>
             </div>
         </section>
 
@@ -306,8 +382,11 @@
 
         // APT Simulation
         const network = document.getElementById('network');
+        const trafficVisualization = document.getElementById('trafficVisualization');
+        const systemLogs = document.getElementById('systemLogs');
         const startSimulationBtn = document.getElementById('startSimulation');
         const resetSimulationBtn = document.getElementById('resetSimulation');
+        const toggleDefenseBtn = document.getElementById('toggleDefense');
         const simulationExplanation = document.getElementById('simulationExplanation');
 
         let nodes = [];
@@ -317,6 +396,7 @@
         let compromisedNodes = new Set();
         let simulationInterval;
         let simulationStep = 0;
+        let defenseEnabled = false;
 
         function createNode(type, x, y) {
             const node = document.createElement('div');
@@ -355,6 +435,8 @@
 
         function initializeNetwork() {
             network.innerHTML = '';
+            trafficVisualization.innerHTML = '';
+            systemLogs.innerHTML = '';
             nodes = [];
             links = [];
             compromisedNodes.clear();
@@ -388,43 +470,81 @@
                 case 1:
                     simulationExplanation.textContent = "Step 1: Initial Reconnaissance - The attacker scans the network for vulnerabilities.";
                     attackerNode.classList.add('pulse');
+                    addTraffic(attackerNode, nodes[0]);
+                    addLog("Suspicious network scan detected");
                     break;
                 case 2:
                     simulationExplanation.textContent = "Step 2: Initial Compromise - The attacker gains access to the first node.";
-                    compromiseNode(nodes[0]);
+                    if (!defenseEnabled || Math.random() < 0.7) {
+                        compromiseNode(nodes[0]);
+                        addTraffic(attackerNode, nodes[0]);
+                        addLog("Unauthorized access detected on Node 1");
+                    } else {
+                        addLog("Attempted breach on Node 1 blocked by firewall");
+                    }
                     break;
                 case 3:
                     simulationExplanation.textContent = "Step 3: Establish Foothold - The attacker strengthens their position in the network.";
-                    compromiseNode(nodes[1]);
+                    if (!defenseEnabled || Math.random() < 0.6) {
+                        compromiseNode(nodes[1]);
+                        addTraffic(nodes[0], nodes[1]);
+                        addLog("Suspicious activity detected on Node 2");
+                    } else {
+                        addLog("Unusual process terminated on Node 1");
+                    }
                     break;
                 case 4:
                     simulationExplanation.textContent = "Step 4: Escalate Privileges - The attacker gains higher-level access rights.";
-                    nodes[0].innerHTML = '<i class="fas fa-user-shield"></i>';
-                    nodes[1].innerHTML = '<i class="fas fa-user-shield"></i>';
+                    if (!defenseEnabled || Math.random() < 0.5) {
+                        nodes[0].innerHTML = '<i class="fas fa-user-shield"></i>';
+                        nodes[1].innerHTML = '<i class="fas fa-user-shield"></i>';
+                        addLog("Privilege escalation detected on compromised nodes");
+                    } else {
+                        addLog("Unauthorized privilege escalation attempt blocked");
+                    }
                     break;
                 case 5:
                     simulationExplanation.textContent = "Step 5: Internal Reconnaissance - The attacker explores the network further.";
                     attackerNode.classList.remove('pulse');
                     nodes[0].classList.add('pulse');
                     nodes[1].classList.add('pulse');
+                    addTraffic(nodes[1], nodes[2]);
+                    addTraffic(nodes[1], nodes[3]);
+                    addLog("Unusual internal network scanning detected");
                     break;
                 case 6:
                     simulationExplanation.textContent = "Step 6: Lateral Movement - The attacker spreads to other nodes in the network.";
-                    compromiseNode(nodes[2]);
-                    compromiseNode(nodes[3]);
+                    if (!defenseEnabled || Math.random() < 0.4) {
+                        compromiseNode(nodes[2]);
+                        compromiseNode(nodes[3]);
+                        addTraffic(nodes[1], nodes[2]);
+                        addTraffic(nodes[1], nodes[3]);
+                        addLog("Multiple systems showing signs of compromise");
+                    } else {
+                        addLog("Lateral movement attempt detected and blocked");
+                    }
                     break;
                 case 7:
                     simulationExplanation.textContent = "Step 7: Maintain Presence - The attacker ensures long-term access to the network.";
                     nodes.forEach(node => {
                         if (compromisedNodes.has(node)) {
                             node.classList.add('pulse');
+                            addTraffic(node, attackerNode);
                         }
                     });
+                    addLog("Persistent connections established from multiple nodes");
                     break;
                 case 8:
                     simulationExplanation.textContent = "Step 8: Complete Mission - The attacker reaches the target and exfiltrates data.";
-                    compromiseNode(targetNode);
-                    targetNode.classList.add('pulse');
+                    if (!defenseEnabled || Math.random() < 0.3) {
+                        compromiseNode(targetNode);
+                        targetNode.classList.add('pulse');
+                        addTraffic(nodes[3], targetNode);
+                        addTraffic(targetNode, attackerNode);
+                        addLog("Large data transfer detected from target node");
+                    } else {
+                        addLog("Suspicious data transfer blocked, potential data exfiltration attempt");
+                    }
                     clearInterval(simulationInterval);
                     startSimulationBtn.textContent = 'Simulation Complete';
                     startSimulationBtn.disabled = true;
@@ -436,6 +556,42 @@
             node.classList.remove('bg-blue-500');
             node.classList.add('bg-red-500', 'fade-in');
             compromisedNodes.add(node);
+        }
+
+        function addTraffic(from, to) {
+            const line = document.createElement('div');
+            line.className = 'traffic-line';
+            const fromRect = from.getBoundingClientRect();
+            const toRect = to.getBoundingClientRect();
+            const startX = fromRect.left + fromRect.width / 2;
+            const startY = fromRect.top + fromRect.height / 2;
+            const endX = toRect.left + toRect.width / 2;
+            const endY = toRect.top + toRect.height / 2;
+            const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+            const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+            
+            line.style.width = '0';
+            line.style.left = `${startX}px`;
+            line.style.top = `${startY}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            trafficVisualization.appendChild(line);
+            
+            setTimeout(() => {
+                line.style.width = `${length}px`;
+            }, 50);
+            
+            setTimeout(() => {
+                line.remove();
+            }, 2000);
+        }
+
+        function addLog(message) {
+            const log = document.createElement('div');
+            log.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.className = 'mb-1';
+            systemLogs.appendChild(log);
+            systemLogs.scrollTop = systemLogs.scrollHeight;
         }
 
         startSimulationBtn.addEventListener('click', () => {
@@ -459,6 +615,91 @@
             simulationExplanation.textContent = '';
             startSimulationBtn.textContent = 'Start Simulation';
             startSimulationBtn.disabled = false;
+        });
+
+        toggleDefenseBtn.addEventListener('click', () => {
+            defenseEnabled = !defenseEnabled;
+            toggleDefenseBtn.textContent = defenseEnabled ? 'Disable Defense' : 'Enable Defense';
+            toggleDefenseBtn.classList.toggle('bg-green-500');
+            toggleDefenseBtn.classList.toggle('bg-red-500');
+            addLog(defenseEnabled ? "Defense mechanisms activated" : "Defense mechanisms deactivated");
+        });
+
+        // Incident Response Scenarios
+        const scenarioDescription = document.getElementById('scenarioDescription');
+        const scenarioOptions = document.getElementById('scenarioOptions');
+        const nextScenarioBtn = document.getElementById('nextScenario');
+
+        const scenarios = [
+            {
+                description: "You detect unusual outbound traffic from a server containing sensitive data. What's your first step?",
+                options: [
+                    { text: "Immediately shut down the server", correct: false },
+                    { text: "Monitor the traffic and gather more information", correct: true },
+                    { text: "Ignore it as it's probably a false positive", correct: false },
+                    { text: "Inform all employees about the potential breach", correct: false }
+                ]
+            },
+            {
+                description: "An employee reports receiving a suspicious email with an attachment. What action do you take?",
+                options: [
+                    { text: "Tell the employee to delete the email immediately", correct: false },
+                    { text: "Open the attachment in a secure environment to investigate", correct: true },
+                    { text: "Forward the email to all staff as an example", correct: false },
+                    { text: "Ignore it as spam filters should catch malicious emails", correct: false }
+                ]
+            },
+            {
+                description: "Your intrusion detection system alerts you to a potential SQL injection attack. How do you respond?",
+                options: [
+                    { text: "Shut down all database servers", correct: false },
+                    { text: "Immediately patch all systems without testing", correct: false },
+                    { text: "Investigate the alert and isolate affected systems", correct: true },
+                    { text: "Ignore it as web application firewalls should prevent SQL injection", correct: false }
+                ]
+            }
+        ];
+
+        let currentScenario = 0;
+
+        function displayScenario() {
+            const scenario = scenarios[currentScenario];
+            scenarioDescription.textContent = scenario.description;
+            scenarioOptions.innerHTML = '';
+            scenario.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option.text;
+                button.className = 'w-full text-left p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700';
+                button.addEventListener('click', () => checkAnswer(index));
+                scenarioOptions.appendChild(button);
+            });
+        }
+
+        function checkAnswer(index) {
+            const scenario = scenarios[currentScenario];
+            const buttons = scenarioOptions.getElementsByTagName('button');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+                if (i === index) {
+                    buttons[i].classList.add(scenario.options[i].correct ? 'bg-green-500' : 'bg-red-500');
+                }
+                if (scenario.options[i].correct) {
+                    buttons[i].classList.add('bg-green-500');
+                }
+            }
+        }
+
+        nextScenarioBtn.addEventListener('click', () => {
+            currentScenario = (currentScenario + 1) % scenarios.length;
+            displayScenario();
+        });
+
+        // Initialize page content
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNetwork();
+            visualizeAPTLifecycle();
+            setupQuiz();
+            displayScenario();
         });
 
         // Quiz functionality
