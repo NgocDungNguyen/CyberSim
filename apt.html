@@ -1,0 +1,487 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Persistent Threats (APT) - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .network-node {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        .network-link {
+            position: absolute;
+            background-color: #888;
+            height: 2px;
+            transform-origin: left center;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .pulse {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Advanced Persistent Threats (APT)</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
+                    <p>An Advanced Persistent Threat (APT) is a prolonged and targeted cyberattack in which an intruder gains access to a network and remains undetected for an extended period. APTs are typically conducted by sophisticated threat actors, such as nation-state groups, and are aimed at high-value targets like large corporations or government entities.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
+                    <p>Imagine a skilled burglar who doesn't just break into a house for a quick theft, but instead moves in secretly, living in the attic for months or even years. They slowly gather valuable information, make copies of important documents, and monitor the homeowners' activities. This long-term, stealthy approach is similar to how APTs operate in the digital world.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualize Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-user-secret text-5xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Stealthy Infiltration</h3>
+                    <p class="text-gray-600 dark:text-gray-400">APTs use sophisticated techniques to gain and maintain access without detection.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-hourglass-half text-5xl text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Long-Term Presence</h3>
+                    <p class="text-gray-600 dark:text-gray-400">APTs maintain a presence in the target network for extended periods, often months or years.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-bullseye text-5xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Targeted Attacks</h3>
+                    <p class="text-gray-600 dark:text-gray-400">APTs focus on specific high-value targets with clear objectives.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- APT Lifecycle Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">APT Lifecycle</h2>
+            <div id="aptLifecycle" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <!-- APT lifecycle visualization will go here -->
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">APT Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div id="aptSimulation" class="mb-4">
+                    <div id="network" class="w-full h-96 bg-gray-200 dark:bg-gray-700 rounded-lg relative overflow-hidden">
+                        <!-- Network visualization will go here -->
+                    </div>
+                </div>
+                <div class="simulation-controls mt-4">
+                    <button id="startSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                    <button id="resetSimulation" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition ml-4">Reset Simulation</button>
+                </div>
+                <div id="simulationExplanation" class="mt-4 text-sm text-gray-600 dark:text-gray-400"></div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">APT Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <!-- Quiz questions will go here -->
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // APT Lifecycle Visualization
+        function visualizeAPTLifecycle() {
+            const aptLifecycle = document.getElementById('aptLifecycle');
+            const stages = [
+                { name: 'Initial Reconnaissance', icon: 'fa-search', color: 'blue' },
+                { name: 'Initial Compromise', icon: 'fa-user-secret', color: 'red' },
+                { name: 'Establish Foothold', icon: 'fa-flag', color: 'green' },
+                { name: 'Escalate Privileges', icon: 'fa-level-up-alt', color: 'yellow' },
+                { name: 'Internal Reconnaissance', icon: 'fa-binoculars', color: 'purple' },
+                { name: 'Lateral Movement', icon: 'fa-arrows-alt-h', color: 'orange' },
+                { name: 'Maintain Presence', icon: 'fa-clock', color: 'teal' },
+                { name: 'Complete Mission', icon: 'fa-check-circle', color: 'pink' }
+            ];
+
+            let html = '<div class="flex flex-wrap justify-center">';
+            stages.forEach((stage, index) => {
+                html += `
+                    <div class="m-2 p-4 bg-${stage.color}-100 rounded-lg shadow-md text-center w-48">
+                        <i class="fas ${stage.icon} text-4xl text-${stage.color}-500 mb-2"></i>
+                        <h3 class="text-lg font-semibold">${stage.name}</h3>
+                        <p class="text-sm text-gray-600">Stage ${index + 1}</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            aptLifecycle.innerHTML = html;
+
+            // Add animation to show progression
+            const stageElements = aptLifecycle.querySelectorAll('div > div');
+            stageElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('scale-105', 'shadow-lg');
+                    setTimeout(() => {
+                        element.classList.remove('scale-105', 'shadow-lg');
+                    }, 500);
+                }, index * 1000);
+            });
+        }
+
+        // APT Simulation
+        const network = document.getElementById('network');
+        const startSimulationBtn = document.getElementById('startSimulation');
+        const resetSimulationBtn = document.getElementById('resetSimulation');
+        const simulationExplanation = document.getElementById('simulationExplanation');
+
+        let nodes = [];
+        let links = [];
+        let attackerNode;
+        let targetNode;
+        let compromisedNodes = new Set();
+        let simulationInterval;
+        let simulationStep = 0;
+
+        function createNode(type, x, y) {
+            const node = document.createElement('div');
+            node.className = `network-node ${type === 'normal' ? 'bg-blue-500' : type === 'attacker' ? 'bg-red-500' : 'bg-yellow-500'}`;
+            node.style.left = `${x}%`;
+            node.style.top = `${y}%`;
+            node.innerHTML = type === 'attacker' ? '<i class="fas fa-user-secret"></i>' : 
+                             type === 'target' ? '<i class="fas fa-database"></i>' : 
+                             '<i class="fas fa-desktop"></i>';
+            network.appendChild(node);
+            return node;
+        }
+
+        function createLink(node1, node2) {
+            const link = document.createElement('div');
+            link.className = 'network-link';
+            updateLinkPosition(link, node1, node2);
+            network.appendChild(link);
+            return link;
+        }
+
+        function updateLinkPosition(link, node1, node2) {
+            const rect1 = node1.getBoundingClientRect();
+            const rect2 = node2.getBoundingClientRect();
+            const x1 = rect1.left + rect1.width / 2;
+            const y1 = rect1.top + rect1.height / 2;
+            const x2 = rect2.left + rect2.width / 2;
+            const y2 = rect2.top + rect2.height / 2;
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            link.style.width = `${length}px`;
+            link.style.left = `${x1}px`;
+            link.style.top = `${y1}px`;
+            link.style.transform = `rotate(${angle}deg)`;
+        }
+
+        function initializeNetwork() {
+            network.innerHTML = '';
+            nodes = [];
+            links = [];
+            compromisedNodes.clear();
+
+            // Create normal nodes
+            for (let i = 0; i < 8; i++) {
+                nodes.push(createNode('normal', Math.random() * 80 + 10, Math.random() * 80 + 10));
+            }
+
+            // Create attacker node
+            attackerNode = createNode('attacker', 5, 50);
+            nodes.push(attackerNode);
+
+            // Create target node
+            targetNode = createNode('target', 95, 50);
+            nodes.push(targetNode);
+
+            // Create links
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    if (Math.random() < 0.3) {
+                        links.push(createLink(nodes[i], nodes[j]));
+                    }
+                }
+            }
+        }
+
+        function simulateAPT() {
+            simulationStep++;
+            switch (simulationStep) {
+                case 1:
+                    simulationExplanation.textContent = "Step 1: Initial Reconnaissance - The attacker scans the network for vulnerabilities.";
+                    attackerNode.classList.add('pulse');
+                    break;
+                case 2:
+                    simulationExplanation.textContent = "Step 2: Initial Compromise - The attacker gains access to the first node.";
+                    compromiseNode(nodes[0]);
+                    break;
+                case 3:
+                    simulationExplanation.textContent = "Step 3: Establish Foothold - The attacker strengthens their position in the network.";
+                    compromiseNode(nodes[1]);
+                    break;
+                case 4:
+                    simulationExplanation.textContent = "Step 4: Escalate Privileges - The attacker gains higher-level access rights.";
+                    nodes[0].innerHTML = '<i class="fas fa-user-shield"></i>';
+                    nodes[1].innerHTML = '<i class="fas fa-user-shield"></i>';
+                    break;
+                case 5:
+                    simulationExplanation.textContent = "Step 5: Internal Reconnaissance - The attacker explores the network further.";
+                    attackerNode.classList.remove('pulse');
+                    nodes[0].classList.add('pulse');
+                    nodes[1].classList.add('pulse');
+                    break;
+                case 6:
+                    simulationExplanation.textContent = "Step 6: Lateral Movement - The attacker spreads to other nodes in the network.";
+                    compromiseNode(nodes[2]);
+                    compromiseNode(nodes[3]);
+                    break;
+                case 7:
+                    simulationExplanation.textContent = "Step 7: Maintain Presence - The attacker ensures long-term access to the network.";
+                    nodes.forEach(node => {
+                        if (compromisedNodes.has(node)) {
+                            node.classList.add('pulse');
+                        }
+                    });
+                    break;
+                case 8:
+                    simulationExplanation.textContent = "Step 8: Complete Mission - The attacker reaches the target and exfiltrates data.";
+                    compromiseNode(targetNode);
+                    targetNode.classList.add('pulse');
+                    clearInterval(simulationInterval);
+                    startSimulationBtn.textContent = 'Simulation Complete';
+                    startSimulationBtn.disabled = true;
+                    break;
+            }
+        }
+
+        function compromiseNode(node) {
+            node.classList.remove('bg-blue-500');
+            node.classList.add('bg-red-500', 'fade-in');
+            compromisedNodes.add(node);
+        }
+
+        startSimulationBtn.addEventListener('click', () => {
+            if (startSimulationBtn.textContent === 'Start Simulation') {
+                simulationStep = 0;
+                simulationInterval = setInterval(simulateAPT, 3000);
+                startSimulationBtn.textContent = 'Pause Simulation';
+            } else if (startSimulationBtn.textContent === 'Pause Simulation') {
+                clearInterval(simulationInterval);
+                startSimulationBtn.textContent = 'Resume Simulation';
+            } else if (startSimulationBtn.textContent === 'Resume Simulation') {
+                simulationInterval = setInterval(simulateAPT, 3000);
+                startSimulationBtn.textContent = 'Pause Simulation';
+            }
+        });
+
+        resetSimulationBtn.addEventListener('click', () => {
+            clearInterval(simulationInterval);
+            initializeNetwork();
+            simulationStep = 0;
+            simulationExplanation.textContent = '';
+            startSimulationBtn.textContent = 'Start Simulation';
+            startSimulationBtn.disabled = false;
+        });
+
+        // Quiz functionality
+        function setupQuiz() {
+            const quiz = document.getElementById('quiz');
+            const quizResults = document.getElementById('quizResults');
+            const questions = [
+                {
+                    question: "What does APT stand for?",
+                    answers: [
+                        "Advanced Persistent Threat",
+                        "Automated Penetration Test",
+                        "Application Programming Technique",
+                        "Adaptive Protection Technology"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is NOT typically a characteristic of APTs?",
+                    answers: [
+                        "Long-term presence in the target network",
+                        "Highly sophisticated attack techniques",
+                        "Immediate, noticeable impact on the target",
+                        "Specific, high-value targets"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What is often the primary goal of an APT attack?",
+                    answers: [
+                        "Immediate financial gain",
+                        "Disruption of services",
+                        "Long-term data exfiltration",
+                        "Reputation damage"
+                    ],
+                    correct: 2
+                }
+            ];
+
+            let quizHTML = '';
+            questions.forEach((q, index) => {
+                quizHTML += `
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">${index + 1}. ${q.question}</p>
+                        ${q.answers.map((answer, i) => `
+                            <label class="block mb-2">
+                                <input type="radio" name="q${index}" value="${i}" class="mr-2">
+                                ${answer}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+            });
+            quizHTML += '<button id="submitQuiz" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>';
+            quiz.innerHTML = quizHTML;
+
+            document.getElementById('submitQuiz').addEventListener('click', () => {
+                let score = 0;
+                questions.forEach((q, index) => {
+                    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                    if (selected && parseInt(selected.value) === q.correct) {
+                        score++;
+                    }
+                });
+                quizResults.innerHTML = `
+                    <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                    <p>You scored ${score} out of ${questions.length}.</p>
+                `;
+                quizResults.classList.remove('hidden');
+            });
+        }
+
+        // Initialize page content
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeNetwork();
+            visualizeAPTLifecycle();
+            setupQuiz();
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>

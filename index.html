@@ -1,0 +1,321 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .cyber-card {
+            transition: all 0.3s ease;
+        }
+        .cyber-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 179, 255, 0.2);
+        }
+        .dark .cyber-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            min-width: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dark .dropdown-menu {
+            background-color: #2d3748;
+            border-color: #4a5568;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+        }
+        .dark .dropdown-menu a {
+            color: #e2e8f0;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f3f4f6;
+        }
+        .dark .dropdown-menu a:hover {
+            background-color: #4a5568;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="orbitron text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-6">
+                Learn Cybersecurity <span class="text-blue-500 dark:text-blue-400">Interactively</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Explore, visualize, and master cyber threats through interactive simulations and quizzes
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="#threats" class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition">
+                    Explore Threats
+                </a>
+                <a href="about.html" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white px-8 py-3 rounded-lg transition">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+     <!-- Threats Grid -->
+     <section id="threats" class="py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="orbitron text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">Cyber Threats</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="phishing.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-fish text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Phishing</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Learn about deceptive attempts to steal sensitive information through fake websites and emails.</p>
+                </a>
+
+                <a href="spoofing.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-mask text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Spoofing</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Understand how attackers impersonate legitimate entities to gain unauthorized access.</p>
+                </a>
+
+                <a href="adware.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-ad text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Adware and Malvertising</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Explore the risks of unwanted advertisements and malicious advertising campaigns.</p>
+                </a>
+
+                <a href="ddos.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-server text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">DDoS</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Explore how distributed denial-of-service attacks overwhelm systems and networks.</p>
+                </a>
+
+                <a href="mitm.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-user-secret text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">MitM</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Learn about Man-in-the-Middle attacks and how they intercept communications.</p>
+                </a>
+
+                <a href="sql-injection.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-database text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">SQL Injection</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Understand how attackers exploit vulnerabilities in database queries.</p>
+                </a>
+
+                <a href="zero-day.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bug text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Zero Day Exploits</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Discover the dangers of unknown vulnerabilities and how they're exploited.</p>
+                </a>
+
+                <a href="ransomware.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-lock text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Ransomware</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Learn about malware that encrypts files and demands ransom for decryption.</p>
+                </a>
+
+                <a href="apt.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chess text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">APT</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Explore Advanced Persistent Threats and their long-term impact on organizations.</p>
+                </a>
+
+                <a href="credential-stuffing.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-key text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Credential Stuffing</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Understand how attackers use stolen credentials to gain unauthorized access.</p>
+                </a>
+
+                <a href="xss.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-code text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Cross-Site Scripting (XSS)</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Learn about injecting malicious scripts into web applications.</p>
+                </a>
+
+                <a href="ai-attacks.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-robot text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">AI-Powered Attacks</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Explore how artificial intelligence is being used in cyber attacks.</p>
+                </a>
+
+                <a href="clickjacking.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-mouse-pointer text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Clickjacking</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Understand how attackers trick users into clicking on disguised elements.</p>
+                </a>
+
+                <a href="session-hijacking.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-user-ninja text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Session Hijacking</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Learn how attackers can take over active user sessions.</p>
+                </a>
+
+                <a href="social-engineering.html" class="cyber-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-users text-3xl text-blue-500 mr-4"></i>
+                        <h3 class="orbitron text-xl font-semibold text-gray-800 dark:text-white">Social Engineering</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">Explore psychological manipulation techniques used in cyber attacks.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features Section -->
+    <section class="py-12 px-4 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="orbitron text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">Interactive Learning Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <i class="fas fa-vr-cardboard text-5xl text-blue-500 dark:text-blue-400 mb-4"></i>
+                    <h3 class="orbitron text-xl font-semibold mb-2 text-gray-800 dark:text-white">Visual Simulations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Experience cyber attacks in a safe, controlled environment</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-quiz text-5xl text-blue-500 dark:text-blue-400 mb-4"></i>
+                    <h3 class="orbitron text-xl font-semibold mb-2 text-gray-800 dark:text-white">Interactive Quizzes</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Test your knowledge with engaging assessments</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-shield-alt text-5xl text-blue-500 dark:text-blue-400 mb-4"></i>
+                    <h3 class="orbitron text-xl font-semibold mb-2 text-gray-800 dark:text-white">Defense Strategies</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Learn practical protection methods</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <p class="orbitron text-xl mb-4">CyberSec Learning Hub</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="mt-4 text-gray-400">© 2024 CyberSec Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    </body>
+</html>

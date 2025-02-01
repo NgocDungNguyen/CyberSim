@@ -1,0 +1,435 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ransomware - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes encrypt {
+            0% { background-color: #10B981; }
+            100% { background-color: #EF4444; }
+        }
+        .encrypting {
+            animation: encrypt 2s forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.com" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Ransomware</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
+                    <p>Ransomware is a type of malicious software (malware) that encrypts a victim's files. The attacker then demands a ransom from the victim to restore access to the data upon payment. Users are shown instructions for how to pay a fee to get the decryption key. The costs can range from a few hundred dollars to thousands, payable to cybercriminals in cryptocurrency.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
+                    <p>Imagine coming home to find that all your possessions have been locked in an impenetrable safe. A stranger contacts you, claiming they have the only key, and demands payment for its return. This is similar to how ransomware operates, locking away your digital possessions (files) and demanding payment for their release.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualize Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-file-alt text-5xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Uninfected Files</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Normal, accessible files on a system.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-virus text-5xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Ransomware</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Malicious software that encrypts files.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-lock text-5xl text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Encrypted Files</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Files locked by ransomware, inaccessible to the user.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Ransomware Attack Simulation</h3>
+                <div class="grid grid-cols-5 gap-4 mb-4" id="fileSystem">
+                    <!-- File icons will be dynamically added here -->
+                </div>
+                <button id="simulateAttack" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Simulate Ransomware Attack</button>
+                <button id="resetSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition ml-4">Reset Simulation</button>
+                <div id="ransomNote" class="mt-8 p-4 bg-black text-green-500 font-mono text-sm hidden"></div>
+            </div>
+        </section>
+
+        <!-- Advanced Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Advanced Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Ransomware Encryption Speed Simulation</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="encryptionSpeed" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Encryption Speed (files/sec):</label>
+                        <input type="range" id="encryptionSpeed" min="1" max="20" value="5" class="w-full">
+                        <span id="encryptionSpeedValue" class="text-sm text-gray-600 dark:text-gray-400">5 files/sec</span>
+                    </div>
+                    <div>
+                        <label for="fileCount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Total Files:</label>
+                        <input type="range" id="fileCount" min="20" max="200" value="100" class="w-full">
+                        <span id="fileCountValue" class="text-sm text-gray-600 dark:text-gray-400">100 files</span>
+                    </div>
+                </div>
+                <div id="advancedSimulationArea" class="relative h-80 bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden mb-6"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2">Encrypted Files</h3>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                            <div id="encryptedBar" class="bg-red-600 h-2.5 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <span id="encryptedValue" class="text-sm text-gray-600 dark:text-gray-400">0%</span>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2">Time Elapsed</h3>
+                        <span id="timeElapsed" class="text-sm text-gray-600 dark:text-gray-400">0 seconds</span>
+                    </div>
+                </div>
+                <div class="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 p-4 mb-6">
+                    <h3 class="font-semibold text-blue-700 dark:text-blue-300 mb-2">Simulation Explanation</h3>
+                    <p id="simulationExplanation" class="text-sm text-blue-600 dark:text-blue-400">Adjust the sliders to see how encryption speed and file count affect the ransomware attack.</p>
+                </div>
+                <button id="startAdvancedSimulation" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Start Advanced Simulation</button>
+                <button id="resetAdvancedSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition ml-4">Reset Advanced Simulation</button>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">Ransomware Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="space-y-6">
+                    <div>
+                        <p class="font-semibold mb-2">1. What is the primary goal of ransomware?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="a" class="mr-2">
+                                <span>To steal personal information</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="b" class="mr-2">
+                                <span>To encrypt files and demand payment for decryption</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="c" class="mr-2">
+                                <span>To improve system security</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">2. Which of the following is NOT a common way ransomware spreads?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="a" class="mr-2">
+                                <span>Phishing emails</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="b" class="mr-2">
+                                <span>Exploiting software vulnerabilities</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="c" class="mr-2">
+                                <span>Regular system updates</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">3. What is the best way to protect against ransomware?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="a" class="mr-2">
+                                <span>Pay the ransom immediately</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="b" class="mr-2">
+                                <span>Regularly backup data and keep software updated</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="c" class="mr-2">
+                                <span>Disconnect from the internet permanently</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // Ransomware Simulation
+        const fileSystem = document.getElementById('fileSystem');
+        const simulateAttack = document.getElementById('simulateAttack');
+        const resetSimulation = document.getElementById('resetSimulation');
+        const ransomNote = document.getElementById('ransomNote');
+
+        function createFileSystem() {
+            fileSystem.innerHTML = '';
+            for (let i = 0; i < 15; i++) {
+                const file = document.createElement('div');
+                file.className = 'text-center';
+                file.innerHTML = `
+                    <i class="fas fa-file-alt text-4xl text-green-500"></i>
+                    <p class="mt-2">File ${i + 1}</p>
+                `;
+                fileSystem.appendChild(file);
+            }
+        }
+
+        function simulateRansomware() {
+            const files = fileSystem.querySelectorAll('div');
+            files.forEach((file, index) => {
+                setTimeout(() => {
+                    file.querySelector('i').className = 'fas fa-file-alt text-4xl text-red-500';
+                    file.classList.add('encrypting');
+                }, index * 200);
+            });
+
+            setTimeout(() => {
+                ransomNote.innerHTML = `
+                    <p>YOUR FILES HAVE BEEN ENCRYPTED!</p>
+                    <p>To decrypt your files, send 1 Bitcoin to the following address:</p>
+                    <p>1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2</p>
+                    <p>You have 48 hours to comply or your files will be permanently deleted.</p>
+                `;
+                ransomNote.classList.remove('hidden');
+            }, files.length * 200);
+        }
+
+        simulateAttack.addEventListener('click', simulateRansomware);
+        resetSimulation.addEventListener('click', () => {
+            createFileSystem();
+            ransomNote.classList.add('hidden');
+        });
+
+        createFileSystem();
+
+        // Advanced Ransomware Simulation
+        const encryptionSpeedSlider = document.getElementById('encryptionSpeed');
+        const encryptionSpeedValue = document.getElementById('encryptionSpeedValue');
+        const fileCountSlider = document.getElementById('fileCount');
+        const fileCountValue = document.getElementById('fileCountValue');
+        const advancedSimulationArea = document.getElementById('advancedSimulationArea');
+        const encryptedBar = document.getElementById('encryptedBar');
+        const encryptedValue = document.getElementById('encryptedValue');
+        const timeElapsed = document.getElementById('timeElapsed');
+        const simulationExplanation = document.getElementById('simulationExplanation');
+        const startAdvancedSimulation = document.getElementById('startAdvancedSimulation');
+        const resetAdvancedSimulation = document.getElementById('resetAdvancedSimulation');
+
+        let files = [];
+        let simulationInterval;
+        let simulationStartTime;
+
+        function updateSimulationSettings() {
+            const encryptionSpeed = parseInt(encryptionSpeedSlider.value);
+            const fileCount = parseInt(fileCountSlider.value);
+
+            encryptionSpeedValue.textContent = `${encryptionSpeed} files/sec`;
+            fileCountValue.textContent = `${fileCount} files`;
+
+            advancedSimulationArea.innerHTML = '';
+            files = [];
+
+            for (let i = 0; i < fileCount; i++) {
+                const file = document.createElement('div');
+                file.className = 'absolute w-3 h-4 bg-green-500 rounded';
+                file.style.left = `${Math.random() * 95}%`;
+                file.style.top = `${Math.random() * 95}%`;
+                advancedSimulationArea.appendChild(file);
+                files.push(file);
+            }
+        }
+
+        function runAdvancedSimulation() {
+            const encryptionSpeed = parseInt(encryptionSpeedSlider.value);
+            let encryptedCount = 0;
+
+            simulationInterval = setInterval(() => {
+                for (let i = 0; i < encryptionSpeed; i++) {
+                    if (encryptedCount >= files.length) {
+                        clearInterval(simulationInterval);
+                        simulationExplanation.textContent = "All files have been encrypted. The ransomware attack is complete.";
+                        return;
+                    }
+
+                    files[encryptedCount].classList.remove('bg-green-500');
+                    files[encryptedCount].classList.add('bg-red-500');
+                    encryptedCount++;
+                }
+
+                const encryptedPercentage = (encryptedCount / files.length) * 100;
+                encryptedBar.style.width = `${encryptedPercentage}%`;
+                encryptedValue.textContent = `${encryptedPercentage.toFixed(1)}%`;
+
+                const elapsedTime = Math.floor((Date.now() - simulationStartTime) / 1000);
+                timeElapsed.textContent = `${elapsedTime} seconds`;
+
+                simulationExplanation.textContent = `${encryptedCount} out of ${files.length} files have been encrypted in ${elapsedTime} seconds.`;
+            }, 1000);
+        }
+
+        encryptionSpeedSlider.addEventListener('input', updateSimulationSettings);
+        fileCountSlider.addEventListener('input', updateSimulationSettings);
+
+        startAdvancedSimulation.addEventListener('click', () => {
+            clearInterval(simulationInterval);
+            simulationStartTime = Date.now();
+            runAdvancedSimulation();
+        });
+
+        resetAdvancedSimulation.addEventListener('click', () => {
+            clearInterval(simulationInterval);
+            updateSimulationSettings();
+            encryptedBar.style.width = '0%';
+            encryptedValue.textContent = '0%';
+            timeElapsed.textContent = '0 seconds';
+            simulationExplanation.textContent = 'Adjust the sliders to see how encryption speed and file count affect the ransomware attack.';
+        });
+
+        // Initial advanced simulation setup
+        updateSimulationSettings();
+
+        // Quiz functionality
+        const submitQuiz = document.getElementById('submitQuiz');
+        const quizResults = document.getElementById('quizResults');
+
+        submitQuiz.addEventListener('click', () => {
+            const answers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value
+            };
+
+            const correctAnswers = {q1: 'b', q2: 'c', q3: 'b'};
+            let score = 0;
+            let feedback = '';
+
+            for (let question in answers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
+                    feedback += `<p class="text-green-500">Question ${question.slice(1)}: Correct!</p>`;
+                } else {
+                    feedback += `<p class="text-red-500">Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
+                }
+            }
+
+            quizResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                <p>You scored ${score} out of 3.</p>
+                ${feedback}
+            `;
+            quizResults.classList.remove('hidden');
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>

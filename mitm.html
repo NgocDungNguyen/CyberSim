@@ -1,0 +1,335 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Man-in-the-Middle Attacks - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .data-packet {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            transition: all 0.5s linear;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Man-in-the-Middle (MitM) Attacks</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
+                    <p>A Man-in-the-Middle (MitM) attack occurs when an attacker secretly intercepts and possibly alters the communication between two parties who believe they are directly communicating with each other. The attacker can eavesdrop on the conversation, inject new messages, or modify the content being transmitted.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
+                    <p>Imagine you're passing a secret note to a friend in class. A MitM attack is like having another student intercept the note, read it, possibly change its contents, and then pass it on to your friend - all without either of you realizing the note was tampered with.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualize Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-user text-5xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Sender</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The party initiating the communication, unaware of the interceptor.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-user-secret text-5xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Man-in-the-Middle</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The attacker intercepting and potentially modifying the communication.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-user text-5xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Receiver</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The intended recipient of the communication, also unaware of the interceptor.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">MitM Attack Simulation</h3>
+                <div class="mb-4">
+                    <label for="message" class="block mb-2">Enter a message to send:</label>
+                    <input type="text" id="message" class="w-full p-2 border rounded" placeholder="Hello, how are you?">
+                </div>
+                <div class="mb-4">
+                    <label class="flex items-center">
+                        <input type="checkbox" id="enableMitM" class="mr-2">
+                        <span>Enable Man-in-the-Middle Attack</span>
+                    </label>
+                </div>
+                <button id="sendMessage" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Send Message</button>
+                <div id="simulationArea" class="mt-8 h-64 bg-gray-200 dark:bg-gray-700 rounded-lg relative">
+                    <div id="sender" class="absolute top-1/2 left-4 transform -translate-y-1/2">
+                        <i class="fas fa-user text-4xl text-blue-500"></i>
+                    </div>
+                    <div id="mitm" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden">
+                        <i class="fas fa-user-secret text-4xl text-red-500"></i>
+                    </div>
+                    <div id="receiver" class="absolute top-1/2 right-4 transform -translate-y-1/2">
+                        <i class="fas fa-user text-4xl text-green-500"></i>
+                    </div>
+                </div>
+                <div id="simulationResults" class="mt-4">
+                    <p>Enter a message and click "Send Message" to start the simulation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">MitM Attack Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="space-y-6">
+                    <div>
+                        <p class="font-semibold mb-2">1. What is the primary goal of a Man-in-the-Middle attack?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="a" class="mr-2">
+                                <span>To crash the server</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="b" class="mr-2">
+                                <span>To intercept and potentially alter communication between two parties</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="c" class="mr-2">
+                                <span>To improve network speed</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">2. Which of the following is NOT a common method to prevent MitM attacks?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="a" class="mr-2">
+                                <span>Using HTTPS</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="b" class="mr-2">
+                                <span>Implementing strong encryption</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="c" class="mr-2">
+                                <span>Disabling all network communication</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">3. In a MitM attack, what role does the attacker play?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="a" class="mr-2">
+                                <span>The sender of the message</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="b" class="mr-2">
+                                <span>The receiver of the message</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="c" class="mr-2">
+                                <span>An intermediary between the sender and receiver</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // MitM Simulation
+        const messageInput = document.getElementById('message');
+        const enableMitMCheckbox = document.getElementById('enableMitM');
+        const sendMessageButton = document.getElementById('sendMessage');
+        const simulationArea = document.getElementById('simulationArea');
+        const simulationResults = document.getElementById('simulationResults');
+        const mitm = document.getElementById('mitm');
+
+        sendMessageButton.addEventListener('click', () => {
+            const message = messageInput.value;
+            const isMitMEnabled = enableMitMCheckbox.checked;
+
+            // Clear previous simulation
+            simulationArea.querySelectorAll('.data-packet').forEach(el => el.remove());
+
+            // Show or hide MITM
+            mitm.style.display = isMitMEnabled ? 'block' : 'none';
+
+            // Create and animate data packet
+            const packet = document.createElement('div');
+            packet.className = 'data-packet bg-blue-500';
+            packet.style.left = '40px';
+            packet.style.top = '50%';
+            simulationArea.appendChild(packet);
+
+            setTimeout(() => {
+                packet.style.left = isMitMEnabled ? '50%' : 'calc(100% - 40px)';
+                packet.style.top = '50%';
+            }, 100);
+
+            if (isMitMEnabled) {
+                setTimeout(() => {
+                    packet.style.backgroundColor = '#EF4444';  // Change color to indicate modification
+                    packet.style.left = 'calc(100% - 40px)';
+                }, 1500);
+            }
+
+            // Display results
+            setTimeout(() => {
+                let resultMessage = `Original message: "${message}"<br>`;
+                if (isMitMEnabled) {
+                    const modifiedMessage = message.split('').reverse().join('');  // Simple modification: reverse the message
+                    resultMessage += `Modified message: "${modifiedMessage}"`;
+                } else {
+                    resultMessage += "Message delivered successfully without interception.";
+                }
+                simulationResults.innerHTML = resultMessage;
+            }, isMitMEnabled ? 3000 : 1500);
+        });
+
+        // Quiz functionality
+        const submitQuiz = document.getElementById('submitQuiz');
+        const quizResults = document.getElementById('quizResults');
+
+        submitQuiz.addEventListener('click', () => {
+            const answers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value
+            };
+
+            const correctAnswers = {q1: 'b', q2: 'c', q3: 'c'};
+            let score = 0;
+            let feedback = '';
+
+            for (let question in answers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
+                    feedback += `<p class="text-green-500">Question ${question.slice(1)}: Correct!</p>`;
+                } else {
+                    feedback += `<p class="text-red-500">Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
+                }
+            }
+
+            quizResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                <p>You scored ${score} out of 3.</p>
+                ${feedback}
+            `;
+            quizResults.classList.remove('hidden');
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>

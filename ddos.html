@@ -1,0 +1,411 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDoS Attacks - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .packet {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #3B82F6;
+            border-radius: 50%;
+            transition: all 0.5s linear;
+        }
+        #server {
+            transition: all 0.3s ease;
+        }
+        .server-overload {
+            animation: shake 0.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">DDoS Attacks</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
+                    <p>A Distributed Denial of Service (DDoS) attack is a malicious attempt to disrupt the normal traffic of a targeted server, service, or network by overwhelming it with a flood of internet traffic. This is achieved by using multiple compromised systems as sources of attack traffic, often forming a botnet.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
+                    <p>Imagine a store with a single entrance. If a huge crowd of people blocks the entrance, legitimate customers cannot enter the store. Similarly, in a DDoS attack, the server is overwhelmed with fake traffic, preventing legitimate users from accessing it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualize Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div id="serverAnimation" class="mx-auto mb-4 w-24 h-24 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-server text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Server</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The target of a DDoS attack, struggling to handle the flood of requests.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-tachometer-alt text-5xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Latency</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The delay between a request and response, increasing during an attack.</p>
+                    <div class="mt-4 text-2xl font-bold text-red-500">
+                        <span id="latencyValue">20</span> ms
+                    </div>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-weight-hanging text-5xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Server Load</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The amount of work the server is handling, increasing during an attack.</p>
+                    <div class="mt-4 bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 w-full">
+                        <div id="serverLoadBar" class="bg-green-500 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                    <div class="mt-2 text-sm">
+                        <span id="serverLoadValue">0</span>%
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="grid md:grid-cols-2 gap-8 mb-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">DDoS Attack Simulation</h3>
+                        <p class="mb-4">Adjust the parameters to simulate a DDoS attack:</p>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block mb-2">Number of Attackers:</label>
+                                <input type="range" id="attackerSlider" min="0" max="1000" value="0" class="w-full">
+                                <span id="attackerValue" class="block mt-1 text-sm">0</span>
+                            </div>
+                            <div>
+                                <label class="block mb-2">Server Capacity:</label>
+                                <input type="range" id="capacitySlider" min="100" max="1000" value="500" class="w-full">
+                                <span id="capacityValue" class="block mt-1 text-sm">500 requests/second</span>
+                            </div>
+                        </div>
+                        <button id="startSimulation" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                        <button id="stopSimulation" class="mt-4 ml-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition hidden">Stop Simulation</button>
+                    </div>
+                    <div>
+                        <div id="simulationArea" class="bg-gray-200 dark:bg-gray-700 h-64 rounded-lg relative overflow-hidden">
+                            <div id="server" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-server text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <div id="simulationResults" class="mt-4">
+                            <p>Adjust the parameters and click "Start Simulation" to see the effects of a DDoS attack.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">DDoS Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="space-y-6">
+                    <div>
+                        <p class="font-semibold mb-2">1. What is the primary goal of a DDoS attack?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="a" class="mr-2">
+                                <span>To steal sensitive data</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="b" class="mr-2">
+                                <span>To disrupt the availability of a service</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="c" class="mr-2">
+                                <span>To improve server performance</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">2. What is a botnet in the context of DDoS attacks?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="a" class="mr-2">
+                                <span>A network of compromised devices used to launch attacks</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="b" class="mr-2">
+                                <span>A secure network for data transfer</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="c" class="mr-2">
+                                <span>A type of firewall</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">3. Which of the following is NOT a common mitigation technique for DDoS attacks?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="a" class="mr-2">
+                                <span>Traffic filtering</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="b" class="mr-2">
+                                <span>Increasing server capacity</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="c" class="mr-2">
+                                <span>Disabling the server</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // DDoS Simulation
+        const attackerSlider = document.getElementById('attackerSlider');
+        const attackerValue = document.getElementById('attackerValue');
+        const capacitySlider = document.getElementById('capacitySlider');
+        const capacityValue = document.getElementById('capacityValue');
+        const startSimulation = document.getElementById('startSimulation');
+        const stopSimulation = document.getElementById('stopSimulation');
+        const simulationArea = document.getElementById('simulationArea');
+        const simulationResults = document.getElementById('simulationResults');
+        const latencyValue = document.getElementById('latencyValue');
+        const serverLoadBar = document.getElementById('serverLoadBar');
+        const serverLoadValue = document.getElementById('serverLoadValue');
+        const server = document.getElementById('server');
+
+        let simulationInterval;
+        let packets = [];
+
+        attackerSlider.addEventListener('input', () => {
+            attackerValue.textContent = attackerSlider.value;
+        });
+
+        capacitySlider.addEventListener('input', () => {
+            capacityValue.textContent = `${capacitySlider.value} requests/second`;
+        });
+
+        startSimulation.addEventListener('click', () => {
+            startSimulation.classList.add('hidden');
+            stopSimulation.classList.remove('hidden');
+            simulationInterval = setInterval(updateSimulation, 100);
+        });
+
+        stopSimulation.addEventListener('click', () => {
+            stopSimulation.classList.add('hidden');
+            startSimulation.classList.remove('hidden');
+            clearInterval(simulationInterval);
+            packets.forEach(packet => packet.remove());
+            packets = [];
+            server.classList.remove('server-overload');
+        });
+
+        function updateSimulation() {
+            const attackers = parseInt(attackerSlider.value);
+            const capacity = parseInt(capacitySlider.value);
+            const load = Math.min(100, (attackers / capacity) * 100);
+            const latency = Math.min(1000, 20 + (load * 2));
+
+            latencyValue.textContent = Math.round(latency);
+            serverLoadBar.style.width = `${load}%`;
+            serverLoadValue.textContent = Math.round(load);
+
+            if (load < 50) {
+                serverLoadBar.style.backgroundColor = '#48bb78';
+                server.classList.remove('server-overload');
+            } else if (load < 80) {
+                serverLoadBar.style.backgroundColor = '#ed8936';
+                server.classList.remove('server-overload');
+            } else {
+                serverLoadBar.style.backgroundColor = '#e53e3e';
+                server.classList.add('server-overload');
+            }
+
+            // Create new packets
+            for (let i = 0; i < Math.min(attackers, 10); i++) {
+                createPacket();
+            }
+
+            // Remove old packets
+            packets = packets.filter(packet => {
+                const rect = packet.getBoundingClientRect();
+                if (rect.top > simulationArea.clientHeight) {
+                    packet.remove();
+                    return false;
+                }
+                return true;
+            });
+
+            simulationResults.innerHTML = `
+                <p class="mb-2">Current simulation status:</p>
+                <ul class="list-disc pl-5">
+                    <li>Number of attackers: ${attackers}</li>
+                    <li>Server capacity: ${capacity} requests/second</li>
+                    <li>Server load: ${Math.round(load)}%</li>
+                    <li>Latency: ${Math.round(latency)} ms</li>
+                </ul>
+                <p class="mt-2 ${load >= 100 ? 'text-red-500 font-bold' : ''}">
+                    ${load >= 100 ? 'Server is overwhelmed! DDoS attack successful.' : 'Server is handling the load.'}
+                </p>
+            `;
+        }
+
+        function createPacket() {
+            const packet = document.createElement('div');
+            packet.className = 'packet';
+            packet.style.left = `${Math.random() * 100}%`;
+            packet.style.top = '-10px';
+            simulationArea.appendChild(packet);
+            packets.push(packet);
+
+            // Animate packet
+            setTimeout(() => {
+                packet.style.top = `${simulationArea.clientHeight + 10}px`;
+            }, 50);
+        }
+
+        // Quiz functionality
+        const submitQuiz = document.getElementById('submitQuiz');
+        const quizResults = document.getElementById('quizResults');
+
+        submitQuiz.addEventListener('click', () => {
+            const answers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value
+            };
+
+            const correctAnswers = {q1: 'b', q2: 'a', q3: 'c'};
+            let score = 0;
+            let feedback = '';
+
+            for (let question in answers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
+                    feedback += `<p class="text-green-500">Question ${question.slice(1)}: Correct!</p>`;
+                } else {
+                    feedback += `<p class="text-red-500">Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
+                }
+            }
+
+            quizResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                <p>You scored ${score} out of 3.</p>
+                ${feedback}
+            `;
+            quizResults.classList.remove('hidden');
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>

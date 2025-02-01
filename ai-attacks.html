@@ -1,0 +1,889 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        AI-Powered Attacks - CyberSec Learning Hub
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+    <style>
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .code-font { font-family: 'Courier New', monospace; }
+
+
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .blink { animation: blink 1s infinite; }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(5px); }
+            50% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+        .shake { animation: shake 0.5s; }
+
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">
+            AI-Powered Attacks
+        </h1>
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">
+                Overview
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">
+                        What are AI-Powered Attacks?
+                    </h3>
+                    <p>
+                        AI-powered attacks leverage artificial intelligence and machine learning technologies to enhance
+                        the effectiveness, scale, and sophistication of cyber attacks. These attacks can adapt to
+                        defenses, generate convincing phishing content, and automate complex attack processes.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">
+                        Common Types of AI-Powered Attacks
+                    </h3>
+                    <ul class="list-disc pl-5">
+                        <li>
+                            AI-Generated Phishing
+                        </li>
+                        <li>
+                            Adversarial Machine Learning
+                        </li>
+                        <li>
+                            Automated Vulnerability Discovery
+                        </li>
+                        <li>
+                            AI-Enhanced Social Engineering
+                        </li>
+                        <li>
+                            Intelligent Malware
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- AI-Generated Phishing Simulation -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">
+                AI-Generated Phishing Simulation
+            </h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Phishing Email Generator
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block mb-2" for="targetCompany">
+                                    Target Company:
+                                </label>
+                                <input class="w-full p-2 border rounded dark:bg-gray-700" id="targetCompany"
+                                    placeholder="Enter company name" type="text" />
+                            </div>
+                            <div>
+                                <label class="block mb-2" for="emailTopic">
+                                    Email Topic:
+                                </label>
+                                <select class="w-full p-2 border rounded dark:bg-gray-700" id="emailTopic">
+                                    <option value="password_reset">
+                                        Password Reset
+                                    </option>
+                                    <option value="invoice">
+                                        Invoice Payment
+                                    </option>
+                                    <option value="urgent_request">
+                                        Urgent Request from CEO
+                                    </option>
+                                    <option value="security_alert">
+                                        Security Alert
+                                    </option>
+                                </select>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+                                id="generatePhishingEmail">
+                                Generate Phishing Email
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Generated Phishing Email
+                        </h3>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded h-64 overflow-y-auto"
+                            id="phishingEmailContent">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Attack Simulations -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">AI Attack Simulations</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Phishing Simulation -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Phishing Campaign Simulation</h3>
+                    <p class="mb-4">Simulate an AI-powered phishing campaign. Adjust the sophistication level and see how many users fall for the attack.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="phishingSophistication" class="block mb-2">Sophistication Level:</label>
+                            <input type="range" id="phishingSophistication" min="1" max="5" value="3" class="w-full">
+                        </div>
+                        <button id="startPhishingSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="text-lg font-semibold mb-2">Results:</h4>
+                        <p>Emails Sent: <span id="emailsSent">0</span></p>
+                        <p>Users Tricked: <span id="usersTricked">0</span></p>
+                    </div>
+                </div>
+
+                <!-- Deepfake Simulation -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Deepfake Attack Simulation</h3>
+                    <p class="mb-4">Simulate a deepfake attack where AI generates fake videos or audio to impersonate someone.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="deepfakeRealism" class="block mb-2">Realism Level:</label>
+                            <input type="range" id="deepfakeRealism" min="1" max="5" value="4" class="w-full">
+                        </div>
+                        <button id="startDeepfakeSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="text-lg font-semibold mb-2">Results:</h4>
+                        <p>Videos Generated: <span id="videosGenerated">0</span></p>
+                        <p>People Fooled: <span id="peopleFooled">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Adversarial Machine Learning Visualization -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">
+                Adversarial Machine Learning Visualization
+            </h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Image Classification Attack
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block mb-2" for="imageSelect">
+                                    Select Image:
+                                </label>
+                                <select class="w-full p-2 border rounded dark:bg-gray-700" id="imageSelect">
+                                    <option value="cat">
+                                        Cat
+                                    </option>
+                                    <option value="dog">
+                                        Dog
+                                    </option>
+                                    <option value="bird">
+                                        Bird
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block mb-2" for="perturbationStrength">
+                                    Perturbation Strength:
+                                </label>
+                                <input class="w-full" id="perturbationStrength" max="100" min="0" type="range"
+                                    value="50" />
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+                                id="applyAdversarialAttack">
+                                Apply Adversarial Attack
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Image Classification Results
+                        </h3>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded h-64 flex items-center justify-center"
+                            id="imageClassificationResults">
+                            <img alt="Classified Image" class="max-w-full max-h-full" height="300" id="classifiedImage"
+                                src="https://replicate.delivery/xezq/GTcN1KzbtTYGJlDfKsE8D1KFbWCmjD8pjlSe6El3M0MUf9VoA/out-0.png"
+                                width="300" />
+                        </div>
+                        <p class="mt-4 text-center font-semibold" id="classificationResult">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Automated Vulnerability Discovery Simulation -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">
+                Automated Vulnerability Discovery Simulation
+            </h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Target System Configuration
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block mb-2" for="operatingSystem">
+                                    Operating System:
+                                </label>
+                                <select class="w-full p-2 border rounded dark:bg-gray-700" id="operatingSystem">
+                                    <option value="windows">
+                                        Windows Server 2019
+                                    </option>
+                                    <option value="linux">
+                                        Ubuntu 20.04 LTS
+                                    </option>
+                                    <option value="macos">
+                                        macOS Big Sur
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block mb-2" for="installedSoftware">
+                                    Installed Software:
+                                </label>
+                                <select class="w-full p-2 border rounded dark:bg-gray-700" id="installedSoftware"
+                                    multiple="">
+                                    <option value="apache">
+                                        Apache Web Server
+                                    </option>
+                                    <option value="mysql">
+                                        MySQL Database
+                                    </option>
+                                    <option value="php">
+                                        PHP
+                                    </option>
+                                    <option value="nodejs">
+                                        Node.js
+                                    </option>
+                                    <option value="docker">
+                                        Docker
+                                    </option>
+                                </select>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+                                id="scanVulnerabilities">
+                                Scan for Vulnerabilities
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Discovered Vulnerabilities
+                        </h3>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded h-64 overflow-y-auto"
+                            id="vulnerabilitiesList">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- AI-Enhanced Social Engineering Simulation -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">
+                AI-Enhanced Social Engineering Simulation
+            </h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Target Profile Generator
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block mb-2" for="targetName">
+                                    Target Name:
+                                </label>
+                                <input class="w-full p-2 border rounded dark:bg-gray-700" id="targetName"
+                                    placeholder="Enter target's name" type="text" />
+                            </div>
+                            <div>
+                                <label class="block mb-2" for="targetJob">
+                                    Target Job Title:
+                                </label>
+                                <input class="w-full p-2 border rounded dark:bg-gray-700" id="targetJob"
+                                    placeholder="Enter target's job title" type="text" />
+                            </div>
+                            <div>
+                                <label class="block mb-2" for="targetInterests">
+                                    Target Interests:
+                                </label>
+                                <input class="w-full p-2 border rounded dark:bg-gray-700" id="targetInterests"
+                                    placeholder="Enter target's interests (comma-separated)" type="text" />
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+                                id="generateSocialEngineeringPlan">
+                                Generate Social Engineering Plan
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            AI-Generated Social Engineering Plan
+                        </h3>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded h-64 overflow-y-auto"
+                            id="socialEngineeringPlan">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Intelligent Malware Simulation -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">
+                Intelligent Malware Simulation
+            </h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Malware Configuration
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block mb-2" for="malwareType">
+                                    Malware Type:
+                                </label>
+                                <select class="w-full p-2 border rounded dark:bg-gray-700" id="malwareType">
+                                    <option value="ransomware">
+                                        Ransomware
+                                    </option>
+                                    <option value="trojan">
+                                        Trojan
+                                    </option>
+                                    <option value="worm">
+                                        Worm
+                                    </option>
+                                    <option value="botnet">
+                                        Botnet
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block mb-2" for="targetEnvironment">
+                                    Target Environment:
+                                </label>
+                                <select class="w-full p-2 border rounded dark:bg-gray-700" id="targetEnvironment">
+                                    <option value="corporate">
+                                        Corporate Network
+                                    </option>
+                                    <option value="home">
+                                        Home Network
+                                    </option>
+                                    <option value="iot">
+                                        IoT Devices
+                                    </option>
+                                </select>
+                            </div>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+                                id="simulateMalwareAttack">
+                                Simulate Malware Attack
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">
+                            Malware Attack Simulation
+                        </h3>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded h-64 overflow-y-auto"
+                            id="malwareSimulationResults">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- AI Attack Trends Visualization -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">
+                AI Attack Trends Visualization
+            </h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <canvas id="aiAttackTrendsChart">
+                </canvas>
+            </div>
+        </section>
+    </main>
+    <script>
+        // AI-Generated Phishing Simulation
+        const generatePhishingEmailBtn = document.getElementById('generatePhishingEmail');
+        const phishingEmailContent = document.getElementById('phishingEmailContent');
+
+        generatePhishingEmailBtn.addEventListener('click', () => {
+            const company = document.getElementById('targetCompany').value;
+            const topic = document.getElementById('emailTopic').value;
+            const phishingEmail = generatePhishingEmail(company, topic);
+            phishingEmailContent.innerHTML = phishingEmail;
+        });
+
+        function generatePhishingEmail(company, topic) {
+            const templates = {
+                password_reset: `
+                    <p>Dear ${company} User,</p>
+                    <p>We have detected unusual activity on your account. For your security, please reset your password immediately by clicking the link below:</p>
+                    <p><a href="#" class="text-blue-500">Reset Password</a></p>
+                    <p>If you did not request this change, please contact our support team immediately.</p>
+                    <p>Best regards,<br>${company} Security Team</p>
+                `,
+                invoice: `
+                    <p>Dear Valued Customer,</p>
+                    <p>Please find attached the invoice for your recent purchase from ${company}. To view and pay your invoice, please click the secure link below:</p>
+                    <p><a href="#" class="text-blue-500">View and Pay Invoice</a></p>
+                    <p>If you have any questions, please don't hesitate to contact our billing department.</p>
+                    <p>Thank you for your business!</p>
+                    <p>Best regards,<br>${company} Billing Team</p>
+                `,
+                urgent_request: `
+                    <p>Dear Team Member,</p>
+                    <p>I hope this email finds you well. I am currently in a meeting and need your urgent assistance with a confidential matter.</p>
+                    <p>Please purchase $500 worth of gift cards and send me the codes as soon as possible. I will explain later and reimburse you promptly.</p>
+                    <p>Thank you for your immediate action on this matter.</p>
+                    <p>Best regards,<br>CEO of ${company}</p>
+                `,
+                security_alert: `
+                    <p>URGENT: Security Alert for ${company} Users</p>
+                    <p>We have detected a potential security breach in our systems. To protect your account, please verify your identity by clicking the link below and following the instructions:</p>
+                    <p><a href="#" class="text-blue-500">Verify Your Identity</a></p>
+                    <p>Failure to verify within 24 hours may result in temporary account suspension.</p>
+                    <p>Thank you for your cooperation in maintaining the security of our network.</p>
+                    <p>Sincerely,<br>${company} IT Security Team</p>
+                `
+            };
+
+            return templates[topic] || 'Invalid email topic selected.';
+        }
+
+        // Adversarial Machine Learning Visualization
+        const applyAdversarialAttackBtn = document.getElementById('applyAdversarialAttack');
+        const classifiedImage = document.getElementById('classifiedImage');
+        const classificationResult = document.getElementById('classificationResult');
+
+        applyAdversarialAttackBtn.addEventListener('click', () => {
+            const selectedImage = document.getElementById('imageSelect').value;
+            const perturbationStrength = document.getElementById('perturbationStrength').value;
+
+            // Simulate adversarial attack
+            const attackedImage = applyAdversarialAttack(selectedImage, perturbationStrength);
+            classifiedImage.src = attackedImage;
+
+            // Simulate classification result
+            const result = classifyImage(selectedImage, perturbationStrength);
+            classificationResult.textContent = `Classification: ${result}`;
+        });
+
+        function applyAdversarialAttack(image, strength) {
+            // In a real scenario, this would apply actual perturbations to the image
+            // For this simulation, we'll just return a placeholder image
+            return `https://placehold.co/300x300?text=Perturbed+${image}+(${strength}%)`;
+        }
+
+        function classifyImage(originalImage, perturbationStrength) {
+            const classes = ['Cat', 'Dog', 'Bird'];
+            const originalIndex = classes.indexOf(originalImage.charAt(0).toUpperCase() + originalImage.slice(1));
+
+            if (perturbationStrength > 70) {
+                // High perturbation, likely to misclassify
+                return classes[(originalIndex + 1) % classes.length];
+            } else if (perturbationStrength > 30) {
+                // Medium perturbation, might misclassify
+                return Math.random() > 0.5 ? classes[originalIndex] : classes[(originalIndex + 1) % classes.length];
+            } else {
+                // Low perturbation, likely to classify correctly
+                return classes[originalIndex];
+            }
+        }
+
+        // Automated Vulnerability Discovery Simulation
+        const scanVulnerabilitiesBtn = document.getElementById('scanVulnerabilities');
+        const vulnerabilitiesList = document.getElementById('vulnerabilitiesList');
+
+        scanVulnerabilitiesBtn.addEventListener('click', () => {
+            const os = document.getElementById('operatingSystem').value;
+            const software = Array.from(document.getElementById('installedSoftware').selectedOptions).map(option => option.value);
+
+            const vulnerabilities = discoverVulnerabilities(os, software);
+            displayVulnerabilities(vulnerabilities);
+        });
+
+        function discoverVulnerabilities(os, software) {
+            const vulnerabilities = [];
+
+            // Simulated vulnerabilities based on OS and installed software
+            if (os === 'windows') {
+                vulnerabilities.push('CVE-2021-34527: Windows Print Spooler Remote Code Execution Vulnerability');
+            }
+            if (os === 'linux' && software.includes('apache')) {
+                vulnerabilities.push('CVE-2021-41773: Apache HTTP Server 2.4.49 Path Traversal');
+            }
+            if (software.includes('mysql')) {
+                vulnerabilities.push('CVE-2021-2166: Vulnerability in MySQL Server');
+            }
+            if (software.includes('php')) {
+                vulnerabilities.push('CVE-2021-21702: PHP 8.0.0 Backdoor Remote Code Execution');
+            }
+
+            // Add some random common vulnerabilities
+            const commonVulnerabilities = [
+                'Weak password policy detected',
+                'Outdated SSL/TLS version in use',
+                'Unpatched software versions detected',
+                'Open ports with potentially vulnerable services',
+                'Misconfigured firewall rules'
+            ];
+
+            for (let i = 0; i < 3; i++) {
+                const randomVuln = commonVulnerabilities[Math.floor(Math.random() * commonVulnerabilities.length)];
+                if (!vulnerabilities.includes(randomVuln)) {
+                    vulnerabilities.push(randomVuln);
+                }
+            }
+
+            return vulnerabilities;
+        }
+
+        function displayVulnerabilities(vulnerabilities) {
+            vulnerabilitiesList.innerHTML = '';
+            vulnerabilities.forEach(vuln => {
+                const vulnElement = document.createElement('div');
+                vulnElement.classList.add('mb-2', 'p-2', 'bg-red-100', 'dark:bg-red-900', 'rounded');
+                vulnElement.textContent = vuln;
+                vulnerabilitiesList.appendChild(vulnElement);
+            });
+        }
+
+        // AI-Enhanced Social Engineering Simulation
+        const generateSocialEngineeringPlanBtn = document.getElementById('generateSocialEngineeringPlan');
+        const socialEngineeringPlan = document.getElementById('socialEngineeringPlan');
+
+        generateSocialEngineeringPlanBtn.addEventListener('click', () => {
+            const name = document.getElementById('targetName').value;
+            const job = document.getElementById('targetJob').value;
+            const interests = document.getElementById('targetInterests').value.split(',').map(i => i.trim());
+
+            const plan = generateSocialEngineeringPlan(name, job, interests);
+            socialEngineeringPlan.innerHTML = plan;
+        });
+
+        function generateSocialEngineeringPlan(name, job, interests) {
+            const planSteps = [
+                `1. Create a fake LinkedIn profile posing as a recruiter in the ${job} field.`,
+                `2. Connect with ${name} on LinkedIn, mentioning shared interests in ${interests[0]} and ${interests[1]}.`,
+                `3. After connection is established, engage in conversations about ${interests[2]} to build rapport.`,
+                `4. Offer a job opportunity that aligns with ${name}'s current role and interests.`,
+                `5. Send a malicious PDF disguised as a job description, exploiting potential vulnerabilities.`,
+                `6. If successful, gain access to ${name}'s professional network and sensitive company information.`,
+                `7. Use gathered information for further targeted attacks within the organization.`
+            ];
+
+            return planSteps.join('<br>');
+        }
+
+        // Intelligent Malware Simulation
+        const simulateMalwareAttackBtn = document.getElementById('simulateMalwareAttack');
+        const malwareSimulationResults = document.getElementById('malwareSimulationResults');
+
+        simulateMalwareAttackBtn.addEventListener('click', () => {
+            const malwareType = document.getElementById('malwareType').value;
+            const targetEnvironment = document.getElementById('targetEnvironment').value;
+
+            const simulationResults = simulateMalwareAttack(malwareType, targetEnvironment);
+            displayMalwareSimulationResults(simulationResults);
+        });
+
+        function simulateMalwareAttack(malwareType, targetEnvironment) {
+            const actions = {
+                ransomware: [
+                    'Scanning for valuable files',
+                    'Encrypting documents and databases',
+                    'Displaying ransom message',
+                    'Attempting to spread to connected devices'
+                ],
+                trojan: [
+                    'Establishing backdoor connection',
+                    'Harvesting user credentials',
+                    'Downloading additional payloads',
+                    'Exfiltrating sensitive data'
+                ],
+                worm: [
+                    'Exploiting network vulnerabilities',
+                    'Self-replicating across the network',
+                    'Consuming bandwidth and system resources',
+                    'Creating backdoors for future access'
+                ],
+                botnet: [
+                    'Infecting and taking control of devices',
+                    'Establishing communication with command & control server',
+                    'Awaiting instructions for DDoS attacks',
+                    'Harvesting data from infected devices'
+                ]
+            };
+
+            const environmentalFactors = {
+                corporate: 'Corporate firewall detected. Adjusting evasion techniques.',
+                home: 'Limited security measures detected. Proceeding with standard infection routine.',
+                iot: 'Multiple vulnerable IoT devices found. Expanding infection scope.'
+            };
+
+            const simulationSteps = [
+                `Malware type: ${malwareType.toUpperCase()}`,
+                `Target environment: ${targetEnvironment.toUpperCase()}`,
+                `Status: Infection initiated`,
+                environmentalFactors[targetEnvironment],
+                ...actions[malwareType],
+                'Adapting behavior based on system response',
+                'Establishing persistence mechanisms',
+                `Status: ${malwareType.charAt(0).toUpperCase() + malwareType.slice(1)} attack successful`
+            ];
+
+            return simulationSteps;
+        }
+
+        function displayMalwareSimulationResults(results) {
+            malwareSimulationResults.innerHTML = '';
+            results.forEach((step, index) => {
+                setTimeout(() => {
+                    const stepElement = document.createElement('div');
+                    stepElement.classList.add('mb-2');
+                    stepElement.textContent = step;
+                    malwareSimulationResults.appendChild(stepElement);
+                    malwareSimulationResults.scrollTop = malwareSimulationResults.scrollHeight;
+                }, index * 1000);
+            });
+        }
+
+        // AI Attack Trends Visualization
+        const ctx = document.getElementById('aiAttackTrendsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: 'AI-Powered Phishing Attacks',
+                    data: [20, 35, 60, 85, 120],
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.1
+                }, {
+                    label: 'Adversarial ML Attacks',
+                    data: [5, 15, 30, 50, 80],
+                    borderColor: 'rgb(54, 162, 235)',
+                    tension: 0.1
+                }, {
+                    label: 'AI-Enhanced Social Engineering',
+                    data: [10, 25, 45, 70, 100],
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'AI-Powered Attack Trends'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Reported Attacks'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        // Phishing Simulation
+        const phishingSophistication = document.getElementById('phishingSophistication');
+        const startPhishingSimulation = document.getElementById('startPhishingSimulation');
+        const emailsSent = document.getElementById('emailsSent');
+        const usersTricked = document.getElementById('usersTricked');
+
+        startPhishingSimulation.addEventListener('click', () => {
+            let sent = 0;
+            let tricked = 0;
+            const sophistication = parseInt(phishingSophistication.value);
+
+            const interval = setInterval(() => {
+                if (sent >= 100) {
+                    clearInterval(interval);
+                    return;
+                }
+
+                sent++;
+                if (Math.random() * 5 < sophistication) {
+                    tricked++;
+                }
+
+                emailsSent.textContent = sent;
+                usersTricked.textContent = tricked;
+            }, 100);
+        });
+
+        // Deepfake Simulation
+        const deepfakeRealism = document.getElementById('deepfakeRealism');
+        const startDeepfakeSimulation = document.getElementById('startDeepfakeSimulation');
+        const videosGenerated = document.getElementById('videosGenerated');
+        const peopleFooled = document.getElementById('peopleFooled');
+
+        startDeepfakeSimulation.addEventListener('click', () => {
+            let generated = 0;
+            let fooled = 0;
+            const realism = parseInt(deepfakeRealism.value);
+
+            const interval = setInterval(() => {
+                if (generated >= 50) {
+                    clearInterval(interval);
+                    return;
+                }
+
+                generated++;
+                if (Math.random() * 5 < realism) {
+                    fooled++;
+                }
+
+                videosGenerated.textContent = generated;
+                peopleFooled.textContent = fooled;
+            }, 200);
+        });
+
+    </script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

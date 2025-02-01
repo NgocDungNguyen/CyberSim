@@ -1,0 +1,409 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adware and Malvertising - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .ad-animation {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://placehold.co/100x100?text=Ad');
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .popup-ad {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border: 2px solid #f00;
+            padding: 20px;
+            z-index: 10;
+            display: none;
+        }
+        .popup-ad.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200 relative">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Adware and Malvertising</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
+                    <p>Adware is a type of software that automatically displays or downloads advertising material, often without the user's consent. Malvertising, on the other hand, involves injecting malicious advertisements into legitimate ad networks, which can redirect users to harmful websites or install malware on their devices. Both are designed to exploit users for financial gain or data theft.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
+                    <p>Imagine you're walking through a shopping mall, and someone keeps throwing flyers in your face, blocking your view and forcing you to take them. Some of these flyers might even have hidden traps that harm you when you touch them. Adware and malvertising work similarly in the digital world, bombarding you with ads and sometimes leading you to dangerous places.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualize Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center relative">
+                    <div class="ad-animation mx-auto mb-4"></div>
+                    <h3 class="text-xl font-semibold mb-2">Pop-up Ads</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Unwanted ads that interrupt your browsing experience</p>
+                    <button class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition" onclick="showPopupAd()">Simulate Pop-up</button>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-ad text-5xl text-blue-500"></i>
+                        <i class="fas fa-virus text-2xl text-red-500 absolute top-0 right-0"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Malicious Ads</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Ads that redirect you to harmful websites or install malware</p>
+                    <ul class="mt-4 text-left text-sm">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Redirects to phishing sites</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Installs spyware or ransomware</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Exploits browser vulnerabilities</li>
+                    </ul>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-bullhorn text-5xl text-blue-500"></i>
+                        <i class="fas fa-exclamation text-2xl text-yellow-500 absolute top-0 right-0"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Ad Overload</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Excessive ads that slow down your device and consume resources</p>
+                    <div class="mt-4 bg-gray-200 dark:bg-gray-700 p-2 rounded text-xs font-mono overflow-hidden">
+                        CPU Usage: <span class="text-red-500">90%</span><br>
+                        Memory Usage: <span class="text-red-500">85%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Simulation</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Adware Simulation</h3>
+                    <p class="mb-4">Select the type of adware behavior to simulate:</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="adwareType" value="popup" class="mr-2"> Pop-up Ads
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="adwareType" value="redirect" class="mr-2"> Redirect to Malicious Sites
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="adwareType" value="resource" class="mr-2"> Resource Overload
+                        </label>
+                    </div>
+                    <button id="generateAdware" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Simulate Adware</button>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Simulated Adware</h3>
+                    <div id="adwareSimulation" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+                        <p>Select an adware type and click "Simulate Adware" to see a simulation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ad Identification Challenge -->
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Ad Identification Challenge</h3>
+                <p class="mb-4">Can you identify which of these ads are malicious? Select all that apply:</p>
+                <div id="adChallenge" class="space-y-4">
+                    <!-- Ad scenarios will be dynamically inserted here -->
+                </div>
+                <button id="checkAds" class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">Check Answers</button>
+                <div id="adResults" class="mt-4 hidden"></div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">Adware and Malvertising Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="space-y-6">
+                    <div>
+                        <p class="font-semibold mb-2">1. What is the primary goal of adware?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="a" class="mr-2">
+                                <span>To display advertisements for revenue</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="b" class="mr-2">
+                                <span>To steal sensitive information</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="c" class="mr-2">
+                                <span>To improve user experience</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">2. How does malvertising typically spread malware?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="a" class="mr-2">
+                                <span>By embedding malicious code in legitimate ads</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="b" class="mr-2">
+                                <span>By sending spam emails</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="c" class="mr-2">
+                                <span>By exploiting outdated software</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">3. What is the best way to protect against adware?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="a" class="mr-2">
+                                <span>Install an ad blocker and avoid suspicious downloads</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="b" class="mr-2">
+                                <span>Disable your antivirus software</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="c" class="mr-2">
+                                <span>Click on ads to investigate them</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <div id="popupAd" class="popup-ad">
+        <p><strong>Congratulations!</strong> You've won a free iPhone! Click <a href="#" class="text-blue-500">here</a> to claim your prize.</p>
+        <button class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition" onclick="closePopupAd()">Close</button>
+    </div>
+
+    <script>
+        // Pop-up Ad Simulation
+        function showPopupAd() {
+            document.getElementById('popupAd').classList.add('active');
+        }
+
+        function closePopupAd() {
+            document.getElementById('popupAd').classList.remove('active');
+        }
+
+        // Adware Simulation
+        const generateAdware = document.getElementById('generateAdware');
+        const adwareSimulation = document.getElementById('adwareSimulation');
+
+        generateAdware.addEventListener('click', () => {
+            const adwareType = document.querySelector('input[name="adwareType"]:checked').value;
+            let simulationContent = '';
+
+            switch(adwareType) {
+                case 'popup':
+                    simulationContent = `
+                        <p><strong>Pop-up Ad:</strong> A pop-up ad appears on your screen, blocking your view and asking you to click a link.</p>
+                        <button class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition" onclick="showPopupAd()">Simulate Pop-up</button>
+                    `;
+                    break;
+                case 'redirect':
+                    simulationContent = `
+                        <p><strong>Redirect:</strong> You click on an ad, and it takes you to a fake website that looks like your bank's login page.</p>
+                        <div class="mt-4 bg-gray-200 dark:bg-gray-700 p-2 rounded text-xs font-mono overflow-hidden">
+                            URL: <span class="text-red-500">http://secure-bank.fake-site.com</span>
+                        </div>
+                    `;
+                    break;
+                case 'resource':
+                    simulationContent = `
+                        <p><strong>Resource Overload:</strong> Multiple ads load simultaneously, causing your device to slow down.</p>
+                        <div class="mt-4 bg-gray-200 dark:bg-gray-700 p-2 rounded text-xs font-mono overflow-hidden">
+                            CPU Usage: <span class="text-red-500">95%</span><br>
+                            Memory Usage: <span class="text-red-500">90%</span>
+                        </div>
+                    `;
+                    break;
+            }
+
+            adwareSimulation.innerHTML = simulationContent;
+        });
+
+        // Ad Identification Challenge
+        const adChallenge = document.getElementById('adChallenge');
+        const checkAds = document.getElementById('checkAds');
+        const adResults = document.getElementById('adResults');
+
+        const adScenarios = [
+            { content: "A pop-up ad claims you've won a free iPhone and asks for your credit card details.", malicious: true },
+            { content: "An ad for a local restaurant appears while you're browsing a food blog.", malicious: false },
+            { content: "An ad redirects you to a website that looks like your bank's login page.", malicious: true },
+            { content: "A banner ad promotes a sale on a popular e-commerce website.", malicious: false }
+        ];
+
+        adScenarios.forEach((ad, index) => {
+            const adDiv = document.createElement('div');
+            adDiv.innerHTML = `
+                <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                    <input type="checkbox" class="mr-2" id="ad${index}">
+                    <span>${ad.content}</span>
+                </label>
+            `;
+            adChallenge.appendChild(adDiv);
+        });
+
+        checkAds.addEventListener('click', () => {
+            let score = 0;
+            let feedback = '';
+
+            adScenarios.forEach((ad, index) => {
+                const checkbox = document.getElementById(`ad${index}`);
+                if ((checkbox.checked && ad.malicious) || (!checkbox.checked && !ad.malicious)) {
+                    score++;
+                    feedback += `<p class="text-green-500">Ad ${index + 1}: Correct!</p>`;
+                } else {
+                    feedback += `<p class="text-red-500">Ad ${index + 1}: Incorrect. This ad ${ad.malicious ? 'is' : 'is not'} malicious.</p>`;
+                }
+            });
+
+            adResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Challenge Results</h3>
+                <p>You correctly identified ${score} out of ${adScenarios.length} ads.</p>
+                ${feedback}
+            `;
+            adResults.classList.remove('hidden');
+        });
+
+        // Quiz functionality
+        const submitQuiz = document.getElementById('submitQuiz');
+        const quizResults = document.getElementById('quizResults');
+
+        submitQuiz.addEventListener('click', () => {
+            const answers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value
+            };
+
+            const correctAnswers = {q1: 'a', q2: 'a', q3: 'a'};
+            let score = 0;
+            let feedback = '';
+
+            for (let question in answers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
+                    feedback += `<p class="text-green-500">Question ${question.slice(1)}: Correct!</p>`;
+                } else {
+                    feedback += `<p class="text-red-500">Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
+                }
+            }
+
+            quizResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                <p>You scored ${score} out of 3.</p>
+                ${feedback}
+            `;
+            quizResults.classList.remove('hidden');
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

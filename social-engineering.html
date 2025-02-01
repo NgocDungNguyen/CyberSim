@@ -1,0 +1,416 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Engineering - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .social-engineering-card {
+            transition: all 0.3s ease;
+        }
+        .social-engineering-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        .typing-effect {
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Social Engineering</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">What is Social Engineering?</h2>
+            <p class="mb-4">
+                Social engineering is the art of manipulating people into giving up confidential information or performing actions that may compromise security. Unlike technical hacking methods, social engineering relies on human interaction and often involves tricking people into breaking normal security procedures.
+            </p>
+            <p>
+                These attacks exploit human psychology and natural tendencies to trust, help, or avoid conflict, making them particularly dangerous and effective.
+            </p>
+        </section>
+
+        <!-- Types of Social Engineering Attacks -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Common Types of Social Engineering Attacks</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="social-engineering-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Phishing</h3>
+                    <p>Deceptive emails or websites that trick users into revealing sensitive information.</p>
+                </div>
+                <div class="social-engineering-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Pretexting</h3>
+                    <p>Creating a fabricated scenario to obtain information or access from a target.</p>
+                </div>
+                <div class="social-engineering-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Baiting</h3>
+                    <p>Offering something enticing to entrap a victim, like a free USB drive containing malware.</p>
+                </div>
+                <div class="social-engineering-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Tailgating</h3>
+                    <p>Following an authorized person into a restricted area to gain unauthorized access.</p>
+                </div>
+                <div class="social-engineering-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Quid Pro Quo</h3>
+                    <p>Offering a service or benefit in exchange for information or access.</p>
+                </div>
+                <div class="social-engineering-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Vishing</h3>
+                    <p>Voice phishing, using phone calls to deceive individuals into revealing critical information.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Phishing Email Simulation -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Interactive Phishing Email Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Incoming Email</h3>
+                    <div class="border p-4 rounded">
+                        <p><strong>From:</strong> <span id="emailFrom">security@yourbank.com</span></p>
+                        <p><strong>Subject:</strong> <span id="emailSubject">Urgent: Verify Your Account</span></p>
+                        <div id="emailBody" class="mt-4">
+                            Dear Valued Customer,<br><br>
+                            We have detected unusual activity on your account. To ensure the security of your funds, please verify your account immediately by clicking the link below:<br><br>
+                            <a href="#" id="phishingLink" class="text-blue-500 underline">Verify Account Now</a><br><br>
+                            Failure to verify within 24 hours may result in account suspension.<br><br>
+                            Thank you for your prompt attention to this matter.<br><br>
+                            Best regards,<br>
+                            Your Bank Security Team
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button id="identifyPhishing" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Identify Phishing Indicators</button>
+                </div>
+                <div id="phishingIndicators" class="hidden mt-4 p-4 bg-red-100 dark:bg-red-900 rounded"></div>
+            </div>
+        </section>
+
+        <!-- Social Engineering Statistics -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Social Engineering Attack Statistics</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <canvas id="socialEngineeringChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Prevention Techniques -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Social Engineering Prevention Techniques</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Education and Training:</strong> Regularly train employees to recognize and report social engineering attempts.</li>
+                    <li><strong>Implement Strong Policies:</strong> Establish clear procedures for handling sensitive information and verifying identities.</li>
+                    <li><strong>Use Multi-Factor Authentication:</strong> Add an extra layer of security beyond passwords.</li>
+                    <li><strong>Be Skeptical:</strong> Encourage a healthy level of skepticism towards unsolicited communications.</li>
+                    <li><strong>Keep Software Updated:</strong> Ensure all systems and software are up-to-date with the latest security patches.</li>
+                    <li><strong>Use Email Filters:</strong> Implement strong spam and phishing filters for email systems.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Interactive Social Engineering Scenario -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Interactive Social Engineering Scenario</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div id="scenario" class="mb-4"></div>
+                <div id="options" class="space-y-2"></div>
+                <div id="feedback" class="mt-4 p-4 rounded hidden"></div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">Social Engineering Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <!-- Quiz questions will go here -->
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // Phishing Email Simulation
+        const identifyPhishingBtn = document.getElementById('identifyPhishing');
+        const phishingIndicators = document.getElementById('phishingIndicators');
+
+        identifyPhishingBtn.addEventListener('click', () => {
+            const indicators = [
+                "The sender's email address (security@yourbank.com) may not be the official domain of your bank.",
+                "The email creates a sense of urgency to pressure you into acting quickly.",
+                "The link in the email is suspicious and may lead to a phishing site.",
+                "The email threatens account suspension to scare you into compliance.",
+                "Legitimate banks typically don't ask you to verify your account via email links."
+            ];
+
+            phishingIndicators.innerHTML = "<h3 class='font-semibold mb-2'>Phishing Indicators:</h3><ul class='list-disc list-inside'>" +
+                indicators.map(indicator => `<li>${indicator}</li>`).join('') +
+                "</ul>";
+            phishingIndicators.classList.remove('hidden');
+        });
+
+        // Social Engineering Statistics Chart
+        const ctx = document.getElementById('socialEngineeringChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Phishing', 'Pretexting', 'Baiting', 'Tailgating', 'Quid Pro Quo', 'Vishing'],
+                datasets: [{
+                    label: 'Percentage of Social Engineering Attacks',
+                    data: [65, 15, 8, 5, 4, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(255, 159, 64, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Interactive Social Engineering Scenario
+        const scenario = document.getElementById('scenario');
+        const options = document.getElementById('options');
+        const feedback = document.getElementById('feedback');
+
+        const socialEngineeringScenario = {
+            scenario: "You receive a phone call from someone claiming to be from your company's IT department. They say they're conducting a security audit and need your login credentials to verify system access. What do you do?",
+            options: [
+                { text: "Provide your username and password", correct: false },
+                { text: "Ask for their employee ID and call back the IT department directly", correct: true },
+                { text: "Hang up immediately without saying anything", correct: false },
+                { text: "Tell them you'll email the information later", correct: false }
+            ]
+        };
+
+        function loadScenario() {
+            scenario.textContent = socialEngineeringScenario.scenario;
+            options.innerHTML = '';
+            socialEngineeringScenario.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option.text;
+                button.classList.add('bg-blue-500', 'hover:bg-blue-600', 'text-white', 'px-4', 'py-2', 'rounded', 'transition', 'w-full');
+                button.addEventListener('click', () => checkAnswer(index));
+                options.appendChild(button);
+            });
+        }
+
+        function checkAnswer(index) {
+            const selectedOption = socialEngineeringScenario.options[index];
+            feedback.classList.remove('hidden', 'bg-green-100', 'bg-red-100', 'dark:bg-green-900', 'dark:bg-red-900');
+            if (selectedOption.correct) {
+                feedback.textContent = "Correct! This is the safest approach. Always verify the identity of someone requesting sensitive information.";
+                feedback.classList.add('bg-green-100', 'dark:bg-green-900');
+            } else {
+                feedback.textContent = "Incorrect. This action could potentially compromise your account and company security. The correct approach is to verify the caller's identity independently.";
+                feedback.classList.add('bg-red-100', 'dark:bg-red-900');
+            }
+            feedback.classList.remove('hidden');
+        }
+
+        loadScenario();
+
+        // Quiz functionality
+        function setupQuiz() {
+            const quiz = document.getElementById('quiz');
+            const quizResults = document.getElementById('quizResults');
+            const questions = [
+                {
+                    question: "Which of the following is NOT a common type of social engineering attack?",
+                    answers: [
+                        "Phishing",
+                        "Pretexting",
+                        "SQL Injection",
+                        "Baiting"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What is the primary goal of most social engineering attacks?",
+                    answers: [
+                        "To crash computer systems",
+                        "To steal physical assets",
+                        "To manipulate people into giving up confidential information",
+                        "To improve network security"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Which of the following is the best defense against social engineering attacks?",
+                    answers: [
+                        "Installing antivirus software",
+                        "Using strong firewalls",
+                        "Regular employee training and awareness programs",
+                        "Changing passwords frequently"
+                    ],
+                    correct: 2
+                }
+            ];
+
+            let quizHTML = '';
+            questions.forEach((q, index) => {
+                quizHTML += `
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">${index + 1}. ${q.question}</p>
+                        ${q.answers.map((answer, i) => `
+                            <label class="block mb-2">
+                                <input type="radio" name="q${index}" value="${i}" class="mr-2">
+                                ${answer}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+            });
+            quizHTML += '<button id="submitQuiz" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>';
+            quiz.innerHTML = quizHTML;
+
+            document.getElementById('submitQuiz').addEventListener('click', () => {
+                let score = 0;
+                questions.forEach((q, index) => {
+                    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                    if (selected && parseInt(selected.value) === q.correct) {
+                        score++;
+                    }
+                });
+                quizResults.innerHTML = `
+                    <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                    <p>You scored ${score} out of ${questions.length}.</p>
+                `;
+                quizResults.classList.remove('hidden');
+            });
+        }
+
+        // Initialize quiz when the page loads
+        document.addEventListener('DOMContentLoaded', setupQuiz);
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>

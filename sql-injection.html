@@ -1,0 +1,380 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .sql-query {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f3f4f6;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .sql-injection {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .data-row:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        @keyframes packet-move {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+        .data-packet {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #3B82F6;
+            animation: packet-move 2s linear infinite;
+        }
+        .data-packet.malicious {
+            background-color: #EF4444;
+        }
+        .database {
+            width: 100px;
+            height: 100px;
+            background-color: #10B981;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        .database.compromised {
+            background-color: #EF4444;
+            animation: shake 0.5s linear infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">SQL Injection</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
+                    <p>SQL Injection is a type of attack that allows attackers to execute arbitrary SQL queries on a database. This is achieved by injecting malicious SQL code into input fields that are not properly sanitized. SQL Injection can lead to unauthorized access, data theft, or even complete control over the database.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
+                    <p>Imagine a restaurant where customers can write their orders on a piece of paper and hand it to the chef. If the chef blindly executes whatever is written, an attacker could write "Burn the kitchen" instead of an order, causing chaos. SQL Injection works similarly by exploiting trust in user input.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualize Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-database text-5xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Database</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The target of the SQL Injection attack, containing sensitive data.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-keyboard text-5xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">User Input</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The input field where attackers inject malicious SQL code.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-code text-5xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Malicious Query</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The SQL query generated by combining user input with the application's code.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">SQL Injection Simulation</h3>
+                <div class="mb-4">
+                    <label for="username" class="block mb-2">Enter Username:</label>
+                    <input type="text" id="username" class="w-full p-2 border rounded" placeholder="Enter username">
+                </div>
+                <button id="simulateSQL" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Simulate SQL Query</button>
+                <div id="simulationResults" class="mt-8">
+                    <h4 class="text-lg font-semibold mb-2">Generated SQL Query:</h4>
+                    <div id="sqlQuery" class="sql-query">SELECT * FROM users WHERE username = '<span id="queryUsername"></span>';</div>
+                    <h4 class="text-lg font-semibold mt-4 mb-2">Database Response:</h4>
+                    <div id="databaseResponse" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                        <p>Enter a username and click "Simulate SQL Query" to see the database response.</p>
+                    </div>
+                </div>
+                <div id="injectionExplanation" class="mt-4 p-4 bg-yellow-100 dark:bg-yellow-900 rounded-lg hidden">
+                    <h4 class="text-lg font-semibold mb-2">Injection Explanation:</h4>
+                    <p id="injectionDetails"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">SQL Injection Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="space-y-6">
+                    <div>
+                        <p class="font-semibold mb-2">1. What is the primary goal of an SQL Injection attack?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="a" class="mr-2">
+                                <span>To improve database performance</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="b" class="mr-2">
+                                <span>To execute unauthorized SQL commands on a database</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="c" class="mr-2">
+                                <span>To encrypt the database</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">2. Which of the following is NOT a way to prevent SQL Injection?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="a" class="mr-2">
+                                <span>Using prepared statements</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="b" class="mr-2">
+                                <span>Sanitizing user input</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="c" class="mr-2">
+                                <span>Allowing direct SQL queries from user input</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">3. What happens when a malicious SQL query is executed?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="a" class="mr-2">
+                                <span>The database ignores the query</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="b" class="mr-2">
+                                <span>The database executes the query, potentially exposing or modifying data</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="c" class="mr-2">
+                                <span>The database encrypts the query</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // SQL Injection Simulation
+        const usernameInput = document.getElementById('username');
+        const simulateSQLButton = document.getElementById('simulateSQL');
+        const queryUsername = document.getElementById('queryUsername');
+        const databaseResponse = document.getElementById('databaseResponse');
+        const injectionExplanation = document.getElementById('injectionExplanation');
+        const injectionDetails = document.getElementById('injectionDetails');
+
+        simulateSQLButton.addEventListener('click', () => {
+            const username = usernameInput.value;
+            queryUsername.textContent = username;
+
+            let isInjection = false;
+            let injectionType = '';
+
+            if (username.includes("'")) {
+                isInjection = true;
+                injectionType = "Single Quote";
+            } else if (username.toLowerCase().includes("or")) {
+                isInjection = true;
+                injectionType = "OR Statement";
+            } else if (username.includes("--")) {
+                isInjection = true;
+                injectionType = "Comment";
+            } else if (username.toLowerCase().includes("union")) {
+                isInjection = true;
+                injectionType = "UNION";
+            }
+
+            if (isInjection) {
+                databaseResponse.innerHTML = `
+                    <p class="text-red-500">SQL Injection Detected!</p>
+                    <div class="data-row">
+                        <span>ID: 1</span>
+                        <span>Username: admin</span>
+                        <span>Password: admin123</span>
+                    </div>
+                    <div class="data-row">
+                        <span>ID: 2</span>
+                        <span>Username: user</span>
+                        <span>Password: user123</span>
+                    </div>
+                `;
+                injectionExplanation.classList.remove('hidden');
+                injectionDetails.textContent = `An SQL Injection was detected using a ${injectionType}. This type of injection can manipulate the SQL query structure, potentially bypassing authentication or retrieving unauthorized data.`;
+            } else {
+                databaseResponse.innerHTML = `
+                    <p class="text-green-500">No SQL Injection detected. Query executed successfully.</p>
+                    <div class="data-row">
+                        <span>ID: 1</span>
+                        <span>Username: ${username}</span>
+                        <span>Password: ********</span>
+                    </div>
+                `;
+                injectionExplanation.classList.add('hidden');
+            }
+        });
+
+        // Quiz functionality
+        const submitQuiz = document.getElementById('submitQuiz');
+        const quizResults = document.getElementById('quizResults');
+
+        submitQuiz.addEventListener('click', () => {
+            const answers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value
+            };
+
+            const correctAnswers = {q1: 'b', q2: 'c', q3: 'b'};
+            let score = 0;
+            let feedback = '';
+
+            for (let question in answers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
+                    feedback += `<p class="text-green-500">Question ${question.slice(1)}: Correct!</p>`;
+                } else {
+                    feedback += `<p class="text-red-500">Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
+                }
+            }
+
+            quizResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                <p>You scored ${score} out of 3.</p>
+                ${feedback}
+            `;
+            quizResults.classList.remove('hidden');
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>

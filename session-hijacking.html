@@ -1,0 +1,373 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Hijacking - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        @keyframes packet-transfer {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+        .packet {
+            animation: packet-transfer 2s linear infinite;
+        }
+        .hacker-terminal {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #0f0;
+            padding: 20px;
+            border-radius: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Session Hijacking</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">What is Session Hijacking?</h2>
+            <p class="mb-4">
+                Session hijacking, also known as cookie hijacking, is a cyber attack where an attacker takes over a valid user session. The attacker steals or predicts a valid session token to gain unauthorized access to the web server, impersonating the user.
+            </p>
+            <p>
+                This attack exploits the stateless nature of the HTTP protocol and the mechanisms used to authenticate users in subsequent requests after successful login.
+            </p>
+        </section>
+
+        <!-- Interactive Session Hijacking Simulation -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Interactive Session Hijacking Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="w-1/3 text-center">
+                        <i class="fas fa-user fa-3x mb-2"></i>
+                        <p>Legitimate User</p>
+                    </div>
+                    <div class="w-1/3 relative">
+                        <div class="h-2 bg-blue-500 w-full"></div>
+                        <div id="packet" class="packet absolute top-0 left-0 w-4 h-4 bg-red-500 rounded-full"></div>
+                    </div>
+                    <div class="w-1/3 text-center">
+                        <i class="fas fa-server fa-3x mb-2"></i>
+                        <p>Web Server</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button id="startSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Start Simulation</button>
+                    <button id="interceptPacket" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition ml-4" disabled>Intercept Packet</button>
+                </div>
+                <div id="simulationStatus" class="mt-4 font-semibold"></div>
+            </div>
+        </section>
+
+        <!-- Hacker's Terminal -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Hacker's Terminal</h2>
+            <div class="hacker-terminal">
+                <div id="terminalOutput"></div>
+            </div>
+        </section>
+
+        <!-- Session Hijacking Methods -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Common Session Hijacking Methods</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Session Sniffing:</strong> Intercepting network traffic to steal session tokens.</li>
+                    <li><strong>Man-in-the-Middle (MITM) Attack:</strong> Intercepting communication between the user and the server.</li>
+                    <li><strong>Cross-Site Scripting (XSS):</strong> Injecting malicious scripts to steal session cookies.</li>
+                    <li><strong>Session Fixation:</strong> Tricking the user into using a predetermined session ID.</li>
+                    <li><strong>Brute Force Attack:</strong> Guessing or generating valid session tokens.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Prevention Techniques -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Session Hijacking Prevention Techniques</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Use HTTPS:</strong> Encrypt all communication to prevent eavesdropping.</li>
+                    <li><strong>Secure Session Management:</strong> Use strong, random session IDs and regenerate them frequently.</li>
+                    <li><strong>HttpOnly Flag:</strong> Prevent JavaScript access to session cookies.</li>
+                    <li><strong>Secure Flag:</strong> Ensure cookies are only sent over HTTPS.</li>
+                    <li><strong>IP Binding:</strong> Associate session tokens with the user's IP address.</li>
+                    <li><strong>Multi-Factor Authentication:</strong> Add an extra layer of security beyond session tokens.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Session Hijacking Statistics -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Session Hijacking Statistics</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <canvas id="sessionHijackingChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">Session Hijacking Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <!-- Quiz questions will go here -->
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // Session Hijacking Simulation
+        const startSimulationBtn = document.getElementById('startSimulation');
+        const interceptPacketBtn = document.getElementById('interceptPacket');
+        const simulationStatus = document.getElementById('simulationStatus');
+        const packet = document.getElementById('packet');
+        const terminalOutput = document.getElementById('terminalOutput');
+
+        let simulationInterval;
+
+        startSimulationBtn.addEventListener('click', () => {
+            startSimulationBtn.disabled = true;
+            interceptPacketBtn.disabled = false;
+            simulationStatus.textContent = 'Simulation started. Try to intercept the packet!';
+            packet.style.display = 'block';
+            simulationInterval = setInterval(() => {
+                packet.style.animation = 'none';
+                packet.offsetHeight; // Trigger reflow
+                packet.style.animation = null;
+            }, 2000);
+        });
+
+        interceptPacketBtn.addEventListener('click', () => {
+            clearInterval(simulationInterval);
+            interceptPacketBtn.disabled = true;
+            simulationStatus.textContent = 'Packet intercepted! Session hijacked successfully.';
+            packet.style.animation = 'none';
+            packet.style.left = '50%';
+            simulateHacking();
+        });
+
+        function simulateHacking() {
+            const hackingSteps = [
+                'Initializing session hijacking tool...',
+                'Scanning network for vulnerable sessions...',
+                'Session ID found: ABC123XYZ',
+                'Decrypting session token...',
+                'Access granted! User session hijacked.',
+                'Accessing user data...',
+                'Download complete. Erasing tracks...'
+            ];
+
+            hackingSteps.forEach((step, index) => {
+                setTimeout(() => {
+                    terminalOutput.innerHTML += `<div>> ${step}</div>`;
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                }, index * 1000);
+            });
+        }
+
+        // Session Hijacking Statistics Chart
+        const ctx = document.getElementById('sessionHijackingChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Session Sniffing', 'MITM Attack', 'XSS', 'Session Fixation', 'Brute Force'],
+                datasets: [{
+                    label: 'Percentage of Session Hijacking Attacks',
+                    data: [35, 25, 20, 15, 5],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Quiz functionality
+        function setupQuiz() {
+            const quiz = document.getElementById('quiz');
+            const quizResults = document.getElementById('quizResults');
+            const questions = [
+                {
+                    question: "What is the main goal of session hijacking?",
+                    answers: [
+                        "To crash the web server",
+                        "To gain unauthorized access by stealing a valid session",
+                        "To delete user data",
+                        "To send spam emails"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which of the following is NOT a common session hijacking method?",
+                    answers: [
+                        "Session Sniffing",
+                        "Man-in-the-Middle Attack",
+                        "Cross-Site Scripting",
+                        "SQL Injection"
+                    ],
+                    correct: 3
+                },
+                {
+                    question: "What is the best way to prevent session hijacking over a network?",
+                    answers: [
+                        "Use longer session IDs",
+                        "Implement HTTPS",
+                        "Disable cookies",
+                        "Use only IP-based sessions"
+                    ],
+                    correct: 1
+                }
+            ];
+
+            let quizHTML = '';
+            questions.forEach((q, index) => {
+                quizHTML += `
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">${index + 1}. ${q.question}</p>
+                        ${q.answers.map((answer, i) => `
+                            <label class="block mb-2">
+                                <input type="radio" name="q${index}" value="${i}" class="mr-2">
+                                ${answer}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+            });
+            quizHTML += '<button id="submitQuiz" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>';
+            quiz.innerHTML = quizHTML;
+
+            document.getElementById('submitQuiz').addEventListener('click', () => {
+                let score = 0;
+                questions.forEach((q, index) => {
+                    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                    if (selected && parseInt(selected.value) === q.correct) {
+                        score++;
+                    }
+                });
+                quizResults.innerHTML = `
+                    <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                    <p>You scored ${score} out of ${questions.length}.</p>
+                `;
+                quizResults.classList.remove('hidden');
+            });
+        }
+
+        // Initialize quiz when the page loads
+        document.addEventListener('DOMContentLoaded', setupQuiz);
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>

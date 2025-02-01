@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero-Day Exploit - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .visualization-card {
+            transition: all 0.3s ease;
+        }
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        .timeline-progress { transition: width 0.5s ease-in-out; }
+        .phase-node { position: relative; z-index: 1; }
+        .pulse-effect { transition: all 0.3s ease; }
+        .packet-animation { position: absolute; width: 100%; height: 2px; }
+        .network-grid { position: relative; width: 100%; height: 100%; }
+        .network-node {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+        }
+        .scan-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(59, 130, 246, 0.8);
+            animation: scan 3s linear infinite;
+        }
+        .threat-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(239, 68, 68, 0.8);
+            border-radius: 50%;
+            animation: pulse 1s ease-out;
+        }
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        .tooltip {
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        .network-node:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Zero-Day Exploit</h1>
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
+                    <p>A zero-day exploit is a cyber attack that occurs on the same day a weakness is discovered in software. At that point, it's exploited before a fix becomes available from its creator. It is an attack that exploits a previously unknown security vulnerability in a computer application or operating system, leaving developers with zero days to create and release a patch.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
+                    <p>Imagine you just bought a new house, and on the very first day, a burglar discovers a hidden entrance that even the builders didn't know about. The burglar can now enter your house before you or the builders have time to fix this unknown vulnerability. This is similar to how a zero-day exploit works in the digital world.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualize Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-bug text-5xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Vulnerability Discovery</h3>
+                    <p class="text-gray-600 dark:text-gray-400">A new, unknown weakness is found in software.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-user-ninja text-5xl text-purple-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Exploit Creation</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Attackers quickly develop a way to exploit the vulnerability.</p>
+                </div>
+                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <div class="mb-4 relative">
+                        <i class="fas fa-shield-alt text-5xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Race to Patch</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Developers rush to create and release a fix for the vulnerability.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Discovery-to-Patch Timeline</h2>
+            <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg">
+                <div id="timelineDemo" class="mt-4 h-32 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center overflow-hidden">
+                    <!-- Timeline visualization will go here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Threat Intelligence Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Threat Intelligence Tools</h2>
+            <div class="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg">
+                <div id="threatIntelligenceDemo" class="mt-4 h-32 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center overflow-hidden">
+                    <!-- Threat intelligence tools visualization will go here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Zero-Day Exploit Simulation</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <p class="text-gray-600 dark:text-gray-400 mb-6">Let's simulate a Zero-Day Exploit attack and see how it can exploit unknown vulnerabilities in a system.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="systemVulnerability" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">System Vulnerability Level:</label>
+                        <input type="range" id="systemVulnerability" min="1" max="10" value="5" class="w-full">
+                        <span id="systemVulnerabilityValue" class="text-sm text-gray-600 dark:text-gray-400">5</span>
+                    </div>
+                    <div>
+                        <label for="exploitSophistication" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Exploit Sophistication:</label>
+                        <input type="range" id="exploitSophistication" min="1" max="10" value="5" class="w-full">
+                        <span id="exploitSophisticationValue" class="text-sm text-gray-600 dark:text-gray-400">5</span>
+                    </div>
+                </div>
+                <div id="zeroDaySimulationArea" class="bg-gray-800 text-green-400 p-4 rounded-lg mb-6 h-60 overflow-auto font-mono">
+                    <!-- Zero-Day Exploit simulation output will go here -->
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2">Successful Exploits</h3>
+                        <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                            <div id="successfulExploitsBar" class="bg-red-600 h-2.5 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <span id="successfulExploitsValue" class="text-sm text-gray-600 dark:text-gray-400">0%</span>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2">Prevented Exploits</h3>
+                        <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                            <div id="preventedExploitsBar" class="bg-green-600 h-2.5 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <span id="preventedExploitsValue" class="text-sm text-gray-600 dark:text-gray-400">0%</span>
+                    </div>
+                </div>
+                <div class="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 p-4 mb-6">
+                    <h3 class="font-semibold text-blue-700 dark:text-blue-300 mb-2">Simulation Explanation</h3>
+                    <p id="zeroDayExplanation" class="text-sm text-blue-600 dark:text-blue-400">Adjust the sliders to see how system vulnerability and exploit sophistication affect the success of Zero-Day Exploit attacks.</p>
+                </div>
+                <div class="simulation-controls"></div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section>
+            <h2 class="orbitron text-2xl font-semibold mb-4">Zero-Day Exploit Quiz</h2>
+            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="space-y-6">
+                    <div>
+                        <p class="font-semibold mb-2">1. What is a zero-day exploit?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="a" class="mr-2">
+                                <span>An attack that occurs 0 days after a software release</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="b" class="mr-2">
+                                <span>An attack that exploits a known vulnerability</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q1" value="c" class="mr-2">
+                                <span>An attack that exploits a previously unknown vulnerability</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">2. Why are zero-day exploits particularly dangerous?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="a" class="mr-2">
+                                <span>They are easy to detect</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="b" class="mr-2">
+                                <span>There is no available defense at the time of attack</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q2" value="c" class="mr-2">
+                                <span>They only affect old software</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold mb-2">3. What is the best way to protect against zero-day exploits?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="a" class="mr-2">
+                                <span>Never update your software</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="b" class="mr-2">
+                                <span>Use multiple layers of security and keep software updated</span>
+                            </label>
+                            <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                <input type="radio" name="q3" value="c" class="mr-2">
+                                <span>Only use software that's been available for many years</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submitQuiz" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit Answers</button>
+            </div>
+            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+        </section>
+    </main>
+
+    <script>
+        // Zero-Day Exploit Concept Demonstrations
+        function demonstrateZeroDay() {
+            const zeroDayDemo = document.getElementById('timelineDemo');
+            if (zeroDayDemo) {
+                zeroDayDemo.innerHTML = `
+                    <div class="text-center">
+                        <p class="mb-2">Unknown Vulnerability:</p>
+                        <code class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">Buffer Overflow in Module X</code>
+                        <p class="mt-2 mb-2">Exploitation:</p>
+                        <div class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
+                            [Exploit Code Injected]
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function demonstrateMitigation() {
+            const mitigationDemo = document.getElementById('threatIntelligenceDemo');
+            if (mitigationDemo) {
+                mitigationDemo.innerHTML = `
+                    <ul class="list-disc list-inside text-sm">
+                        <li>Use Intrusion Detection Systems (IDS)</li>
+                        <li>Apply security patches promptly</li>
+                        <li>Employ behavior-based threat detection</li>
+                        <li>Conduct regular vulnerability assessments</li>
+                    </ul>
+                `;
+            }
+        }
+
+        function demonstrateTimeline() {
+            const timelineDemo = document.getElementById('timelineDemo');
+            timelineDemo.innerHTML = `
+                <div class="relative w-full h-full p-4">
+                    <div class="absolute top-1/2 left-0 right-0 h-2 bg-gray-200 dark:bg-gray-700 transform -translate-y-1/2">
+                        <div class="absolute top-0 left-0 h-full bg-blue-500 timeline-progress"></div>
+                    </div>
+                    <div class="flex justify-between items-center relative h-full">
+                        <div class="phase-node" data-phase="discovery">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full pulse-effect flex items-center justify-center">
+                                <i class="fas fa-search text-white"></i>
+                            </div>
+                            <div class="packet-animation"></div>
+                            <p class="mt-2 text-sm font-bold">Discovery</p>
+                        </div>
+                        <div class="phase-node" data-phase="analysis">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full pulse-effect flex items-center justify-center">
+                                <i class="fas fa-microscope text-white"></i>
+                            </div>
+                            <div class="packet-animation"></div>
+                            <p class="mt-2 text-sm font-bold">Analysis</p>
+                        </div>
+                        <div class="phase-node" data-phase="detection">
+                            <div class="w-12 h-12 bg-red-500 rounded-full pulse-effect flex items-center justify-center">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </div>
+                            <div class="packet-animation"></div>
+                            <p class="mt-2 text-sm font-bold">Detection</p>
+                        </div>
+                        <div class="phase-node" data-phase="patch">
+                            <div class="w-12 h-12 bg-green-500 rounded-full pulse-effect flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <p class="mt-2 text-sm font-bold">Patch</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            animateTimeline();
+        }
+
+        function demonstrateThreatIntelligence() {
+            const threatIntelligenceDemo = document.getElementById('threatIntelligenceDemo');
+            threatIntelligenceDemo.innerHTML = `
+                <div class="relative w-full h-full bg-gray-900 p-4 overflow-hidden">
+                    <div class="network-grid"></div>
+                    <div class="scan-line"></div>
+                    <div class="threat-indicators"></div>
+                    <div class="alert-overlay hidden">
+                        <div class="alert-content">
+                            <i class="fas fa-exclamation-triangle text-yellow-500"></i>
+                            <span>Threat Detected</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            createNetworkGrid();
+            animateThreatDetection();
+        }
+
+        function animateTimeline() {
+            let currentPhase = 0;
+            const phases = document.querySelectorAll('.phase-node');
+            const progress = document.querySelector('.timeline-progress');
+
+            function updatePhase() {
+                phases.forEach((phase, index) => {
+                    if (index === currentPhase) {
+                        phase.classList.add('active');
+                        phase.querySelector('.pulse-effect').classList.add('animate-pulse');
+                    } else {
+                        phase.classList.remove('active');
+                        phase.querySelector('.pulse-effect').classList.remove('animate-pulse');
+                    }
+                });
+
+                progress.style.width = `${(currentPhase + 1) * (100/4)}%`;
+                
+                currentPhase = (currentPhase + 1) % 4;
+            }
+
+            setInterval(updatePhase, 3000);
+        }
+
+        function createNetworkGrid() {
+            const grid = document.querySelector('.network-grid');
+            for (let i = 0; i < 50; i++) {
+                const node = document.createElement('div');
+                node.className = 'network-node';
+                node.style.left = `${Math.random() * 100}%`;
+                node.style.top = `${Math.random() * 100}%`;
+                grid.appendChild(node);
+            }
+        }
+
+        function animateThreatDetection() {
+            const indicators = document.querySelector('.threat-indicators');
+            
+            function createThreat() {
+                const threat = document.createElement('div');
+                threat.className = 'threat-point';
+                threat.style.left = `${Math.random() * 100}%`;
+                threat.style.top = `${Math.random() * 100}%`;
+                indicators.appendChild(threat);
+
+                setTimeout(() => {
+                    threat.remove();
+                }, 2000);
+            }
+
+            setInterval(createThreat, 1000);
+        }
+
+        // Zero-Day Exploit Simulation
+        const systemVulnerabilitySlider = document.getElementById('systemVulnerability');
+        const systemVulnerabilityValue = document.getElementById('systemVulnerabilityValue');
+        const exploitSophisticationSlider = document.getElementById('exploitSophistication');
+        const exploitSophisticationValue = document.getElementById('exploitSophisticationValue');
+        const simulationArea = document.getElementById('zeroDaySimulationArea');
+        const successfulExploitsBar = document.getElementById('successfulExploitsBar');
+        const successfulExploitsValue = document.getElementById('successfulExploitsValue');
+        const preventedExploitsBar = document.getElementById('preventedExploitsBar');
+        const preventedExploitsValue = document.getElementById('preventedExploitsValue');
+        const simulationExplanation = document.getElementById('zeroDayExplanation');
+
+        let simulationInterval;
+        let isSimulationRunning = false;
+
+        function updateSimulation() {
+            const systemVulnerability = parseInt(systemVulnerabilitySlider.value);
+            const exploitSophistication = parseInt(exploitSophisticationSlider.value);
+
+            systemVulnerabilityValue.textContent = systemVulnerability;
+            exploitSophisticationValue.textContent = exploitSophistication;
+
+            if (isSimulationRunning) {
+                clearInterval(simulationInterval);
+                runSimulation();
+            }
+        }
+
+        function runSimulation() {
+            const systemVulnerability = parseInt(systemVulnerabilitySlider.value);
+            const exploitSophistication = parseInt(exploitSophisticationSlider.value);
+
+            let successfulExploits = 0;
+            let totalAttempts = 0;
+
+            simulationInterval = setInterval(() => {
+                totalAttempts++;
+
+                const isSuccessful = Math.random() < (exploitSophistication / 10) * (systemVulnerability / 10);
+                
+                if (isSuccessful) {
+                    successfulExploits++;
+                    simulationArea.innerHTML += `<p class="text-red-500">[Attempt ${totalAttempts}] Exploit successful: Vulnerability exploited!</p>`;
+                } else {
+                    simulationArea.innerHTML += `<p class="text-green-500">[Attempt ${totalAttempts}] Exploit failed: System defenses blocked the attack.</p>`;
+                }
+
+                simulationArea.scrollTop = simulationArea.scrollHeight;
+
+                const successRate = (successfulExploits / totalAttempts) * 100;
+                const preventionRate = 100 - successRate;
+
+                successfulExploitsBar.style.width = `${successRate}%`;
+                successfulExploitsValue.textContent = `${successRate.toFixed(1)}%`;
+
+                preventedExploitsBar.style.width = `${preventionRate}%`;
+                preventedExploitsValue.textContent = `${preventionRate.toFixed(1)}%`;
+
+                simulationExplanation.textContent = `${successfulExploits} out of ${totalAttempts} Zero-Day Exploit attempts were successful. Lower system vulnerability and less sophisticated exploits reduce the risk of successful attacks.`;
+
+                if (totalAttempts >= 20) {
+                    clearInterval(simulationInterval);
+                    isSimulationRunning = false;
+                    startStopSimulation.textContent = 'Start Simulation';
+                }
+            }, 1000);
+        }
+
+        systemVulnerabilitySlider.addEventListener('input', updateSimulation);
+        exploitSophisticationSlider.addEventListener('input', updateSimulation);
+
+        // Add start/stop button for simulation
+        const startStopSimulation = document.createElement('button');
+        startStopSimulation.textContent = 'Start Simulation';
+        startStopSimulation.className = 'bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition mt-4';
+        startStopSimulation.addEventListener('click', () => {
+            if (isSimulationRunning) {
+                clearInterval(simulationInterval);
+                isSimulationRunning = false;
+                startStopSimulation.textContent = 'Start Simulation';
+            } else {
+                simulationArea.innerHTML = '';
+                isSimulationRunning = true;
+                startStopSimulation.textContent = 'Stop Simulation';
+                runSimulation();
+            }
+        });
+        document.querySelector('.simulation-controls').appendChild(startStopSimulation);
+
+        // Add tooltips to network nodes
+        function addTooltipsToNodes() {
+            const nodes = document.querySelectorAll('.network-node');
+            nodes.forEach(node => {
+                const tooltip = document.createElement('span');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = 'Network node';
+                node.appendChild(tooltip);
+            });
+        }
+
+        // Add reset button for quiz
+        const resetQuiz = document.createElement('button');
+        resetQuiz.textContent = 'Reset Quiz';
+        resetQuiz.className = 'bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition mt-4 ml-4';
+        resetQuiz.addEventListener('click', () => {
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            quizResults.classList.add('hidden');
+        });
+        document.querySelector('#quiz').appendChild(resetQuiz);
+
+        // Quiz functionality
+        const submitQuiz = document.getElementById('submitQuiz');
+        const quizResults = document.getElementById('quizResults');
+
+        submitQuiz.addEventListener('click', () => {
+            const answers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value
+            };
+
+            const correctAnswers = {q1: 'c', q2: 'b', q3: 'b'};
+            let score = 0;
+            let feedback = '';
+
+            for (let question in answers) {
+                if (answers[question] === correctAnswers[question]) {
+                    score++;
+                    feedback += `<p class="text-green-500">Question ${question.slice(1)}: Correct!</p>`;
+                } else {
+                    feedback += `<p class="text-red-500">Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
+                }
+            }
+
+            quizResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
+                <p>You scored ${score} out of 3.</p>
+                ${feedback}
+            `;
+            quizResults.classList.remove('hidden');
+        });
+
+        // Initialize demonstrations and simulation
+        document.addEventListener('DOMContentLoaded', () => {
+            demonstrateZeroDay();
+            demonstrateMitigation();
+            demonstrateTimeline();
+            demonstrateThreatIntelligence();
+            updateSimulation();
+            addTooltipsToNodes();
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>
