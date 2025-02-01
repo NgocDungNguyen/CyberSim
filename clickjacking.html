@@ -163,6 +163,30 @@
             </p>
         </section>
 
+        <!-- Real-World Case Study -->
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Real-World Case Study: Twitter Clickjacking Worm</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-2">The Incident</h3>
+                <p class="mb-4">
+                    In 2009, Twitter fell victim to a clickjacking attack that spread rapidly across its platform. The attack, known as the "Don't Click" worm, exploited users' trust and curiosity.
+                </p>
+                <h3 class="text-xl font-semibold mb-2">How it Worked</h3>
+                <ol class="list-decimal list-inside space-y-2 mb-4">
+                    <li>Users saw tweets saying "Don't Click" with a link.</li>
+                    <li>Curious users who clicked the link were taken to a page that looked blank.</li>
+                    <li>The page contained an invisible iframe positioned over a "Don't Click" button.</li>
+                    <li>When users clicked anywhere on the page (thinking nothing would happen), they unknowingly interacted with the hidden iframe.</li>
+                    <li>This action posted a new "Don't Click" tweet on the user's account, spreading the worm further.</li>
+                </ol>
+                <h3 class="text-xl font-semibold mb-2">Impact and Resolution</h3>
+                <p class="mb-4">
+                    The worm spread quickly, affecting thousands of Twitter users. Twitter's security team responded promptly by removing the malicious tweets and links. This incident highlighted the importance of clickjacking protection and user education about potential risks.
+                </p>
+            </div>
+        </section>
+
+
         <!-- Add a warning banner -->
         <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
             <p class="text-yellow-700">

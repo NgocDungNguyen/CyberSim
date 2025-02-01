@@ -167,6 +167,55 @@
             </div>
         </section>
 
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Real-World DDoS Attack Case Studies</h2>
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">GitHub (2018)</h3>
+                    <p class="mb-2">In February 2018, GitHub faced the largest DDoS attack recorded at that time.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Peak traffic reached 1.35 Tbps</li>
+                        <li>Attackers exploited memcached servers to amplify the attack</li>
+                        <li>GitHub mitigated the attack within 10 minutes using Akamai's DDoS protection</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Brief outages and degraded service for users worldwide.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Dyn DNS (2016)</h3>
+                    <p class="mb-2">In October 2016, Dyn, a major DNS provider, suffered a massive DDoS attack.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>The attack used a botnet of IoT devices infected with the Mirai malware</li>
+                        <li>Multiple waves of attacks lasted for several hours</li>
+                        <li>Affected major websites like Twitter, Netflix, and Reddit</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Widespread internet disruptions across North America and Europe.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Amazon Web Services (2020)</h3>
+                    <p class="mb-2">In February 2020, Amazon Web Services (AWS) mitigated the largest DDoS attack in history.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>The attack peaked at 2.3 Tbps</li>
+                        <li>Used a technique called Connectionless Lightweight Directory Access Protocol (CLDAP) reflection</li>
+                        <li>AWS Shield service successfully mitigated the attack</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Minimal, as AWS successfully mitigated the attack without service disruption.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">New Zealand Stock Exchange (2020)</h3>
+                    <p class="mb-2">In August 2020, the New Zealand Stock Exchange (NZX) faced multiple DDoS attacks.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Attacks persisted for several days</li>
+                        <li>Targeted the exchange's network service provider</li>
+                        <li>Forced the exchange to halt trading for multiple days</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Significant disruption to financial markets and potential economic losses.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Visualize Section -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
@@ -334,6 +383,23 @@
             <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
         </section>
     </main>
+
+    <script>
+        document.querySelectorAll('.bg-white.dark\\:bg-gray-800').forEach(caseStudy => {
+            const title = caseStudy.querySelector('h3');
+            const content = caseStudy.querySelector('p + ul');
+            content.style.display = 'none';
+            
+            title.addEventListener('click', () => {
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                title.classList.toggle('text-blue-500');
+            });
+            
+            title.style.cursor = 'pointer';
+            title.innerHTML += ' <i class="fas fa-chevron-down ml-2"></i>';
+        });
+        </script>
+        
 
     <script>
         // DDoS Simulation

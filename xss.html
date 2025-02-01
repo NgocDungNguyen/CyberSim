@@ -170,6 +170,56 @@
             </div>
         </section>
 
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Real-World XSS Attack Case Studies</h2>
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Samy Worm on MySpace (2005)</h3>
+                    <p class="mb-2">One of the most famous XSS attacks, affecting the then-popular social network MySpace.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Exploited a stored XSS vulnerability in MySpace's profile page</li>
+                        <li>Automatically added the attacker as a friend and spread to other profiles</li>
+                        <li>Infected over 1 million users within 20 hours</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Demonstrated the potential for rapid spread of XSS attacks on social media platforms.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Twitter StalkDaily Worm (2009)</h3>
+                    <p class="mb-2">A self-propagating XSS worm that spread through Twitter's platform.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Exploited a stored XSS vulnerability in Twitter's profile settings</li>
+                        <li>Caused infected accounts to post malicious tweets automatically</li>
+                        <li>Affected high-profile accounts, including those of celebrities</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Highlighted the need for better XSS protection in major social media platforms.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">eBay iPhone XSS Vulnerability (2014)</h3>
+                    <p class="mb-2">A significant XSS vulnerability discovered in eBay's website.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Allowed attackers to inject malicious JavaScript into auction pages</li>
+                        <li>Could potentially steal user credentials and financial information</li>
+                        <li>eBay initially dismissed the vulnerability report before addressing it</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Exposed millions of eBay users to potential credential theft and highlighted the importance of taking security reports seriously.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Yahoo! Mail XSS Vulnerability (2013)</h3>
+                    <p class="mb-2">A persistent XSS vulnerability in Yahoo! Mail that could allow attackers to steal users' emails.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Exploited a flaw in how Yahoo! Mail processed HTML emails</li>
+                        <li>Allowed attackers to inject malicious scripts into users' inboxes</li>
+                        <li>Could potentially give attackers full access to a user's email account</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Potentially exposed millions of Yahoo! Mail users to email theft and account compromise.</p>
+                </div>
+            </div>
+        </section>
+        
+
         <!-- Add a warning banner -->
         <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
             <p class="text-yellow-700">

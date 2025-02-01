@@ -150,6 +150,55 @@
             </div>
         </section>
 
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Real-World Man-in-the-Middle Attack Case Studies</h2>
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Lenovo Superfish Incident (2015)</h3>
+                    <p class="mb-2">Lenovo pre-installed adware called Superfish on consumer laptops, which acted as a MitM attacker.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Superfish intercepted HTTPS connections to inject ads</li>
+                        <li>It installed a self-signed root certificate to bypass SSL/TLS security</li>
+                        <li>This left users vulnerable to malicious attacks exploiting the same weakness</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Compromised security for millions of Lenovo laptop users.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Equifax Data Breach (2017)</h3>
+                    <p class="mb-2">While not a traditional MitM attack, the Equifax breach involved intercepting data in transit.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Attackers exploited a vulnerability in the Apache Struts framework</li>
+                        <li>They were able to intercept and exfiltrate sensitive data</li>
+                        <li>Personal information of 147 million Americans was compromised</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Massive data theft and long-term consequences for affected individuals.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Belkin Router MitM Vulnerability (2014)</h3>
+                    <p class="mb-2">A vulnerability in Belkin routers allowed attackers to perform MitM attacks on connected devices.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>The routers' DNS spoofing protection could be bypassed</li>
+                        <li>Attackers could redirect users to malicious websites</li>
+                        <li>Affected multiple router models used in homes and small businesses</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Potential for widespread data interception and phishing attacks.</p>
+                </div>
+        
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Starbucks Wi-Fi MitM Attack (2018)</h3>
+                    <p class="mb-2">Researchers discovered that Starbucks' Wi-Fi hotspots in Buenos Aires were vulnerable to MitM attacks.</p>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>The Wi-Fi provider was injecting code into users' browsers</li>
+                        <li>This could be exploited to perform MitM attacks and steal sensitive data</li>
+                        <li>Users' devices were exposed when connected to these hotspots</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Potential exposure of personal and financial data for Starbucks customers using Wi-Fi.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Visualize Section -->
         <section class="mb-12">
             <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
@@ -381,6 +430,7 @@
             quizResults.classList.remove('hidden');
         });
     </script>
+
     <script src="script.js"></script>
 
 </body>
