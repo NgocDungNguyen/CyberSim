@@ -1,0 +1,214 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual SOC & Incident Response Simulator - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="risk_assessment.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Risk Assessment</a>
+                    <a href="threat_map.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Threat Map</a>
+                    <a href="cost_calculator.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Cost Calculator</a>
+                    <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+                    <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+                    <a href="career.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Careers</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="risk_assessment.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="cost_calculator.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="threat_map.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Threat Map</a>
+            <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+            <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+            <a href="career.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Careers</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+
+    <main class="max-w-7xl mx-auto p-4 pt-20">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center mt-16">Virtual SOC & Incident Response Simulator</h1>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">What is a Security Operations Center (SOC)?</h2>
+            <p class="mb-4">A Security Operations Center (SOC) is a centralized unit that monitors, detects, and responds to cybersecurity threats in real-time. SOC teams are responsible for ensuring the security of an organization's digital assets.</p>
+            <p>This simulation combines a virtual SOC environment with an incident response simulator to demonstrate how security professionals handle cyber threats.</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Step 1: Monitor Threats</h2>
+            <p class="mb-4">Below is a simulated SOC dashboard. Click on a threat to investigate further.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <button class="bg-red-500 hover:bg-red-600 text-white p-4 rounded-lg shadow-md transition threat-btn" data-threat="Phishing Email">
+                    <i class="fas fa-envelope text-2xl"></i>
+                    <p class="mt-2">Phishing Email Detected</p>
+                </button>
+                <button class="bg-yellow-500 hover:bg-yellow-600 text-white p-4 rounded-lg shadow-md transition threat-btn" data-threat="DDoS Attack">
+                    <i class="fas fa-server text-2xl"></i>
+                    <p class="mt-2">DDoS Attack in Progress</p>
+                </button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-lg shadow-md transition threat-btn" data-threat="Malware Infection">
+                    <i class="fas fa-bug text-2xl"></i>
+                    <p class="mt-2">Malware Infection Detected</p>
+                </button>
+                <button class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-lg shadow-md transition threat-btn" data-threat="Unauthorized Access">
+                    <i class="fas fa-user-secret text-2xl"></i>
+                    <p class="mt-2">Unauthorized Access Attempt</p>
+                </button>
+                <button class="bg-purple-500 hover:bg-purple-600 text-white p-4 rounded-lg shadow-md transition threat-btn" data-threat="Ransomware">
+                    <i class="fas fa-lock text-2xl"></i>
+                    <p class="mt-2">Ransomware Detected</p>
+                </button>
+            </div>
+        </div>
+
+        <div id="incidentResponse" class="hidden bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Step 2: Incident Response</h2>
+            <p id="selectedThreat" class="mb-4"></p>
+            <p class="mb-4">Follow the steps below to respond to the incident:</p>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>Identify the source of the threat.</li>
+                <li>Contain the threat to prevent further damage.</li>
+                <li>Eradicate the threat by removing malicious files or blocking attackers.</li>
+                <li>Recover affected systems and restore normal operations.</li>
+                <li>Conduct a post-incident analysis to improve future defenses.</li>
+            </ol>
+            <button id="completeResponse" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition mt-4">Complete Response</button>
+        </div>
+
+        <div id="responseResult" class="hidden bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4">Incident Response Completed</h2>
+            <p class="mb-4">You have successfully responded to the incident. The SOC team will continue to monitor for further threats.</p>
+            <button id="resetSimulation" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Reset Simulation</button>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <p class="orbitron text-xl mb-4">CyberSec Learning Hub</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="mt-4 text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const threatButtons = document.querySelectorAll('.threat-btn');
+        const incidentResponse = document.getElementById('incidentResponse');
+        const selectedThreat = document.getElementById('selectedThreat');
+        const responseResult = document.getElementById('responseResult');
+        const completeResponse = document.getElementById('completeResponse');
+        const resetSimulation = document.getElementById('resetSimulation');
+
+        threatButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const threat = button.getAttribute('data-threat');
+                selectedThreat.textContent = `Incident: ${threat}`;
+                incidentResponse.classList.remove('hidden');
+                responseResult.classList.add('hidden');
+            });
+        });
+
+        completeResponse.addEventListener('click', () => {
+            incidentResponse.classList.add('hidden');
+            responseResult.classList.remove('hidden');
+        });
+
+        resetSimulation.addEventListener('click', () => {
+            incidentResponse.classList.add('hidden');
+            responseResult.classList.add('hidden');
+        });
+
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+
+        darkModeToggle.addEventListener('click', function() {
+            html.classList.toggle('dark');
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

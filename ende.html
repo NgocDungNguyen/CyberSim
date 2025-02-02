@@ -1,0 +1,266 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Demonstration - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="risk_assessment.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Risk Assessment</a>
+                    <a href="threat_map.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Threat Map</a>
+                    <a href="cost_calculator.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Cost Calculator</a>
+                    <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+                    <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+                    <a href="career.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Careers</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="risk_assessment.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="cost_calculator.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="threat_map.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Threat Map</a>
+            <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+            <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+            <a href="career.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Careers</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+
+    <main class="max-w-7xl mx-auto p-4 pt-20">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center mt-16">Encryption Demonstration</h1>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4">What is Encryption?</h2>
+            <p class="mb-4">Encryption is the process of converting information or data into a code, especially to prevent unauthorized access. It's a fundamental concept in cybersecurity that helps protect sensitive information from being read by anyone except the intended recipient.</p>
+            <p>In this demonstration, you can choose from multiple encryption algorithms to encrypt and decrypt messages.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Encryption Section -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold mb-4">Encryption</h2>
+                <div class="mb-4">
+                    <label for="plaintext" class="block mb-2">Enter your message:</label>
+                    <textarea id="plaintext" class="w-full p-2 border rounded dark:bg-gray-700 dark:text-white" rows="4"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="encryptKey" class="block mb-2">Enter encryption key:</label>
+                    <input type="text" id="encryptKey" class="w-full p-2 border rounded dark:bg-gray-700 dark:text-white">
+                </div>
+                <div class="mb-4">
+                    <label for="encryptionAlgorithm" class="block mb-2">Select encryption algorithm:</label>
+                    <select id="encryptionAlgorithm" class="w-full p-2 border rounded dark:bg-gray-700 dark:text-white">
+                        <option value="AES">AES (Advanced Encryption Standard)</option>
+                        <option value="DES">DES (Data Encryption Standard)</option>
+                        <option value="TripleDES">Triple DES</option>
+                        <option value="RC4">RC4</option>
+                        <option value="Rabbit">Rabbit</option>
+                        <option value="SHA256">SHA-256 (Hashing, not reversible)</option>
+                    </select>
+                </div>
+                <button id="encryptBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Encrypt</button>
+                <div class="mt-4">
+                    <label for="ciphertext" class="block mb-2">Encrypted message:</label>
+                    <textarea id="ciphertext" class="w-full p-2 border rounded bg-gray-100 dark:bg-gray-600 dark:text-white" rows="4" readonly></textarea>
+                </div>
+            </div>
+
+            <!-- Decryption Section -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold mb-4">Decryption</h2>
+                <div class="mb-4">
+                    <label for="encryptedMessage" class="block mb-2">Enter encrypted message:</label>
+                    <textarea id="encryptedMessage" class="w-full p-2 border rounded dark:bg-gray-700 dark:text-white" rows="4"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="decryptKey" class="block mb-2">Enter decryption key:</label>
+                    <input type="text" id="decryptKey" class="w-full p-2 border rounded dark:bg-gray-700 dark:text-white">
+                </div>
+                <div class="mb-4">
+                    <label for="decryptionAlgorithm" class="block mb-2">Select decryption algorithm:</label>
+                    <select id="decryptionAlgorithm" class="w-full p-2 border rounded dark:bg-gray-700 dark:text-white">
+                        <option value="AES">AES (Advanced Encryption Standard)</option>
+                        <option value="DES">DES (Data Encryption Standard)</option>
+                        <option value="TripleDES">Triple DES</option>
+                        <option value="RC4">RC4</option>
+                        <option value="Rabbit">Rabbit</option>
+                    </select>
+                </div>
+                <button id="decryptBtn" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">Decrypt</button>
+                <div class="mt-4">
+                    <label for="decryptedMessage" class="block mb-2">Decrypted message:</label>
+                    <textarea id="decryptedMessage" class="w-full p-2 border rounded bg-gray-100 dark:bg-gray-600 dark:text-white" rows="4" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-8">
+            <h2 class="text-2xl font-semibold mb-4">How It Works</h2>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>The user enters a message and an encryption key.</li>
+                <li>The user selects an encryption algorithm (e.g., AES, DES, etc.).</li>
+                <li>The message is encrypted using the selected algorithm and key.</li>
+                <li>The encrypted message (ciphertext) is displayed.</li>
+                <li>To decrypt, the user enters the ciphertext, the correct decryption key, and selects the same algorithm.</li>
+                <li>If the key and algorithm are correct, the original message is recovered and displayed.</li>
+            </ol>
+            <p class="mt-4">Note: Some algorithms like SHA-256 are hashing algorithms and are not reversible. They are used for data integrity rather than encryption.</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <p class="orbitron text-xl mb-4">CyberSec Learning Hub</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="mt-4 text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('encryptBtn').addEventListener('click', function() {
+            const plaintext = document.getElementById('plaintext').value;
+            const key = document.getElementById('encryptKey').value;
+            const algorithm = document.getElementById('encryptionAlgorithm').value;
+            let encrypted;
+
+            if (algorithm === 'AES') {
+                encrypted = CryptoJS.AES.encrypt(plaintext, key).toString();
+            } else if (algorithm === 'DES') {
+                encrypted = CryptoJS.DES.encrypt(plaintext, key).toString();
+            } else if (algorithm === 'TripleDES') {
+                encrypted = CryptoJS.TripleDES.encrypt(plaintext, key).toString();
+            } else if (algorithm === 'RC4') {
+                encrypted = CryptoJS.RC4.encrypt(plaintext, key).toString();
+            } else if (algorithm === 'Rabbit') {
+                encrypted = CryptoJS.Rabbit.encrypt(plaintext, key).toString();
+            } else if (algorithm === 'SHA256') {
+                encrypted = CryptoJS.SHA256(plaintext).toString();
+            }
+
+            document.getElementById('ciphertext').value = encrypted;
+        });
+
+        document.getElementById('decryptBtn').addEventListener('click', function() {
+            const ciphertext = document.getElementById('encryptedMessage').value;
+            const key = document.getElementById('decryptKey').value;
+            const algorithm = document.getElementById('decryptionAlgorithm').value;
+            let decrypted;
+
+            try {
+                if (algorithm === 'AES') {
+                    decrypted = CryptoJS.AES.decrypt(ciphertext, key).toString(CryptoJS.enc.Utf8);
+                } else if (algorithm === 'DES') {
+                    decrypted = CryptoJS.DES.decrypt(ciphertext, key).toString(CryptoJS.enc.Utf8);
+                } else if (algorithm === 'TripleDES') {
+                    decrypted = CryptoJS.TripleDES.decrypt(ciphertext, key).toString(CryptoJS.enc.Utf8);
+                } else if (algorithm === 'RC4') {
+                    decrypted = CryptoJS.RC4.decrypt(ciphertext, key).toString(CryptoJS.enc.Utf8);
+                } else if (algorithm === 'Rabbit') {
+                    decrypted = CryptoJS.Rabbit.decrypt(ciphertext, key).toString(CryptoJS.enc.Utf8);
+                }
+
+                if (decrypted) {
+                    document.getElementById('decryptedMessage').value = decrypted;
+                } else {
+                    document.getElementById('decryptedMessage').value = "Decryption failed. Please check your key and algorithm.";
+                }
+            } catch (error) {
+                document.getElementById('decryptedMessage').value = "Decryption failed. Please check your input and key.";
+            }
+        });
+
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+
+        darkModeToggle.addEventListener('click', function() {
+            html.classList.toggle('dark');
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Career Path Explorer - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .career-card {
+            transition: all 0.3s ease;
+        }
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 179, 255, 0.2);
+        }
+        .dark .career-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="risk_assessment.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Risk Assessment</a>
+                    <a href="threat_map.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Threat Map</a>
+                    <a href="cost_calculator.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Cost Calculator</a>
+                    <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+                    <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+                    <a href="career.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Careers</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="risk_assessment.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="cost_calculator.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="threat_map.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Threat Map</a>
+            <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+            <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+            <a href="career.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Careers</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4 pt-20">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center mt-16">Cybersecurity Career Path Explorer</h1>
+        
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Comprehensive Cybersecurity Career Paths</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Information Security Analyst</h3>
+                    <p class="mb-4">Protect computer networks from cyber attacks and unauthorized access.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Network security, risk analysis, incident response</li>
+                        <li>Education: Bachelor's degree in cybersecurity or related field</li>
+                        <li>Certifications: CompTIA Security+, CISSP</li>
+                        <li>Career Path: Junior Analyst → Senior Analyst → Security Manager</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $99,730</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Penetration Tester</h3>
+                    <p class="mb-4">Simulate cyber attacks to identify vulnerabilities in systems and networks.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Ethical hacking, programming, social engineering</li>
+                        <li>Education: Bachelor's degree in computer science or cybersecurity</li>
+                        <li>Certifications: CEH, OSCP</li>
+                        <li>Career Path: Junior Pentester → Senior Pentester → Red Team Lead</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $84,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Cybersecurity Consultant</h3>
+                    <p class="mb-4">Advise organizations on best practices for securing their digital assets.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Risk management, compliance, communication</li>
+                        <li>Education: Bachelor's or Master's degree in cybersecurity</li>
+                        <li>Certifications: CISM, CISSP</li>
+                        <li>Career Path: Junior Consultant → Senior Consultant → Principal Consultant</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $91,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Incident Response Analyst</h3>
+                    <p class="mb-4">Respond to and mitigate cybersecurity incidents and breaches.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Forensics, malware analysis, crisis management</li>
+                        <li>Education: Bachelor's degree in computer science or cybersecurity</li>
+                        <li>Certifications: GCIH, GCFA</li>
+                        <li>Career Path: IR Analyst → IR Team Lead → CISO</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $89,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Cloud Security Architect</h3>
+                    <p class="mb-4">Design and implement security measures for cloud-based systems.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Cloud platforms, network architecture, encryption</li>
+                        <li>Education: Bachelor's or Master's degree in computer science</li>
+                        <li>Certifications: CCSP, AWS Certified Security</li>
+                        <li>Career Path: Cloud Security Engineer → Senior Architect → Cloud CISO</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $126,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Security Operations Center (SOC) Analyst</h3>
+                    <p class="mb-4">Monitor and analyze security alerts and events in real-time.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: SIEM tools, threat intelligence, log analysis</li>
+                        <li>Education: Bachelor's degree in IT or cybersecurity</li>
+                        <li>Certifications: CompTIA CySA+, GCIA</li>
+                        <li>Career Path: SOC Analyst → SOC Team Lead → Security Operations Manager</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $76,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Malware Analyst</h3>
+                    <p class="mb-4">Analyze and reverse engineer malicious software to understand its behavior and develop countermeasures.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Reverse engineering, programming, sandboxing</li>
+                        <li>Education: Bachelor's degree in computer science or cybersecurity</li>
+                        <li>Certifications: GREM, GCFA</li>
+                        <li>Career Path: Junior Malware Analyst → Senior Malware Analyst → Threat Research Lead</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $92,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Cybersecurity Policy Analyst</h3>
+                    <p class="mb-4">Develop and implement cybersecurity policies and procedures for organizations.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Policy writing, risk assessment, compliance</li>
+                        <li>Education: Bachelor's or Master's degree in cybersecurity or related field</li>
+                        <li>Certifications: CISSP, CISM</li>
+                        <li>Career Path: Policy Analyst → Senior Policy Analyst → Chief Policy Officer</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $85,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Cybersecurity Trainer</h3>
+                    <p class="mb-4">Educate employees and professionals on cybersecurity best practices and awareness.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Teaching, communication, cybersecurity knowledge</li>
+                        <li>Education: Bachelor's degree in cybersecurity or related field</li>
+                        <li>Certifications: CompTIA Security+, EC-Council Certified Security Specialist</li>
+                        <li>Career Path: Training Specialist → Senior Trainer → Director of Cybersecurity Education</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $78,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Cyber Threat Intelligence Analyst</h3>
+                    <p class="mb-4">Collect and analyze data to identify potential cyber threats and provide actionable intelligence.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Data analysis, threat hunting, geopolitical awareness</li>
+                        <li>Education: Bachelor's degree in cybersecurity, intelligence, or related field</li>
+                        <li>Certifications: GCTI, EC-Council Certified Threat Intelligence Analyst</li>
+                        <li>Career Path: Junior Analyst → Senior Analyst → Threat Intelligence Manager</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $95,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Digital Forensics Investigator</h3>
+                    <p class="mb-4">Collect, process, and analyze digital evidence for cybercrime investigations.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Computer forensics, data recovery, legal knowledge</li>
+                        <li>Education: Bachelor's degree in computer forensics or cybersecurity</li>
+                        <li>Certifications: GCFE, EnCE</li>
+                        <li>Career Path: Junior Investigator → Senior Investigator → Forensics Lab Director</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $88,000</p>
+                </div>
+                <div class="career-card bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Application Security Engineer</h3>
+                    <p class="mb-4">Ensure the security of software applications throughout the development lifecycle.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Required Skills: Secure coding, SAST/DAST tools, DevSecOps</li>
+                        <li>Education: Bachelor's degree in computer science or software engineering</li>
+                        <li>Certifications: CSSLP, GWAPT</li>
+                        <li>Career Path: AppSec Engineer → Senior AppSec Engineer → AppSec Architect</li>
+                    </ul>
+                    <p class="text-blue-600 dark:text-blue-400">Average Salary: $110,000</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Key Skills for Cybersecurity Professionals</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-shield-alt text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Network Security</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-code text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Programming (Python, C++, Java)</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-bug text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Vulnerability Assessment</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-lock text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Encryption Techniques</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-search text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Digital Forensics</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-chart-line text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Risk Analysis and Management</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-cloud text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Cloud Security (AWS, Azure, GCP)</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-user-secret text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Ethical Hacking</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-project-diagram text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>SIEM and Log Management</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-robot text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>AI and Machine Learning in Security</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-mobile-alt text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Mobile Device Security</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 text-center">
+                    <i class="fas fa-file-contract text-3xl text-blue-600 dark:text-blue-400 mb-2"></i>
+                    <p>Compliance and Regulations (GDPR, HIPAA)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Educational Pathways</h2>
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Bachelor's Degree</h3>
+                    <p>A four-year degree in cybersecurity, computer science, or a related field is often the minimum requirement for entry-level positions.</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>B.S. in Cybersecurity</li>
+                        <li>B.S. in Computer Science with Cybersecurity concentration</li>
+                        <li>B.S. in Information Technology with Security focus</li>
+                        <li>B.S. in Network Security and Administration</li>
+                        <li>B.S. in Digital Forensics and Cybersecurity</li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Master's Degree</h3>
+                    <p>Advanced degrees can lead to higher-level positions and specializations.</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>M.S. in Cybersecurity</li>
+                        <li>M.S. in Information Security and Assurance</li>
+                        <li>M.S. in Computer Science with Cybersecurity specialization</li>
+                        <li>MBA with Cybersecurity concentration</li>
+                        <li>M.S. in Digital Forensics and Cyber Investigation</li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Doctoral Degree</h3>
+                    <p>For those interested in research or academic positions in cybersecurity.</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>Ph.D. in Cybersecurity</li>
+                        <li>Ph.D. in Computer Science with Cybersecurity focus</li>
+                        <li>Doctor of Information Technology (D.I.T.) with Cybersecurity concentration</li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-2">Certifications</h3>
+                    <p>Professional certifications demonstrate expertise and can boost career prospects.</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>CompTIA Security+</li>
+                        <li>Certified Information Systems Security Professional (CISSP)</li>
+                        <li>Certified Ethical Hacker (CEH)</li>
+                        <li>GIAC Security Essentials (GSEC)</li>
+                        <li>Certified Information Security Manager (CISM)</li>
+                        <li>Offensive Security Certified Professional (OSCP)</li>
+                        <li>Certified Information Systems Auditor (CISA)</li>
+                        <li>Certified Cloud Security Professional (CCSP)</li>
+                        <li>GIAC Certified Incident Handler (GCIH)</li>
+                        <li>Certified Information Privacy Professional (CIPP)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold mb-6">Industry Trends and Future Outlook</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Growing demand for cybersecurity professionals across all industries</li>
+                    <li>Increasing focus on AI and machine learning in cybersecurity</li>
+                    <li>Rise of IoT security challenges and the need for specialized skills</li>
+                    <li>Emphasis on privacy regulations and compliance (GDPR, CCPA, etc.)</li>
+                    <li>Shift towards cloud-based security solutions and cloud-native security</li>
+                    <li>Integration of DevSecOps practices in software development</li>
+                    <li>Growing importance of threat intelligence and proactive security measures</li>
+                    <li>Increased focus on securing remote work environments</li>
+                    <li>Rise of quantum computing and its impact on cryptography</li>
+                    <li>Emergence of new roles like AI Security Specialist and Blockchain Security Expert</li>
+                </ul>
+                <p class="mt-4">The cybersecurity field is expected to grow by 31% from 2019 to 2029, much faster than the average for all occupations. This growth is driven by the increasing frequency and sophistication of cyber attacks, as well as the growing reliance on digital systems across all sectors of the economy.</p>
+                <p class="mt-2">As technology evolves, cybersecurity professionals will need to continuously update their skills and knowledge to stay ahead of emerging threats and protect against new vulnerabilities.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <p class="orbitron text-xl mb-4">CyberSec Learning Hub</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="mt-4 text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

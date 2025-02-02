@@ -1,0 +1,326 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Attack Cost Calculator - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="risk_assessment.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Risk Assessment</a>
+                    <a href="threat_map.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Threat Map</a>
+                    <a href="cost_calculator.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Cost Calculator</a>
+                    <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+                    <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+                    <a href="career.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Careers</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="risk_assessment.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="cost_calculator.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="threat_map.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Threat Map</a>
+            <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
+            <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
+            <a href="career.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Careers</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+
+    <main class="max-w-7xl mx-auto p-4 pt-20">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center mt-16">Cyber Attack Cost Calculator</h1>
+        
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Input Parameters</h2>
+            <form id="costCalculatorForm" class="space-y-4">
+                <div>
+                    <label for="attackType" class="block mb-2">Type of Attack:</label>
+                    <select id="attackType" class="w-full p-2 border rounded">
+                        <option value="dataBreachSmall">Data Breach (Small)</option>
+                        <option value="dataBreachLarge">Data Breach (Large)</option>
+                        <option value="ransomware">Ransomware</option>
+                        <option value="ddos">DDoS</option>
+                        <option value="phishing">Phishing</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="companySize" class="block mb-2">Company Size:</label>
+                    <select id="companySize" class="w-full p-2 border rounded">
+                        <option value="small">Small (1-50 employees)</option>
+                        <option value="medium">Medium (51-500 employees)</option>
+                        <option value="large">Large (501+ employees)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="industry" class="block mb-2">Industry:</label>
+                    <select id="industry" class="w-full p-2 border rounded">
+                        <option value="technology">Technology</option>
+                        <option value="finance">Finance</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="retail">Retail</option>
+                        <option value="manufacturing">Manufacturing</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="dataRecords" class="block mb-2">Number of Data Records (if applicable):</label>
+                    <input type="number" id="dataRecords" class="w-full p-2 border rounded" min="0">
+                </div>
+                <div>
+                    <label for="downtime" class="block mb-2">Estimated Downtime (hours):</label>
+                    <input type="number" id="downtime" class="w-full p-2 border rounded" min="0">
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Calculate Cost</button>
+            </form>
+        </div>
+
+        <div id="results" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-8 hidden">
+            <h2 class="text-2xl font-semibold mb-4">Estimated Cost Breakdown</h2>
+            <div id="costBreakdown" class="space-y-2"></div>
+            <div class="mt-4">
+                <h3 class="text-xl font-semibold mb-2">Total Estimated Cost:</h3>
+                <p id="totalCost" class="text-3xl font-bold text-red-500"></p>
+            </div>
+            <div class="mt-8">
+                <canvas id="costChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <p class="orbitron text-xl mb-4">CyberSec Learning Hub</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="mt-4 text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const costCalculatorForm = document.getElementById('costCalculatorForm');
+        const results = document.getElementById('results');
+        const costBreakdown = document.getElementById('costBreakdown');
+        const totalCost = document.getElementById('totalCost');
+        let costChart;
+
+        costCalculatorForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const attackType = document.getElementById('attackType').value;
+            const companySize = document.getElementById('companySize').value;
+            const industry = document.getElementById('industry').value;
+            const dataRecords = parseInt(document.getElementById('dataRecords').value) || 0;
+            const downtime = parseInt(document.getElementById('downtime').value) || 0;
+
+            const costs = calculateCosts(attackType, companySize, industry, dataRecords, downtime);
+            displayResults(costs);
+        });
+
+        function calculateCosts(attackType, companySize, industry, dataRecords, downtime) {
+            let baseCost = 0;
+            let dataBreachCost = 0;
+            let downtimeCost = 0;
+            let reputationCost = 0;
+            let legalCost = 0;
+
+            // Base cost calculation
+            switch(attackType) {
+                case 'dataBreachSmall':
+                    baseCost = 50000;
+                    break;
+                case 'dataBreachLarge':
+                    baseCost = 500000;
+                    break;
+                case 'ransomware':
+                    baseCost = 200000;
+                    break;
+                case 'ddos':
+                    baseCost = 100000;
+                    break;
+                case 'phishing':
+                    baseCost = 75000;
+                    break;
+            }
+
+            // Adjust for company size
+            switch(companySize) {
+                case 'small':
+                    baseCost *= 0.5;
+                    break;
+                case 'medium':
+                    baseCost *= 1;
+                    break;
+                case 'large':
+                    baseCost *= 2;
+                    break;
+            }
+
+            // Adjust for industry
+            switch(industry) {
+                case 'finance':
+                case 'healthcare':
+                    baseCost *= 1.5;
+                    break;
+                case 'technology':
+                    baseCost *= 1.2;
+                    break;
+                case 'retail':
+                    baseCost *= 1.1;
+                    break;
+                case 'manufacturing':
+                    baseCost *= 1;
+                    break;
+            }
+
+            // Data breach cost
+            if (attackType.includes('dataBreach')) {
+                dataBreachCost = dataRecords * 150;
+            }
+
+            // Downtime cost
+            downtimeCost = downtime * 1000;
+
+            // Reputation cost (simplified calculation)
+            reputationCost = baseCost * 0.2;
+
+            // Legal cost (simplified calculation)
+            legalCost = baseCost * 0.1;
+
+            const totalCost = baseCost + dataBreachCost + downtimeCost + reputationCost + legalCost;
+
+            return {
+                baseCost,
+                dataBreachCost,
+                downtimeCost,
+                reputationCost,
+                legalCost,
+                totalCost
+            };
+        }
+
+        function displayResults(costs) {
+            costBreakdown.innerHTML = `
+                <p>Base Cost: $${costs.baseCost.toLocaleString()}</p>
+                <p>Data Breach Cost: $${costs.dataBreachCost.toLocaleString()}</p>
+                <p>Downtime Cost: $${costs.downtimeCost.toLocaleString()}</p>
+                <p>Reputation Damage Cost: $${costs.reputationCost.toLocaleString()}</p>
+                <p>Legal and Regulatory Cost: $${costs.legalCost.toLocaleString()}</p>
+            `;
+
+            totalCost.textContent = `$${costs.totalCost.toLocaleString()}`;
+
+            results.classList.remove('hidden');
+
+            // Update or create chart
+            const ctx = document.getElementById('costChart').getContext('2d');
+            if (costChart) {
+                costChart.destroy();
+            }
+            costChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Base Cost', 'Data Breach Cost', 'Downtime Cost', 'Reputation Damage', 'Legal and Regulatory'],
+                    datasets: [{
+                        data: [costs.baseCost, costs.dataBreachCost, costs.downtimeCost, costs.reputationCost, costs.legalCost],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Cost Breakdown'
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
