@@ -1,0 +1,351 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Risk Assessment - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="risk_assessment.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Risk Assessment</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 mr-2">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="risk_assessment.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4 pt-20"> <!-- Changed pt-24 to pt-20 -->
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center mt-16">Cybersecurity Risk Assessment</h1>
+
+        <section class="mb-12">
+            <h2 class="orbitron text-2xl font-semibold mb-4">Comprehensive Cybersecurity Risk Assessment Tool</h2>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                <form id="riskAssessmentForm" class="space-y-4">
+                    <div>
+                        <label for="industryType" class="block mb-2">Industry Type:</label>
+                        <select id="industryType" class="w-full p-2 border rounded">
+                            <option value="finance">Finance</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="retail">Retail</option>
+                            <option value="technology">Technology</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="education">Education</option>
+                            <option value="government">Government</option>
+                            <option value="energy">Energy</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="companySize" class="block mb-2">Company Size:</label>
+                        <select id="companySize" class="w-full p-2 border rounded">
+                            <option value="micro">Micro (1-10 employees)</option>
+                            <option value="small">Small (11-50 employees)</option>
+                            <option value="medium">Medium (51-250 employees)</option>
+                            <option value="large">Large (251-1000 employees)</option>
+                            <option value="enterprise">Enterprise (1000+ employees)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="dataType" class="block mb-2">Type of Data Handled (Select all that apply):</label>
+                        <select id="dataType" class="w-full p-2 border rounded" multiple>
+                            <option value="pii">Personal Identifiable Information</option>
+                            <option value="financial">Financial Data</option>
+                            <option value="health">Health Records</option>
+                            <option value="intellectual">Intellectual Property</option>
+                            <option value="government">Government Data</option>
+                            <option value="payment">Payment Card Information</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block mb-2">Current Security Measures:</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <input type="checkbox" id="firewall" name="securityMeasures" value="firewall">
+                                <label for="firewall">Firewall</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="antivirus" name="securityMeasures" value="antivirus">
+                                <label for="antivirus">Antivirus Software</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="encryption" name="securityMeasures" value="encryption">
+                                <label for="encryption">Data Encryption</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="training" name="securityMeasures" value="training">
+                                <label for="training">Employee Security Training</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="mfa" name="securityMeasures" value="mfa">
+                                <label for="mfa">Multi-Factor Authentication</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="backup" name="securityMeasures" value="backup">
+                                <label for="backup">Regular Data Backups</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="incidentResponse" name="securityMeasures" value="incidentResponse">
+                                <label for="incidentResponse">Incident Response Plan</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="patchManagement" name="securityMeasures" value="patchManagement">
+                                <label for="patchManagement">Patch Management</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="remoteWork" class="block mb-2">Percentage of Remote Work:</label>
+                        <input type="range" id="remoteWork" min="0" max="100" value="50" class="w-full">
+                        <span id="remoteWorkValue">50%</span>
+                    </div>
+                    <div>
+                        <label for="budget" class="block mb-2">Annual Cybersecurity Budget (as % of IT budget):</label>
+                        <input type="number" id="budget" min="0" max="100" value="10" class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label for="incidents" class="block mb-2">Number of Security Incidents in the Past Year:</label>
+                        <input type="number" id="incidents" min="0" value="0" class="w-full p-2 border rounded">
+                    </div>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
+                        Assess Risk
+                    </button>
+                </form>
+                <div id="riskAssessmentResult" class="mt-6 hidden">
+                    <h3 class="text-xl font-semibold mb-2">Risk Assessment Results</h3>
+                    <p id="riskLevel" class="text-lg mb-2"></p>
+                    <div id="riskChart" class="w-full h-4 bg-gray-200 rounded-full overflow-hidden mb-4">
+                        <div id="riskBar" class="h-full bg-red-500 transition-all duration-500"></div>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-2">Key Risk Factors:</h4>
+                    <ul id="riskFactors" class="list-disc pl-5 mb-4"></ul>
+                    <h4 class="text-lg font-semibold mb-2">Recommendations:</h4>
+                    <ul id="recommendations" class="list-disc pl-5"></ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <p class="orbitron text-xl mb-4">CyberSec Learning Hub</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="mt-4 text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
+                <p class="mt-4 text-gray-400">Made by June Nguyen</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    document.getElementById('remoteWork').addEventListener('input', function(e) {
+        document.getElementById('remoteWorkValue').textContent = e.target.value + '%';
+    });
+
+    document.getElementById('riskAssessmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const industry = document.getElementById('industryType').value;
+        const size = document.getElementById('companySize').value;
+        const dataTypes = Array.from(document.getElementById('dataType').selectedOptions).map(option => option.value);
+        const securityMeasures = Array.from(document.querySelectorAll('input[name="securityMeasures"]:checked')).map(checkbox => checkbox.value);
+        const remoteWork = parseInt(document.getElementById('remoteWork').value);
+        const budget = parseInt(document.getElementById('budget').value);
+        const incidents = parseInt(document.getElementById('incidents').value);
+
+        let riskScore = 0;
+        const riskFactors = [];
+
+        // Industry risk
+        const industryRisk = {
+            finance: 5, healthcare: 5, retail: 4, technology: 3, manufacturing: 3, education: 2, government: 4, energy: 4
+        };
+        riskScore += industryRisk[industry] || 3;
+        if (industryRisk[industry] > 3) {
+            riskFactors.push(`High-risk industry (${industry})`);
+        }
+
+        // Company size risk
+        const sizeRisk = { micro: 1, small: 2, medium: 3, large: 4, enterprise: 5 };
+        riskScore += sizeRisk[size];
+        if (sizeRisk[size] > 3) {
+            riskFactors.push("Large organization size increases attack surface");
+        }
+
+        // Data type risk
+        const sensitiveData = ['pii', 'financial', 'health', 'government', 'payment'];
+        const hasSensitiveData = dataTypes.some(type => sensitiveData.includes(type));
+        if (hasSensitiveData) {
+            riskScore += 3;
+            riskFactors.push("Handling of sensitive data");
+        }
+
+        // Security measures
+        const criticalMeasures = ['firewall', 'antivirus', 'encryption', 'mfa', 'backup'];
+        const missingCriticalMeasures = criticalMeasures.filter(measure => !securityMeasures.includes(measure));
+        riskScore += missingCriticalMeasures.length * 2;
+        if (missingCriticalMeasures.length > 0) {
+            riskFactors.push(`Missing critical security measures: ${missingCriticalMeasures.join(', ')}`);
+        }
+
+        // Remote work risk
+        if (remoteWork > 50) {
+            riskScore += 2;
+            riskFactors.push("High percentage of remote work");
+        }
+
+        // Budget risk
+        if (budget < 5) {
+            riskScore += 3;
+            riskFactors.push("Low cybersecurity budget");
+        } else if (budget < 10) {
+            riskScore += 1;
+        }
+
+        // Past incidents
+        if (incidents > 5) {
+            riskScore += 3;
+            riskFactors.push("High number of past security incidents");
+        } else if (incidents > 0) {
+            riskScore += 1;
+        }
+
+        // Normalize risk score to 0-100
+        const normalizedRiskScore = Math.min(Math.max((riskScore / 30) * 100, 0), 100);
+
+        let riskLevel, recommendations;
+
+        if (normalizedRiskScore < 30) {
+            riskLevel = "Low Risk";
+            recommendations = [
+                "Continue maintaining current security measures",
+                "Stay updated on emerging threats",
+                "Conduct regular security audits",
+                "Enhance employee security awareness training"
+            ];
+        } else if (normalizedRiskScore < 60) {
+            riskLevel = "Medium Risk";
+            recommendations = [
+                "Implement additional security measures, especially for any missing critical measures",
+                "Increase frequency of employee security awareness training",
+                "Develop and regularly test an incident response plan",
+                "Consider increasing cybersecurity budget",
+                "Implement stricter access controls and monitoring"
+            ];
+        } else {
+            riskLevel = "High Risk";
+            recommendations = [
+                "Urgently review and enhance overall security infrastructure",
+                "Implement advanced threat detection and prevention systems",
+                "Conduct a comprehensive third-party security audit",
+                "Develop, test, and regularly update an incident response plan",
+                "Significantly increase cybersecurity budget and resources",
+                "Implement strict data protection measures, especially for sensitive data",
+                "Consider cybersecurity insurance",
+                "Establish a dedicated cybersecurity team if not already in place"
+            ];
+        }
+
+        // Display results
+        document.getElementById('riskLevel').textContent = `Risk Level: ${riskLevel} (Score: ${normalizedRiskScore.toFixed(2)})`;
+        document.getElementById('riskBar').style.width = `${normalizedRiskScore}%`;
+        
+        const factorsList = document.getElementById('riskFactors');
+        factorsList.innerHTML = '';
+        riskFactors.forEach(factor => {
+            const li = document.createElement('li');
+            li.textContent = factor;
+            factorsList.appendChild(li);
+        });
+
+        const recList = document.getElementById('recommendations');
+        recList.innerHTML = '';
+        recommendations.forEach(rec => {
+            const li = document.createElement('li');
+            li.textContent = rec;
+            recList.appendChild(li);
+        });
+
+        document.getElementById('riskAssessmentResult').classList.remove('hidden');
+    });
+    </script>
+</body>
+</html>

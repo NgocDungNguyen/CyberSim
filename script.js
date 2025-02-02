@@ -5,17 +5,23 @@ const html = document.documentElement;
 function setDarkMode(isDark) {
     if (isDark) {
         html.classList.add('dark');
-        darkModeToggle.innerHTML = '<i class="fas fa-sun text-yellow-300"></i>';
+        if (darkModeToggle) {
+            darkModeToggle.innerHTML = '<i class="fas fa-sun text-yellow-300"></i>';
+        }
     } else {
         html.classList.remove('dark');
-        darkModeToggle.innerHTML = '<i class="fas fa-moon text-gray-600"></i>';
+        if (darkModeToggle) {
+            darkModeToggle.innerHTML = '<i class="fas fa-moon text-gray-600"></i>';
+        }
     }
     localStorage.setItem('darkMode', isDark);
 }
 
-darkModeToggle.addEventListener('click', () => {
-    setDarkMode(!html.classList.contains('dark'));
-});
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+        setDarkMode(!html.classList.contains('dark'));
+    });
+}
 
 // Check for saved dark mode preference or system preference
 if (localStorage.getItem('darkMode') === 'true' || 
@@ -30,9 +36,11 @@ if (localStorage.getItem('darkMode') === 'true' ||
 const mobileMenuButton = document.getElementById('mobileMenuButton');
 const mobileMenu = document.getElementById('mobileMenu');
 
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
+if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -52,16 +60,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-document.querySelectorAll('.bg-white.dark\\:bg-gray-800').forEach(caseStudy => {
-    const title = caseStudy.querySelector('h3');
-    const content = caseStudy.querySelector('p + ul');
-    content.style.display = 'none';
-    
-    title.addEventListener('click', () => {
-        content.style.display = content.style.display === 'none' ? 'block' : 'none';
-        title.classList.toggle('text-blue-500');
+// Case study collapsible functionality
+const caseStudies = document.querySelectorAll('.bg-white.dark\\:bg-gray-800');
+if (caseStudies.length > 0) {
+    caseStudies.forEach(caseStudy => {
+        const title = caseStudy.querySelector('h3');
+        const content = caseStudy.querySelector('p + ul');
+        if (title && content) {
+            content.style.display = 'none';
+            
+            title.addEventListener('click', () => {
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                title.classList.toggle('text-blue-500');
+            });
+            
+            title.style.cursor = 'pointer';
+            title.innerHTML += ' <i class="fas fa-chevron-down ml-2"></i>';
+        }
     });
-    
-    title.style.cursor = 'pointer';
-    title.innerHTML += ' <i class="fas fa-chevron-down ml-2"></i>';
-});
+}
