@@ -1,0 +1,376 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Cyber Threat Map - CyberSec Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        #map-container { 
+            height: 70vh; 
+            min-height: 400px; 
+            width: 100%; 
+            overflow: hidden;
+            position: relative;
+        }
+        #map-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .country { fill: #2c3e50; stroke: #fff; stroke-width: 0.5; }
+        .attack { fill: #e74c3c; opacity: 0.7; }
+        .attack-line { stroke: #e74c3c; stroke-width: 1; opacity: 0.5; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            min-width: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dark .dropdown-menu {
+            background-color: #2d3748;
+            border-color: #4a5568;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+        }
+        .dark .dropdown-menu a { color: #e2e8f0; }
+        .dropdown-menu a:hover { background-color: #f3f4f6; }
+        .dark .dropdown-menu a:hover { background-color: #4a5568; }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="dropdown relative">
+                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="phishing.html">Phishing</a>
+                            <a href="spoofing.html">Spoofing</a>
+                            <a href="adware.html">Adware</a>
+                            <a href="ddos.html">DDoS</a>
+                            <a href="mitm.html">Man-in-the-Middle</a>
+                            <a href="sql-injection.html">SQL Injection</a>
+                            <a href="zero-day.html">Zero-Day Exploits</a>
+                            <a href="ransomware.html">Ransomware</a>
+                            <a href="apt.html">APT</a>
+                            <a href="credential-stuffing.html">Credential Stuffing</a>
+                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                            <a href="ai-attacks.html">AI-Powered Attacks</a>
+                            <a href="clickjacking.html">Clickjacking</a>
+                            <a href="session-hijacking.html">Session Hijacking</a>
+                            <a href="social-engineering.html">Social Engineering</a>
+                        </div>
+                    </div>
+                    <a href="risk_assessment.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Risk Assessment</a>
+                    <a href="threat_map.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Threat Map</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="dropdown">
+                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Threats <i class="fas fa-chevron-down ml-1"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="phishing.html">Phishing</a>
+                    <a href="spoofing.html">Spoofing</a>
+                    <a href="adware.html">Adware</a>
+                    <a href="ddos.html">DDoS</a>
+                    <a href="mitm.html">Man-in-the-Middle</a>
+                    <a href="sql-injection.html">SQL Injection</a>
+                    <a href="zero-day.html">Zero-Day Exploits</a>
+                    <a href="ransomware.html">Ransomware</a>
+                    <a href="apt.html">APT</a>
+                    <a href="credential-stuffing.html">Credential Stuffing</a>
+                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
+                    <a href="ai-attacks.html">AI-Powered Attacks</a>
+                    <a href="clickjacking.html">Clickjacking</a>
+                    <a href="session-hijacking.html">Session Hijacking</a>
+                    <a href="social-engineering.html">Social Engineering</a>
+                </div>
+            </div>
+            <a href="risk_assessment.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
+            <a href="threat_map.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Threat Map</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4 pt-20">
+        <h1 class="orbitron text-4xl font-bold mb-8 text-center mt-16">Real-time Cyber Threat Map</h1>
+        
+        <div id="map-container" class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+            <svg id="map-svg"></svg>
+        </div>
+        
+        <div class="mt-4 flex justify-center space-x-4">
+            <button id="zoomIn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
+                <i class="fas fa-search-plus"></i> Zoom In
+            </button>
+            <button id="zoomOut" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
+                <i class="fas fa-search-minus"></i> Zoom Out
+            </button>
+            <button id="resetZoom" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
+                <i class="fas fa-undo"></i> Reset
+            </button>
+        </div>
+        
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4">Threat Statistics</h2>
+                <div id="threat-stats" class="grid grid-cols-2 gap-4">
+                    <!-- Threat statistics will be inserted here -->
+                </div>
+            </div>
+            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4">Attack Types Distribution</h2>
+                <canvas id="attack-types-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold mb-4">Recent Attacks</h2>
+            <div id="recent-attacks" class="space-y-2">
+                <!-- Recent attacks will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (same as before) -->
+
+    <script src="script.js"></script>
+    <script>
+        // Map visualization code
+        const width = document.getElementById('map-container').offsetWidth;
+        const height = document.getElementById('map-container').offsetHeight;
+
+        const svg = d3.select("#map-svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        const g = svg.append("g");
+
+        const projection = d3.geoMercator()
+            .scale(width / 2 / Math.PI)
+            .translate([width / 2, height / 2]);
+
+        const path = d3.geoPath().projection(projection);
+
+        let zoom = d3.zoom()
+            .scaleExtent([1, 8])
+            .on("zoom", zoomed);
+
+        svg.call(zoom);
+
+        function zoomed(event) {
+            g.attr("transform", event.transform);
+        }
+
+        document.getElementById('zoomIn').addEventListener('click', () => {
+            svg.transition().call(zoom.scaleBy, 2);
+        });
+
+        document.getElementById('zoomOut').addEventListener('click', () => {
+            svg.transition().call(zoom.scaleBy, 0.5);
+        });
+
+        document.getElementById('resetZoom').addEventListener('click', () => {
+            svg.transition().call(zoom.transform, d3.zoomIdentity);
+        });
+
+        // Load world map data
+        d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(function(world) {
+            const countries = topojson.feature(world, world.objects.countries);
+
+            g.selectAll("path")
+                .data(countries.features)
+                .enter().append("path")
+                .attr("class", "country")
+                .attr("d", path);
+
+            // Attack types
+            const attackTypes = [
+                "DDoS", "Malware", "Phishing", "SQL Injection", "XSS", "Man-in-the-Middle",
+                "Zero-Day Exploit", "Brute Force", "Social Engineering", "Ransomware"
+            ];
+
+            // Simulated attack data
+            function generateAttacks() {
+                return d3.range(30).map(() => ({
+                    source: {
+                        longitude: Math.random() * 360 - 180,
+                        latitude: Math.random() * 180 - 90,
+                    },
+                    target: {
+                        longitude: Math.random() * 360 - 180,
+                        latitude: Math.random() * 180 - 90,
+                    },
+                    type: attackTypes[Math.floor(Math.random() * attackTypes.length)],
+                    severity: Math.random() < 0.2 ? "High" : Math.random() < 0.6 ? "Medium" : "Low"
+                }));
+            }
+
+            let totalAttacks = 0;
+            const attackTypeCount = {};
+            attackTypes.forEach(type => attackTypeCount[type] = 0);
+
+            function updateAttacks() {
+                const attacks = generateAttacks();
+                totalAttacks += attacks.length;
+
+                // Update attack type counts
+                attacks.forEach(attack => {
+                    attackTypeCount[attack.type]++;
+                });
+
+                const lines = g.selectAll(".attack-line")
+                    .data(attacks);
+
+                lines.enter()
+                    .append("line")
+                    .attr("class", "attack-line")
+                    .merge(lines)
+                    .attr("x1", d => projection([d.source.longitude, d.source.latitude])[0])
+                    .attr("y1", d => projection([d.source.longitude, d.source.latitude])[1])
+                    .attr("x2", d => projection([d.target.longitude, d.target.latitude])[0])
+                    .attr("y2", d => projection([d.target.longitude, d.target.latitude])[1])
+                    .style("opacity", 1)
+                    .transition()
+                    .duration(2000)
+                    .style("opacity", 0)
+                    .remove();
+
+                const circles = g.selectAll(".attack")
+                    .data(attacks);
+
+                circles.enter()
+                    .append("circle")
+                    .attr("class", "attack")
+                    .attr("r", 5)
+                    .merge(circles)
+                    .attr("cx", d => projection([d.target.longitude, d.target.latitude])[0])
+                    .attr("cy", d => projection([d.target.longitude, d.target.latitude])[1])
+                    .style("opacity", 1)
+                    .transition()
+                    .duration(2000)
+                    .style("opacity", 0)
+                    .remove();
+
+                lines.exit().remove();
+                circles.exit().remove();
+
+                updateThreatStats(attacks);
+                updateRecentAttacks(attacks);
+                updateAttackTypesChart();
+            }
+
+            // Update threat statistics
+            function updateThreatStats(attacks) {
+                const stats = [
+                    { label: "Total Attacks", value: totalAttacks },
+                    { label: "Active Threats", value: attacks.length },
+                    { label: "High Severity", value: attacks.filter(a => a.severity === "High").length },
+                    { label: "Medium Severity", value: attacks.filter(a => a.severity === "Medium").length },
+                ];
+
+                const statElements = d3.select("#threat-stats")
+                    .selectAll(".stat")
+                    .data(stats)
+                    .join("div")
+                    .attr("class", "stat bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center");
+
+                statElements.html(d => `
+                    <h3 class="text-lg font-semibold">${d.label}</h3>
+                    <p class="text-3xl font-bold ${d.label.includes('High') ? 'text-red-500' : d.label.includes('Medium') ? 'text-yellow-500' : d.label.includes('Active') ? 'text-orange-500' : 'text-blue-500'}">${d.value}</p>
+                `);
+            }
+
+            // Update recent attacks list
+            function updateRecentAttacks(attacks) {
+                const recentAttacksElement = d3.select("#recent-attacks")
+                    .selectAll(".attack-item")
+                    .data(attacks.slice(0, 5))
+                    .join("div")
+                    .attr("class", "attack-item bg-gray-100 dark:bg-gray-700 p-2 rounded");
+
+                recentAttacksElement.html(d => `
+                    <p class="text-sm">
+                        <span class="font-semibold">${d.type}</span> attack detected - 
+                        <span class="${d.severity === 'High' ? 'text-red-500' : d.severity === 'Medium' ? 'text-yellow-500' : 'text-green-500'}">${d.severity} severity</span>
+                    </p>
+                    <p class="text-xs text-gray-500">${moment().format('MMMM Do YYYY, h:mm:ss a')}</p>
+                `);
+            }
+
+            // Update attack types chart
+            function updateAttackTypesChart() {
+                const ctx = document.getElementById('attack-types-chart').getContext('2d');
+                
+                if (!window.attackTypesChart) {
+                    window.attackTypesChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: attackTypes,
+                            datasets: [{
+                                data: attackTypes.map(type => attackTypeCount[type]),
+                                backgroundColor: [
+                                    '#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6',
+                                    '#1abc9c', '#34495e', '#16a085', '#27ae60', '#2980b9'
+                                ]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'right',
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    window.attackTypesChart.data.datasets[0].data = attackTypes.map(type => attackTypeCount[type]);
+                    window.attackTypesChart.update();
+                }
+            }
+
+            // Update attacks every 2 seconds
+            setInterval(updateAttacks, 2000);
+        });
+    </script>
+</body>
+</html>
