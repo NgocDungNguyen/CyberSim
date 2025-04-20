@@ -1,26 +1,94 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing Attack - CyberSec Learning Hub</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <style>
-        .orbitron {
-            font-family: 'Orbitron', sans-serif;
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none !important;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            margin-top: 15px;
+            z-index: 50;
+        }
+
+        .dropdown::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 15px;
+            width: 100%;
+            bottom: -15px;
+            left: 0;
+            z-index: 40;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex !important;
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #1A143A;
+        }
+
+        .mobile-dropdown-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .mobile-dropdown-menu.active {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        #searchResults {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #1A143A;
+            border: 1px solid #2D3748;
+            border-radius: 0.375rem;
+            width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 50;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
 
         .email-container {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
+            background-color: #1A143A;
+            border: 1px solid #2D3748;
             padding: 20px;
             margin-bottom: 20px;
+            border-radius: 0.375rem;
         }
 
         .phish-animation {
@@ -55,201 +123,312 @@
     </style>
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
-    <!-- Navigation -->
-    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
+<body class="bg-[#100B2B] text-white">
+    <nav class="bg-[#1A143A] shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="index.html" class="orbitron text-2xl font-bold text-blue-500 dark:text-blue-400">CyberSec Hub</a>
+                    <img alt="CyberSec Hub logo" class="h-8" src="images/logo.jpg" width="32" />
+                    <span
+                        class="ml-2 text-lg md:text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">CyberSec
+                        Hub</span>
                 </div>
-                <div class="hidden md:flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="hover:text-gray-400">Home</a>
                     <div class="dropdown relative">
-                        <button class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
-                            Threats <i class="fas fa-chevron-down ml-1"></i>
+                        <button class="text-white hover:text-gray-400 focus:outline-none">
+                            Threats <i class="fas fa-angle-down ml-1"></i>
                         </button>
-                        <div class="dropdown-menu">
-                            <a href="phishing.html">Phishing</a>
-                            <a href="spoofing.html">Spoofing</a>
-                            <a href="adware.html">Adware</a>
-                            <a href="ddos.html">DDoS</a>
-                            <a href="mitm.html">Man-in-the-Middle</a>
-                            <a href="sql-injection.html">SQL Injection</a>
-                            <a href="zero-day.html">Zero-Day Exploits</a>
-                            <a href="ransomware.html">Ransomware</a>
-                            <a href="apt.html">APT</a>
-                            <a href="credential-stuffing.html">Credential Stuffing</a>
-                            <a href="xss.html">Cross-Site Scripting (XSS)</a>
-                            <a href="ai-attacks.html">AI-Powered Attacks</a>
-                            <a href="clickjacking.html">Clickjacking</a>
-                            <a href="session-hijacking.html">Session Hijacking</a>
-                            <a href="social-engineering.html">Social Engineering</a>
+                        <div class="dropdown-menu bg-[#1A143A] shadow-lg rounded-lg p-4 flex flex-wrap w-[600px]">
+                            <div class="w-1/3 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Common Threats</h3>
+                                <a href="phishing.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Phishing</a>
+                                <a href="spoofing.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Spoofing</a>
+                                <a href="adware.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Adware</a>
+                                <a href="ddos.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">DDoS</a>
+                                <a href="mitm.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Man-in-the-Middle</a>
+                            </div>
+                            <div class="w-1/3 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Advanced Threats</h3>
+                                <a href="sql-injection.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">SQL Injection</a>
+                                <a href="zero-day.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Zero-Day
+                                    Exploits</a>
+                                <a href="ransomware.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Ransomware</a>
+                                <a href="apt.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">APT</a>
+                                <a href="credential-stuffing.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Credential
+                                    Stuffing</a>
+                            </div>
+                            <div class="w-1/3 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Emerging Threats</h3>
+                                <a href="xss.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Cross-Site
+                                    Scripting (XSS)</a>
+                                <a href="ai-attacks.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">AI-Powered
+                                    Attacks</a>
+                                <a href="clickjacking.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Clickjacking</a>
+                                <a href="session-hijacking.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Session
+                                    Hijacking</a>
+                                <a href="social-engineering.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Social
+                                    Engineering</a>
+                            </div>
                         </div>
                     </div>
-                    <a href="risk_assessment.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Risk Assessment</a>
-                    <a href="threat_map.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Threat Map</a>
-                    <a href="cost_calculator.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Cost Calculator</a>
-                    <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
-                    <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
-                    <a href="career.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Careers</a>
-                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
-                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
-                        <i class="fas fa-moon dark:text-yellow-300 text-gray-600"></i>
-                    </button>
+                    <div class="dropdown relative">
+                        <button class="text-white hover:text-gray-400 focus:outline-none">
+                            Features <i class="fas fa-angle-down ml-1"></i>
+                        </button>
+                        <div class="dropdown-menu bg-[#1A143A] shadow-lg rounded-lg p-4 flex flex-wrap w-[400px]">
+                            <div class="w-1/2 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Assessment Tools</h3>
+                                <a href="risk_assessment.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Risk Assessment</a>
+                                <a href="threat_map.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Threat Map</a>
+                                <a href="cost_calculator.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Cost Calculator</a>
+                            </div>
+                            <div class="w-1/2 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Security Tools</h3>
+                                <a href="ende.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Encryption/Decryption</a>
+                                <a href="response.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">SOC & Response</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="career.html" class="hover:text-gray-400">Careers</a>
+                    <a href="about.html" class="hover:text-gray-400">About</a>
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search..."
+                            class="bg-gray-700 text-white rounded-full py-1 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                        <button id="searchButton"
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="searchResults" class="absolute bg-[#1A143A] shadow-lg rounded-lg mt-2 w-full hidden">
+                        </div>
+                    </div>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none">
+                    <button id="mobileMenuButton" class="text-white hover:text-gray-400 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile menu -->
-        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
-            <div class="dropdown">
-                <button class="w-full text-left py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    Threats <i class="fas fa-chevron-down ml-1"></i>
+        <div id="mobileMenu" class="hidden bg-[#1A143A] shadow-lg">
+            <a href="#" class="block py-2 px-4 hover:bg-gray-700 border-b border-gray-600">Home</a>
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left py-2 px-4 hover:bg-gray-700 border-b border-gray-600 flex justify-between items-center">
+                    Threats <i class="fas fa-angle-down ml-1"></i>
                 </button>
-                <div class="dropdown-menu">
-                    <a href="phishing.html">Phishing</a>
-                    <a href="spoofing.html">Spoofing</a>
-                    <a href="adware.html">Adware</a>
-                    <a href="ddos.html">DDoS</a>
-                    <a href="mitm.html">Man-in-the-Middle</a>
-                    <a href="sql-injection.html">SQL Injection</a>
-                    <a href="zero-day.html">Zero-Day Exploits</a>
-                    <a href="ransomware.html">Ransomware</a>
-                    <a href="apt.html">APT</a>
-                    <a href="credential-stuffing.html">Credential Stuffing</a>
-                    <a href="xss.html">Cross-Site Scripting (XSS)</a>
-                    <a href="ai-attacks.html">AI-Powered Attacks</a>
-                    <a href="clickjacking.html">Clickjacking</a>
-                    <a href="session-hijacking.html">Session Hijacking</a>
-                    <a href="social-engineering.html">Social Engineering</a>
+                <div class="mobile-dropdown-menu bg-gray-800">
+                    <a href="phishing.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Phishing</a>
+                    <a href="spoofing.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Spoofing</a>
+                    <a href="adware.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Adware</a>
+                    <a href="ddos.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">DDoS</a>
+                    <a href="mitm.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Man-in-the-Middle</a>
+                    <a href="sql-injection.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">SQL
+                        Injection</a>
+                    <a href="zero-day.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Zero-Day
+                        Exploits</a>
+                    <a href="ransomware.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Ransomware</a>
+                    <a href="apt.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">APT</a>
+                    <a href="credential-stuffing.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Credential Stuffing</a>
+                    <a href="xss.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Cross-Site
+                        Scripting (XSS)</a>
+                    <a href="ai-attacks.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">AI-Powered Attacks</a>
+                    <a href="clickjacking.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Clickjacking</a>
+                    <a href="session-hijacking.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Session Hijacking</a>
+                    <a href="social-engineering.html" class="block px-6 py-2 hover:bg-gray-700">Social Engineering</a>
                 </div>
             </div>
-            <a href="risk_assessment.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
-            <a href="cost_calculator.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Risk Assessment</a>
-            <a href="threat_map.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Threat Map</a>
-            <a href="ende.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Encryption/Decription</a>
-            <a href="response.html" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">SOC & Response</a>
-            <a href="career.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Careers</a>
-            <a href="about.html" class="block py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left py-2 px-4 hover:bg-gray-700 border-b border-gray-600 flex justify-between items-center">
+                    Features <i class="fas fa-angle-down ml-1"></i>
+                </button>
+                <div class="mobile-dropdown-menu bg-gray-800">
+                    <a href="risk_assessment.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Risk Assessment</a>
+                    <a href="threat_map.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Threat
+                        Map</a>
+                    <a href="cost_calculator.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Cost Calculator</a>
+                    <a href="ende.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Encryption/Decryption</a>
+                    <a href="response.html" class="block px-6 py-2 hover:bg-gray-700">SOC & Response</a>
+                </div>
+            </div>
+            <a href="career.html" class="block py-2 px-4 hover:bg-gray-700 border-b border-gray-600">Careers</a>
+            <a href="about.html" class="block py-2 px-4 hover:bg-gray-700">About</a>
         </div>
     </nav>
 
+    <main class="container mx-auto px-4 md:px-6 py-16 mt-16">
+        <h1 class="text-4xl font-bold mb-8 text-center">Phishing Attack</h1>
 
-
-    <main class="max-w-7xl mx-auto p-4">
-        <h1 class="orbitron text-4xl font-bold mb-8 text-center">Phishing Attack</h1>
-
-        <!-- Overview Section -->
         <section class="mb-12">
-            <h2 class="orbitron text-2xl font-semibold mb-4">Overview</h2>
+            <h2 class="text-2xl font-semibold mb-4">Overview</h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">Technical Explanation</h3>
-                    <p>Phishing is a cyber attack that uses disguised email as a weapon. The goal is to trick the email
-                        recipient into believing that the message is something they want or need — a request from their
-                        bank, for instance, or a note from someone in their company — and to click a link or download an
-                        attachment. The malicious link may lead to a spoofed website that steals login credentials or
-                        other sensitive information, while the attachment could contain malware designed to infect the
-                        victim's system.</p>
+                <div class="bg-[#1A143A] p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">What is Phishing?</h3>
+                    <p>Phishing is a trick to steal your information online. It's like a fake email or website
+                        pretending to be someone you trust. They might ask you to:
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Click a link</li>
+                            <li>Download a file</li>
+                            <li>Share personal details</li>
+                        </ul>
+                        If you do, the attacker can steal your data or infect your device.
+                    </p>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-2">Real-life Metaphor</h3>
-                    <p>Imagine you're walking down the street and someone dressed as a police officer approaches you.
-                        They look official and ask for your wallet to "verify your identity." You might be inclined to
-                        comply because they appear legitimate. However, this person is actually a thief in disguise.
-                        Phishing works similarly in the digital world: attackers disguise themselves as trustworthy
-                        entities to trick you into giving away sensitive information.</p>
+                <div class="bg-[#1A143A] p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Real-life Example</h3>
+                    <p>Imagine a stranger dressed as a police officer asks for your wallet. They look real, so you might
+                        give it to them. But they're actually a thief in disguise.
+                        <br><br>
+                        Phishing is similar: attackers pretend to be trusted sources to trick you into giving away your
+                        information online.</p>
                 </div>
             </div>
         </section>
 
         <section class="mb-12">
-            <h2 class="orbitron text-2xl font-semibold mb-4">Real-World Phishing Attack Case Studies</h2>
-            <div class="space-y-6">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Google Docs Phishing Attack (2017)</h3>
-                    <p class="mb-2">A sophisticated phishing scam that spread rapidly, affecting millions of Gmail users.</p>
-                    <ul class="list-disc list-inside mb-2">
-                        <li>Attackers sent emails with a link to a seemingly legitimate Google Docs app</li>
-                        <li>Clicking the link granted the attacker access to the victim's Google account</li>
-                        <li>The scam spread by sending itself to all contacts in the victim's address book</li>
-                    </ul>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Potentially compromised millions of Google accounts before being shut down.</p>
+            <h2 class="text-2xl font-semibold mb-4">Real-World Phishing Attack Case Studies</h2>
+            <div class="space-y-4">
+                <div class="bg-[#1A143A] p-6 rounded-lg">
+                    <button class="flex justify-between items-center w-full text-left focus:outline-none"
+                        onclick="toggleCase('case1')">
+                        <h3 class="text-xl font-semibold">Google Docs Phishing Attack (2017)</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-case1"></i>
+                    </button>
+                    <div class="hidden mt-4" id="case1">
+                        <p class="mb-2">A sophisticated phishing scam that spread rapidly, affecting millions of Gmail
+                            users.</p>
+                        <ul class="list-disc list-inside mb-2">
+                            <li>Attackers sent emails with a link to a seemingly legitimate Google Docs app</li>
+                            <li>Clicking the link granted the attacker access to the victim's Google account</li>
+                            <li>The scam spread by sending itself to all contacts in the victim's address book</li>
+                        </ul>
+                        <p class="text-sm text-gray-400">Impact: Potentially compromised millions of Google accounts
+                            before being shut down.</p>
+                    </div>
                 </div>
-        
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Ukrainian Power Grid Attack (2015)</h3>
-                    <p class="mb-2">A phishing attack that led to a large-scale power outage in Ukraine.</p>
-                    <ul class="list-disc list-inside mb-2">
-                        <li>Attackers sent spear-phishing emails to power company employees</li>
-                        <li>The emails contained malware-laden Microsoft Office attachments</li>
-                        <li>Once opened, the malware gave attackers remote access to the systems</li>
-                    </ul>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Caused a power outage affecting 230,000 people for up to 6 hours.</p>
+
+                <div class="bg-[#1A143A] p-6 rounded-lg">
+                    <button class="flex justify-between items-center w-full text-left focus:outline-none"
+                        onclick="toggleCase('case2')">
+                        <h3 class="text-xl font-semibold">Ukrainian Power Grid Attack (2015)</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-case2"></i>
+                    </button>
+                    <div class="hidden mt-4" id="case2">
+                        <p class="mb-2">A phishing attack that led to a large-scale power outage in Ukraine.</p>
+                        <ul class="list-disc list-inside mb-2">
+                            <li>Attackers sent spear-phishing emails to power company employees</li>
+                            <li>The emails contained malware-laden Microsoft Office attachments</li>
+                            <li>Once opened, the malware gave attackers remote access to the systems</li>
+                        </ul>
+                        <p class="text-sm text-gray-400">Impact: Caused a power outage affecting 230,000 people for up
+                            to 6 hours.</p>
+                    </div>
                 </div>
-        
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Sony Pictures Entertainment Hack (2014)</h3>
-                    <p class="mb-2">A major cyber attack that began with a series of phishing emails.</p>
-                    <ul class="list-disc list-inside mb-2">
-                        <li>Attackers sent targeted spear-phishing emails to Sony executives</li>
-                        <li>The emails contained malicious attachments or links</li>
-                        <li>Once compromised, the attackers gained access to Sony's network</li>
-                    </ul>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: Resulted in the leak of confidential data, including unreleased films and personal information of employees.</p>
+
+                <div class="bg-[#1A143A] p-6 rounded-lg">
+                    <button class="flex justify-between items-center w-full text-left focus:outline-none"
+                        onclick="toggleCase('case3')">
+                        <h3 class="text-xl font-semibold">Sony Pictures Entertainment Hack (2014)</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-case3"></i>
+                    </button>
+                    <div class="hidden mt-4" id="case3">
+                        <p class="mb-2">A major cyber attack that began with a series of phishing emails.</p>
+                        <ul class="list-disc list-inside mb-2">
+                            <li>Attackers sent targeted spear-phishing emails to Sony executives</li>
+                            <li>The emails contained malicious attachments or links</li>
+                            <li>Once compromised, the attackers gained access to Sony's network</li>
+                        </ul>
+                        <p class="text-sm text-gray-400">Impact: Resulted in the leak of confidential data, including
+                            unreleased films and personal information of employees.</p>
+                    </div>
                 </div>
-        
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">FACC CEO Fraud (2016)</h3>
-                    <p class="mb-2">A sophisticated phishing attack that targeted the aerospace parts manufacturer FACC.</p>
-                    <ul class="list-disc list-inside mb-2">
-                        <li>Attackers impersonated the CEO in emails to the finance department</li>
-                        <li>The emails requested large sums of money to be transferred for a fake acquisition project</li>
-                        <li>The company's finance team complied with the requests, believing them to be legitimate</li>
-                    </ul>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Impact: The company lost approximately €50 million ($55 million) due to the scam.</p>
+
+                <div class="bg-[#1A143A] p-6 rounded-lg">
+                    <button class="flex justify-between items-center w-full text-left focus:outline-none"
+                        onclick="toggleCase('case4')">
+                        <h3 class="text-xl font-semibold">FACC CEO Fraud (2016)</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-case4"></i>
+                    </button>
+                    <div class="hidden mt-4" id="case4">
+                        <p class="mb-2">A sophisticated phishing attack that targeted the aerospace parts manufacturer
+                            FACC.</p>
+                        <ul class="list-disc list-inside mb-2">
+                            <li>Attackers impersonated the CEO in emails to the finance department</li>
+                            <li>The emails requested large sums of money to be transferred for a fake acquisition
+                                project</li>
+                            <li>The company's finance team complied with the requests, believing them to be legitimate
+                            </li>
+                        </ul>
+                        <p class="text-sm text-gray-400">Impact: The company lost approximately €50 million ($55
+                            million) due to the scam.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Visualize Section -->
         <section class="mb-12">
-            <h2 class="orbitron text-2xl font-semibold mb-4">Visualize</h2>
+            <h2 class="text-2xl font-semibold mb-4">Visualize</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <div class="visualization-card bg-[#1A143A] p-6 rounded-lg text-center">
                     <div class="mb-4 relative">
-                        <i class="fas fa-envelope text-5xl text-blue-500"></i>
-                        <i class="fas fa-exclamation text-2xl text-red-500 absolute top-0 right-0"></i>
+                        <i class="fas fa-envelope text-5xl text-purple-500"></i>
+                        <i class="fas fa-exclamation text-2xl text-pink-500 absolute top-0 right-0"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Deceptive Email</h3>
-                    <p class="text-gray-600 dark:text-gray-400">The bait that lures victims, often mimicking legitimate
-                        sources</p>
+                    <p class="text-gray-400">The bait that lures victims, often mimicking legitimate sources</p>
                     <ul class="mt-4 text-left text-sm">
                         <li><i class="fas fa-check text-green-500 mr-2"></i>Urgent language</li>
                         <li><i class="fas fa-check text-green-500 mr-2"></i>Requests for personal info</li>
                         <li><i class="fas fa-check text-green-500 mr-2"></i>Suspicious attachments</li>
                     </ul>
                 </div>
-                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <div class="visualization-card bg-[#1A143A] p-6 rounded-lg text-center">
                     <div class="mb-4 relative">
-                        <i class="fas fa-link text-5xl text-blue-500"></i>
-                        <i class="fas fa-lock-open text-2xl text-yellow-500 absolute top-0 right-0"></i>
+                        <i class="fas fa-link text-5xl text-purple-500"></i>
+                        <i class="fas fa-lock-open text-2xl text-pink-500 absolute top-0 right-0"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Malicious Link</h3>
-                    <p class="text-gray-600 dark:text-gray-400">The hook that captures data, leading to fake websites
-                    </p>
-                    <div class="mt-4 bg-gray-200 dark:bg-gray-700 p-2 rounded text-xs font-mono overflow-hidden">
-                        http://secure-bank<span class="text-red-500">.fake-site.com</span>
+                    <p class="text-gray-400">The hook that captures data, leading to fake websites</p>
+                    <div class="mt-4 bg-gray-700 p-2 rounded text-xs font-mono overflow-hidden">
+                        http://secure-bank<span class="text-pink-500">.fake-site.com</span>
                     </div>
                 </div>
-                <div class="visualization-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                <div class="visualization-card bg-[#1A143A] p-6 rounded-lg text-center">
                     <div class="phish-animation mx-auto mb-4"></div>
                     <h3 class="text-xl font-semibold mb-2">Phishing Process</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Like fishing, but for your data</p>
+                    <p class="text-gray-400">Like fishing, but for your data</p>
                     <ol class="mt-4 text-left text-sm">
                         <li>1. Cast the bait (send email)</li>
                         <li>2. Wait for a bite (user clicks)</li>
@@ -259,19 +438,15 @@
             </div>
         </section>
 
-        <!-- Add a warning banner -->
-        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4">
-            <p class="text-yellow-700">
-                <i class="fas fa-exclamation-triangle mr-2"></i>
-                This is an educational simulation. All demonstrations are safe and controlled.
-            </p>
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-4 text-yellow-700">
+            <p><i class="fas fa-exclamation-triangle mr-2"></i>This is an educational simulation. All demonstrations are
+                safe and controlled.</p>
         </div>
 
-        <!-- Simulation Section -->
         <section class="mb-12">
-            <h2 class="orbitron text-2xl font-semibold mb-4">Simulation</h2>
+            <h2 class="text-2xl font-semibold mb-4">Simulation</h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div>
+                <div class="bg-[#1A143A] p-6 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Phishing Email Generator</h3>
                     <p class="mb-4">Select the characteristics of the phishing email:</p>
                     <div class="space-y-2">
@@ -289,53 +464,48 @@
                         </label>
                     </div>
                     <button id="generateEmail"
-                        class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Generate
+                        class="mt-4 bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:opacity-90 text-white px-4 py-2 rounded transition">Generate
                         Phishing Email</button>
                 </div>
-                <div>
+                <div class="bg-[#1A143A] p-6 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Generated Email</h3>
-                    <div id="emailSimulation" class="email-container bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                    <div id="emailSimulation" class="email-container">
                         <p>Click "Generate Phishing Email" to see a simulated phishing attempt based on your selections.
                         </p>
                     </div>
                 </div>
             </div>
-
-            <!-- New Email Identification Simulation -->
-            <div class="mt-8">
-                <h3 class="text-xl font-semibold mb-4">Email Identification Challenge</h3>
-                <p class="mb-4">Can you identify which of these emails are suspicious? Select all that you think are
-                    phishing attempts:</p>
-                <div id="emailChallenge" class="space-y-4">
-                    <!-- Email examples will be dynamically inserted here -->
-                </div>
-                <button id="checkEmails"
-                    class="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">Check
-                    Answers</button>
-                <div id="emailResults" class="mt-4 hidden"></div>
-            </div>
         </section>
 
-        <!-- Enhanced Quiz Section -->
-        <section>
-            <h2 class="orbitron text-2xl font-semibold mb-4">Phishing Knowledge Quiz</h2>
-            <div id="quiz" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">Email Identification Challenge</h2>
+            <p class="mb-4">Can you identify which of these emails are suspicious? Select all that you think are
+                phishing attempts:</p>
+            <div id="emailChallenge" class="space-y-4 bg-[#1A143A] p-6 rounded-lg">
+                <!-- Email examples will be dynamically inserted here -->
+            </div>
+            <button id="checkEmails"
+                class="mt-4 bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:opacity-90 text-white px-4 py-2 rounded transition">Check
+                Answers</button>
+            <div id="emailResults" class="mt-4 hidden bg-[#1A143A] rounded-lg shadow-lg p-6"></div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">Phishing Knowledge Quiz</h2>
+            <div id="quiz" class="bg-[#1A143A] rounded-lg shadow-lg p-6">
                 <div class="space-y-6">
                     <div>
                         <p class="font-semibold mb-2">1. What is the primary goal of a phishing attack?</p>
                         <div class="space-y-2">
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="a" class="mr-2">
                                 <span>To install software updates</span>
                             </label>
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="b" class="mr-2">
                                 <span>To steal sensitive information</span>
                             </label>
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q1" value="c" class="mr-2">
                                 <span>To improve email security</span>
                             </label>
@@ -345,18 +515,15 @@
                         <p class="font-semibold mb-2">2. Which of the following is NOT a common characteristic of
                             phishing emails?</p>
                         <div class="space-y-2">
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="a" class="mr-2">
                                 <span>Urgent language</span>
                             </label>
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="b" class="mr-2">
                                 <span>Requests for personal information</span>
                             </label>
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q2" value="c" class="mr-2">
                                 <span>Correct spelling and grammar</span>
                             </label>
@@ -366,18 +533,15 @@
                         <p class="font-semibold mb-2">3. What should you do if you suspect an email is a phishing
                             attempt?</p>
                         <div class="space-y-2">
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="a" class="mr-2">
                                 <span>Click on the links to investigate</span>
                             </label>
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="b" class="mr-2">
                                 <span>Reply asking for more information</span>
                             </label>
-                            <label
-                                class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
                                 <input type="radio" name="q3" value="c" class="mr-2">
                                 <span>Delete the email and report it to IT security</span>
                             </label>
@@ -385,42 +549,124 @@
                     </div>
                 </div>
                 <button id="submitQuiz"
-                    class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">Submit
+                    class="mt-6 bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:opacity-90 text-white px-4 py-2 rounded transition">Submit
                     Answers</button>
             </div>
-            <div id="quizResults" class="mt-4 hidden bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"></div>
+            <div id="quizResults" class="mt-4 hidden bg-[#1A143A] rounded-lg shadow-lg p-6"></div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center">
-                <p class="orbitron text-xl mb-4">CyberSec Learning Hub</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
-                    <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+    <footer class="bg-[#0D0923] text-white py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CyberSec Learning Hub</h3>
+                    <p class="text-sm text-gray-400 mb-4">Empowering cybersecurity professionals with cutting-edge
+                        knowledge and hands-on experience.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><i class="fab fa-github"></i></a>
+                    </div>
                 </div>
-                <p class="mt-4 text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
-                <p class="mt-4 text-gray-400">Made by June Nguyen</p>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-pink-500">Home</a></li>
+                        <li><a href="#" class="hover:text-pink-500">About Us</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Courses</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-pink-500">Threat Database</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Cybersecurity Tools</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Whitepapers</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Webinars</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-sm text-gray-400 mb-4">Stay updated with the latest in cybersecurity. Subscribe to
+                        our newsletter.</p>
+                    <form class="flex flex-col sm:flex-row">
+                        <input type="email" placeholder="Enter your email"
+                            class="bg-[#1A143A] text-white px-4 py-2 rounded-t-lg sm:rounded-l-lg sm:rounded-r-none focus:outline-none focus:ring-1 focus:ring-pink-500 w-full mb-2 sm:mb-0" />
+                        <button type="submit"
+                            class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] text-white px-4 py-2 rounded-b-lg sm:rounded-r-lg sm:rounded-l-none hover:opacity-90 w-full sm:w-auto">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-sm text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
+                <p class="text-sm text-gray-400 mt-2">Made with ❤️ by June Nguyen</p>
             </div>
         </div>
     </footer>
 
-
     <script>
-        // Phishing email simulation
-        const generateEmail = document.getElementById('generateEmail');
-        const emailSimulation = document.getElementById('emailSimulation');
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const searchResults = document.getElementById('searchResults');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileDropdowns.forEach(dropdown => {
+                const button = dropdown.querySelector('button');
+                const menu = dropdown.querySelector('.mobile-dropdown-menu');
+                button.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    button.querySelector('i').classList.toggle('fa-angle-up');
+                    button.querySelector('i').classList.toggle('fa-angle-down');
+                });
+            });
 
-        generateEmail.addEventListener('click', () => {
-            const urgency = document.getElementById('urgency').checked;
-            const official = document.getElementById('official').checked;
-            const personal = document.getElementById('personal').checked;
-            const attachment = document.getElementById('attachment').checked;
-
-            let emailContent = `
+            function performSearch() {
+                const query = searchInput.value.toLowerCase();
+                const content = document.body.innerText.toLowerCase();
+                const words = content.split(/\s+/);
+                const matches = words.filter(word => word.includes(query));
+                searchResults.innerHTML = '';
+                if (matches.length > 0) {
+                    matches.slice(0, 10).forEach(match => {
+                        const resultItem = document.createElement('div');
+                        resultItem.textContent = match;
+                        resultItem.className = 'p-2 hover:bg-gray-700 cursor-pointer';
+                        searchResults.appendChild(resultItem);
+                    });
+                    searchResults.classList.remove('hidden');
+                } else {
+                    searchResults.classList.add('hidden');
+                }
+            }
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!searchResults.contains(e.target) && e.target !== searchInput) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+            // Phishing email simulation
+            const generateEmail = document.getElementById('generateEmail');
+            const emailSimulation = document.getElementById('emailSimulation');
+            generateEmail.addEventListener('click', () => {
+                const urgency = document.getElementById('urgency').checked;
+                const official = document.getElementById('official').checked;
+                const personal = document.getElementById('personal').checked;
+                const attachment = document.getElementById('attachment').checked;
+                let emailContent = `
                 <strong>From:</strong> ${official ? 'support@yourbank.com' : 'user123@email.com'}<br>
                 <strong>Subject:</strong> ${urgency ? 'URGENT: ' : ''}${official ? 'Important Account Information' : 'Hey, check this out'}<br>
                 <strong>Message:</strong><br>
@@ -432,90 +678,111 @@
                 ${personal || official ? '<a href="#" class="text-blue-500">Click here to verify your account</a>' : ''}
                 ${attachment ? '<br><br><strong>Attachment:</strong> important_document.pdf' : ''}
             `;
-
-            emailSimulation.innerHTML = emailContent;
-        });
-
-        // Email Identification Challenge
-        const emailChallenge = document.getElementById('emailChallenge');
-        const checkEmails = document.getElementById('checkEmails');
-        const emailResults = document.getElementById('emailResults');
-
-        const emailExamples = [
-            {content: "Dear valued customer, Your account has been locked. Click here to verify your identity immediately.", suspicious: true},
-            {content: "Hi John, Here's the report you requested yesterday. Let me know if you need any changes.", suspicious: false},
-            {content: "URGENT: Your payment is overdue. Update your billing information now to avoid service interruption.", suspicious: true},
-            {content: "Team meeting rescheduled to 3 PM today. See you in the conference room.", suspicious: false}
-        ];
-
-        emailExamples.forEach((email, index) => {
-            const emailDiv = document.createElement('div');
-            emailDiv.innerHTML = `
-                 <label class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                     <input type="checkbox" class="mr-2" id="email${index}">
-                     <span>${email.content}</span>
-                 </label>
-             `;
-            emailChallenge.appendChild(emailDiv);
-        });
-
-        checkEmails.addEventListener('click', () => {
-            let score = 0;
-            let feedback = '';
-
-            emailExamples.forEach((email, index) => {
-                const checkbox = document.getElementById(`email${index}`);
-                if ((checkbox.checked && email.suspicious) || (!checkbox.checked && !email.suspicious)) {
-                    score++;
-                    feedback += `<p class="text-green-500">Email ${index + 1}: Correct!</p>`;
-                } else {
-                    feedback += `<p class="text-red-500">Email ${index + 1}: Incorrect. This email ${email.suspicious ? 'is' : 'is not'} suspicious.</p>`;
+                emailSimulation.innerHTML = emailContent;
+            });
+            // Email Identification Challenge
+            const emailChallenge = document.getElementById('emailChallenge');
+            const checkEmails = document.getElementById('checkEmails');
+            const emailResults = document.getElementById('emailResults');
+            const emailExamples = [{
+                    content: "Dear valued customer, Your account has been locked. Click here to verify your identity immediately.",
+                    suspicious: true
+                },
+                {
+                    content: "Hi John, Here's the report you requested yesterday. Let me know if you need any changes.",
+                    suspicious: false
+                },
+                {
+                    content: "URGENT: Your payment is overdue. Update your billing information now to avoid service interruption.",
+                    suspicious: true
+                },
+                {
+                    content: "Team meeting rescheduled to 3 PM today. See you in the conference room.",
+                    suspicious: false
                 }
+            ];
+            emailExamples.forEach((email, index) => {
+                const emailDiv = document.createElement('div');
+                emailDiv.innerHTML = `
+                <label class="flex items-center p-2 rounded hover:bg-gray-700 transition">
+                    <input type="checkbox" class="mr-2" id="email${index}">
+                    <span>${email.content}</span>
+                </label>
+            `;
+                emailChallenge.appendChild(emailDiv);
+            });
+            checkEmails.addEventListener('click', () => {
+                let score = 0;
+                let feedback = '';
+                emailExamples.forEach((email, index) => {
+                    const checkbox = document.getElementById(`email${index}`);
+                    if ((checkbox.checked && email.suspicious) || (!checkbox.checked && !email
+                            .suspicious)) {
+                        score++;
+                        feedback +=
+                        `<p class="text-green-500">Email ${index + 1}: Correct!</p>`;
+                    } else {
+                        feedback +=
+                            `<p class="text-red-500">Email ${index + 1}: Incorrect. This email ${email.suspicious ? 'is' : 'is not'} suspicious.</p>`;
+                    }
+                });
+                emailResults.innerHTML = `
+                <h3 class="text-xl font-semibold mb-2">Challenge Results</h3>
+                <p>You correctly identified ${score} out of ${emailExamples.length} emails.</p>
+                ${feedback}
+            `;
+                emailResults.classList.remove('hidden');
             });
 
-            emailResults.innerHTML = `
-                 <h3 class="text-xl font-semibold mb-2">Challenge Results</h3>
-                 <p>You correctly identified ${score} out of ${emailExamples.length} emails.</p>
-                 ${feedback}
-             `;
-            emailResults.classList.remove('hidden');
-        });
-
-
-        // Quiz functionality
-        const submitQuiz = document.getElementById('submitQuiz');
-        const quizResults = document.getElementById('quizResults');
-
-        submitQuiz.addEventListener('click', () => {
-            const answers = {
-                q1: document.querySelector('input[name="q1"]:checked')?.value,
-                q2: document.querySelector('input[name="q2"]:checked')?.value,
-                q3: document.querySelector('input[name="q3"]:checked')?.value
-            };
-
-            const correctAnswers = {q1: 'b', q2: 'c', q3: 'c'};
-            let score = 0;
-            let feedback = '';
-
-            for (let question in answers) {
-                if (answers[question] === correctAnswers[question]) {
-                    score++;
-                    feedback += `<p>Question ${question.slice(1)}: Correct!</p>`;
-                } else {
-                    feedback += `<p>Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
-                }
+            function toggleCase(caseId) {
+                const caseElement = document.getElementById(caseId);
+                const iconElement = document.getElementById(`icon-${caseId}`);
+                caseElement.classList.toggle('hidden');
+                iconElement.classList.toggle('rotate-180');
             }
-
-            quizResults.innerHTML = `
+            // Quiz functionality
+            const submitQuiz = document.getElementById('submitQuiz');
+            const quizResults = document.getElementById('quizResults');
+            submitQuiz.addEventListener('click', () => {
+                const answers = {
+                    q1: document.querySelector('input[name="q1"]:checked') ? .value,
+                    q2: document.querySelector('input[name="q2"]:checked') ? .value,
+                    q3: document.querySelector('input[name="q3"]:checked') ? .value
+                };
+                const correctAnswers = {
+                    q1: 'b',
+                    q2: 'c',
+                    q3: 'c'
+                };
+                let score = 0;
+                let feedback = '';
+                for (let question in answers) {
+                    if (answers[question] === correctAnswers[question]) {
+                        score++;
+                        feedback +=
+                            `<p class="text-green-500">Question ${question.slice(1)}: Correct!</p>`;
+                    } else {
+                        feedback +=
+                            `<p class="text-red-500">Question ${question.slice(1)}: Incorrect. The correct answer was option ${correctAnswers[question].toUpperCase()}.</p>`;
+                    }
+                }
+                quizResults.innerHTML = `
                 <h3 class="text-xl font-semibold mb-2">Quiz Results</h3>
                 <p>You scored ${score} out of 3.</p>
                 ${feedback}
             `;
-            quizResults.classList.remove('hidden');
+                quizResults.classList.remove('hidden');
+            });
         });
     </script>
-    <script src="script.js"></script>
-
+    <script>
+        function toggleCase(caseId) {
+            const caseElement = document.getElementById(caseId);
+            const iconElement = document.getElementById(`icon-${caseId}`);
+            caseElement.classList.toggle('hidden');
+            iconElement.classList.toggle('rotate-180');
+        }
+    </script>
 </body>
 
 </html>
