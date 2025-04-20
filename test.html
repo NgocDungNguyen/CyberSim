@@ -1,120 +1,310 @@
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
-    <style>
+        <style>
         body {
             font-family: "Poppins", sans-serif;
+        }
+
+        .dropdown-menu {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-dropdown-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .mobile-dropdown-menu.active {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        #searchResults {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #1A143A;
+            border: 1px solid #2D3748;
+            border-radius: 0.375rem;
+            width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 50;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
     </style>
 </head>
 
 <body class="bg-[#100B2B] text-white">
-    <nav class="relative container mx-auto p-6">
-        <div class="flex items-center justify-between">
-            <div class="pt-2">
-                <img alt="Rinex logo" class="h-5" height="20"
-                    src="https://replicate.delivery/xezq/D5nioKoufV2kIyrOFMkTqTYAQ8vrNjgqmgaqT62kiAjdHvFKA/out-0.png"
-                    width="60" />
-            </div>
-            <div class="hidden md:flex space-x-6">
-                <a class="hover:text-gray-400" href="#"> Home </a>
-                <a class="hover:text-gray-400" href="#"> Pages </a>
-                <a class="hover:text-gray-400" href="#"> Services </a>
-                <a class="hover:text-gray-400" href="#"> Projects </a>
-                <a class="hover:text-gray-400" href="#"> Blog </a>
-                <a class="hover:text-gray-400" href="#"> Contact </a>
-            </div>
-            <div class="hidden md:flex items-center space-x-4">
-                <a class="hover:text-gray-400" href="#">
-                    <i class="fas fa-search"></i>
-                </a>
-                <button
-                    class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                    Get In Touch
-                </button>
-            </div>
-            <div class="md:hidden">
-                <button class="text-white">
-                    <i class="fas fa-bars"></i>
-                </button>
+    <nav class="bg-[#1A143A] shadow-lg fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img alt="CyberSec Hub logo" class="h-8"
+                        src="https://replicate.delivery/xezq/IbrFozAyw85HENtOsKP8OGfbsQPCUeAgomfCiIl7rXzyletQB/out-0.png"
+                        width="32" />
+                    <span
+                        class="ml-2 text-lg md:text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">CyberSec
+                        Hub</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="hover:text-gray-400">Home</a>
+                    <div class="dropdown relative">
+                        <button class="text-white hover:text-gray-400 focus:outline-none">
+                            Threats <i class="fas fa-angle-down ml-1"></i>
+                        </button>
+                        <div
+                            class="dropdown-menu absolute bg-[#1A143A] shadow-lg rounded-lg mt-2 p-4 flex flex-wrap w-[600px] left-1/2 transform -translate-x-1/2">
+                            <div class="w-1/3 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Common Threats</h3>
+                                <a href="phishing.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Phishing</a>
+                                <a href="spoofing.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Spoofing</a>
+                                <a href="adware.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Adware</a>
+                                <a href="ddos.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">DDoS</a>
+                                <a href="mitm.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Man-in-the-Middle</a>
+                            </div>
+                            <div class="w-1/3 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Advanced Threats</h3>
+                                <a href="sql-injection.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">SQL Injection</a>
+                                <a href="zero-day.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Zero-Day
+                                    Exploits</a>
+                                <a href="ransomware.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Ransomware</a>
+                                <a href="apt.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">APT</a>
+                                <a href="credential-stuffing.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Credential
+                                    Stuffing</a>
+                            </div>
+                            <div class="w-1/3 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Emerging Threats</h3>
+                                <a href="xss.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Cross-Site
+                                    Scripting (XSS)</a>
+                                <a href="ai-attacks.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">AI-Powered
+                                    Attacks</a>
+                                <a href="clickjacking.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Clickjacking</a>
+                                <a href="session-hijacking.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Session
+                                    Hijacking</a>
+                                <a href="social-engineering.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Social
+                                    Engineering</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <button class="text-white hover:text-gray-400 focus:outline-none">
+                            Features <i class="fas fa-angle-down ml-1"></i>
+                        </button>
+                        <div
+                            class="dropdown-menu absolute bg-[#1A143A] shadow-lg rounded-lg mt-2 p-4 flex flex-wrap w-[400px] left-1/2 transform -translate-x-1/2">
+                            <div class="w-1/2 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Assessment Tools</h3>
+                                <a href="risk_assessment.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Risk Assessment</a>
+                                <a href="threat_map.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Threat Map</a>
+                                <a href="cost_calculator.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Cost Calculator</a>
+                            </div>
+                            <div class="w-1/2 mb-4">
+                                <h3 class="font-bold mb-2 text-purple-400">Security Tools</h3>
+                                <a href="ende.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">Encryption/Decryption</a>
+                                <a href="response.html"
+                                    class="block py-1 hover:text-purple-400 transition duration-300">SOC & Response</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="career.html" class="hover:text-gray-400">Careers</a>
+                    <a href="about.html" class="hover:text-gray-400">About</a>
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search..."
+                            class="bg-gray-700 text-white rounded-full py-1 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                        <button id="searchButton"
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="searchResults" class="absolute bg-[#1A143A] shadow-lg rounded-lg mt-2 w-full hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-white hover:text-gray-400 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden bg-[#1A143A] shadow-lg">
+            <a href="#" class="block py-2 px-4 hover:bg-gray-700 border-b border-gray-600">Home</a>
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left py-2 px-4 hover:bg-gray-700 border-b border-gray-600 flex justify-between items-center">
+                    Threats <i class="fas fa-angle-down ml-1"></i>
+                </button>
+                <div class="mobile-dropdown-menu bg-gray-800">
+                    <a href="phishing.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Phishing</a>
+                    <a href="spoofing.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Spoofing</a>
+                    <a href="adware.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Adware</a>
+                    <a href="ddos.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">DDoS</a>
+                    <a href="mitm.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Man-in-the-Middle</a>
+                    <a href="sql-injection.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">SQL
+                        Injection</a>
+                    <a href="zero-day.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Zero-Day
+                        Exploits</a>
+                    <a href="ransomware.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Ransomware</a>
+                    <a href="apt.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">APT</a>
+                    <a href="credential-stuffing.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Credential Stuffing</a>
+                    <a href="xss.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Cross-Site
+                        Scripting (XSS)</a>
+                    <a href="ai-attacks.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">AI-Powered Attacks</a>
+                    <a href="clickjacking.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Clickjacking</a>
+                    <a href="session-hijacking.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Session Hijacking</a>
+                    <a href="social-engineering.html" class="block px-6 py-2 hover:bg-gray-700">Social Engineering</a>
+                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left py-2 px-4 hover:bg-gray-700 border-b border-gray-600 flex justify-between items-center">
+                    Features <i class="fas fa-angle-down ml-1"></i>
+                </button>
+                <div class="mobile-dropdown-menu bg-gray-800">
+                    <a href="risk_assessment.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Risk Assessment</a>
+                    <a href="threat_map.html" class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Threat
+                        Map</a>
+                    <a href="cost_calculator.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Cost Calculator</a>
+                    <a href="ende.html"
+                        class="block px-6 py-2 hover:bg-gray-700 border-b border-gray-600">Encryption/Decryption</a>
+                    <a href="response.html" class="block px-6 py-2 hover:bg-gray-700">SOC & Response</a>
+                </div>
+            </div>
+            <a href="career.html" class="block py-2 px-4 hover:bg-gray-700 border-b border-gray-600">Careers</a>
+            <a href="about.html" class="block py-2 px-4 hover:bg-gray-700">About</a>
+        </div>
     </nav>
-    <section class="relative container mx-auto px-6 py-16">
+
+    <section class="relative container mx-auto px-4 md:px-6 py-16 mt-16">
         <div class="flex flex-col md:flex-row items-center justify-between">
             <div class="md:w-1/2 mb-8 md:mb-0">
-                <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                    Innovation Smarter
+                <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                    Learn Cybersecurity
                     <br />
-                    Solutions Pattern
+                    Interactively
                     <br />
-                    Gleaming
+                    Explore, Visualize,
                     <br />
-                    Expanses.
+                    Master.
                 </h1>
                 <button
                     class="bg-transparent border border-white hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-4">
-                    <span class="mr-2"> Learn More </span>
-                    <i class="fas fa-arrow-down"></i>
+                    <span class="mr-2">
+                        Explore Threats
+                    </span>
+                    <i class="fas fa-arrow-down">
+                    </i>
                 </button>
             </div>
             <div class="md:w-1/3 relative">
-                <img alt="Abstract AI image" class="rounded-lg w-full" height="300"
-                    src="https://replicate.delivery/xezq/8Q6ceJ3iFVUBZ66BWIG9WeesXtBX1lcf1pkyzcXbDErq74tQB/out-0.png"
+                <img alt="Cybersecurity concept image" class="rounded-lg w-full" height="300"
+                    src="https://replicate.delivery/xezq/EYW57NPcrlbqEFFXO1foXpHyfAcRN9miLMwEvEi4NqeyletQB/out-0.png"
                     width="300" />
                 <div class="absolute bottom-0 right-0 bg-[#1A143A] p-4 rounded-md">
-                    <p class="text-sm text-gray-400">Best Recognized</p>
+                    <p class="text-sm text-gray-400">
+                        Interactive Learning
+                    </p>
                     <div class="flex space-x-4">
                         <div>
-                            <p class="text-2xl font-bold">20K</p>
-                            <p class="text-xs text-gray-400">Worked
-                                Projects</p>
+                            <p class="text-2xl font-bold">
+                                15+
+                            </p>
+                            <p class="text-xs text-gray-400">
+                                Cyber Threats
+                            </p>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold">80%</p>
-                            <p class="text-xs text-gray-400">Repeated
-                                Clients</p>
+                            <p class="text-2xl font-bold">
+                                100%
+                            </p>
+                            <p class="text-xs text-gray-400">
+                                Hands-on
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-6 py-16">
-        <div class="flex justify-center">
-            <img alt="AI robot with glowing lines" class="rounded-lg w-full" height="400"
-                src="https://replicate.delivery/xezq/jqs1KUDVDUK0K5K1yX7O0gI0QH3IfOlnFxCwiqLS0KAdHvFKA/out-0.png"
-                width="1200" />
-        </div>
+    <section class="container mx-auto px-4 py-1">
+        <img alt="Cybersecurity threat landscape" class="rounded-lg w-full" height="200"
+            src="https://replicate.delivery/xezq/l7YwEY7fUmQeNkixGukKJkD8oisMed1vlPGmFAXtLApzletQB/out-0.png"
+            width="1200" />
     </section>
     <section class="container mx-auto px-6 py-16">
         <div class="flex justify-center">
-            <p class="text-sm text-gray-400">3000+ Trusted Client over the
-                World</p>
+            <p class="text-sm text-gray-400">
+                Trusted by Cybersecurity Professionals Worldwide
+            </p>
         </div>
         <div class="flex flex-wrap justify-center space-x-4 mt-4">
-            <img alt="duoson logo" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/PzjuNyEEzv7WEFoTM4BQC4nF0TeKe0JhAHsNHzg8DmZ5OeWoA/out-0.png"
+            <img alt="Company logo 1" class="h-8 mb-4" height="30"
+                src="https://replicate.delivery/xezq/fRK4I7FsmcTHJieGqgJ8Nby2aDwuZeAXCLcg6cDXAbRxletQB/out-0.png"
                 width="80" />
-            <img alt="monceau logo" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/AeLeHM9zE4nmVUoRkl2394kvnTwbetnTFo1kD2bw7Rn1d8WoA/out-0.png"
+            <img alt="Company logo 2" class="h-8 mb-4" height="30"
+                src="https://replicate.delivery/xezq/sMftLliHhehmTEbqmN3UpGN9JlsOmh10mEttbHJslME4SfWoA/out-0.png"
                 width="80" />
-            <img alt="tse logo" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/lRyuBpDqz9asFdsnHEse5CLiIUUG5BrjjSIhmWPeRf2zd8WoA/out-0.png"
+            <img alt="Company logo 3" class="h-8 mb-4" height="30"
+                src="https://replicate.delivery/xezq/fl6QKeWSFeDFzpgxjIm3RZfRy54o2ciozYdjXkoI9KKhL9tQB/out-0.png"
                 width="80" />
-            <img alt="caudac logo" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/dfr4o0udAgQWLKgbsebGNG0wfwt9ifGsJOr9bbIBf62P3xbhC/out-0.png"
+            <img alt="Company logo 4" class="h-8 mb-4" height="30"
+                src="https://replicate.delivery/xezq/V1WeXenEfITtXIq1u63JYGGDjOi49H4ATlSIDUywDZuyletQB/out-0.png"
                 width="80" />
-            <img alt="flowfix logo" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/GqkgqtqTlF4qBhqUm1T9zTVwL7Bw5bvi5KfYpQkU7m5dHvFKA/out-0.png"
+            <img alt="Company logo 5" class="h-8 mb-4" height="30"
+                src="https://replicate.delivery/xezq/fQ8gPnuiK4zaa6W92Ooqsx9fh6SZwMwBm3ges2cANieiL9tQB/out-0.png"
                 width="80" />
-            <img alt="wedlot logo" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/1Fg9nSQSBH7zKl1vpMnRwXKiQZfxtxm3a4iuOhPGN3ndHvFKA/out-0.png"
+            <img alt="Company logo 6" class="h-8 mb-4" height="30"
+                src="https://replicate.delivery/xezq/4NVVHwxWNoY2I5zYoJZqkEW2XsLzKjRfitRkwUr5oFf4SfWoA/out-0.png"
                 width="80" />
         </div>
     </section>
@@ -122,37 +312,46 @@
         <div class="flex flex-col md:flex-row items-center justify-between">
             <div class="md:w-1/2 mb-8 md:mb-0">
                 <div class="flex items-center mb-4">
-                    <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                    <p class="text-sm text-gray-400">ABOUT OUR COMPANY</p>
+                    <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2">
+                    </div>
+                    <p class="text-sm text-gray-400">
+                        ABOUT OUR PLATFORM
+                    </p>
                 </div>
                 <h2 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">
-                    Driving Innovation Through
+                    Mastering Cybersecurity
                     <br />
-                    AI and Technology, Delivering Our
+                    Through Interactive
                     <br />
-                    Tailored Solutions are Best that
+                    Learning and Real-world
                     <br />
-                    Transform Next Businesses and
-                    <br />
-                    Enhance Efficient Level Seam
-                    <br />
-                    Effective &amp; Sustainable.
+                    Simulations
                 </h2>
                 <ul class="list-disc list-inside text-gray-400 mb-6">
-                    <li>Artificial Intelligence</li>
-                    <li>Boost Insights</li>
-                    <li>Business Analytics</li>
-                    <li>Identity Management</li>
-                    <li>Public Infrastructure</li>
+                    <li>
+                        Visual Simulations
+                    </li>
+                    <li>
+                        Interactive Quizzes
+                    </li>
+                    <li>
+                        Threat Analysis
+                    </li>
+                    <li>
+                        Risk Assessment Tools
+                    </li>
+                    <li>
+                        Real-time Threat Map
+                    </li>
                 </ul>
                 <button
                     class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                    Explore More
+                    Explore Features
                 </button>
             </div>
             <div class="md:w-1/3">
-                <img alt="AI generated woman with pink hair" class="rounded-lg w-full" height="400"
-                    src="https://replicate.delivery/xezq/HqDk0ZH2VNoCCpeYg9wLHdlZpC2f3u2PijJef8LrMgAo74tQB/out-0.png"
+                <img alt="Cybersecurity professional at work" class="rounded-lg w-full" height="400"
+                    src="https://replicate.delivery/xezq/uTOxfD1ESkyLVyJmve5fcjz2HRVfevxKOueGxUM8qQaAu03CF/out-0.png"
                     width="400" />
             </div>
         </div>
@@ -160,42 +359,50 @@
     <section class="container mx-auto px-6 py-16">
         <div class="text-center mb-12">
             <div class="flex justify-center items-center mb-4">
-                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                <p class="text-sm text-gray-400">CUTTING EDGE SOLUTIONS</p>
+                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2">
+                </div>
+                <p class="text-sm text-gray-400">
+                    INTERACTIVE LEARNING FEATURES
+                </p>
             </div>
             <h2 class="text-2xl md:text-3xl font-bold">
-                The Intelligent Choice
+                Comprehensive Cybersecurity
                 <br />
-                for Business.
+                Education Platform
             </h2>
         </div>
         <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-8">
             <div class="text-center">
-                <p class="text-4xl md:text-5xl font-bold">10K+</p>
-                <p class="text-sm text-gray-400">Engaged Customers</p>
+                <p class="text-4xl md:text-5xl font-bold">
+                    15+
+                </p>
+                <p class="text-sm text-gray-400">
+                    Cyber Threats Covered
+                </p>
                 <p class="text-xs text-gray-400 mt-2">
-                    Our customers are not just clients - they are active
-                    participants in
-                    our journey.
+                    From phishing to AI-powered attacks, learn about various cyber threats.
                 </p>
             </div>
             <div class="text-center">
-                <p class="text-4xl md:text-5xl font-bold">800+</p>
-                <p class="text-sm text-gray-400">Customer Success
-                    Stories</p>
+                <p class="text-4xl md:text-5xl font-bold">
+                    100%
+                </p>
+                <p class="text-sm text-gray-400">
+                    Hands-on Learning
+                </p>
                 <p class="text-xs text-gray-400 mt-2">
-                    Our customers are not just clients - they are active
-                    participants in
-                    our journey.
+                    Experience cyber attacks in a safe, controlled environment.
                 </p>
             </div>
             <div class="text-center">
-                <p class="text-4xl md:text-5xl font-bold">250+</p>
-                <p class="text-sm text-gray-400">Team of Professionals</p>
+                <p class="text-4xl md:text-5xl font-bold">
+                    24/7
+                </p>
+                <p class="text-sm text-gray-400">
+                    Access to Resources
+                </p>
                 <p class="text-xs text-gray-400 mt-2">
-                    Our customers are not just clients - they are active
-                    participants in
-                    our journey.
+                    Learn at your own pace with our comprehensive library of resources.
                 </p>
             </div>
         </div>
@@ -204,556 +411,1013 @@
         <div class="flex flex-col md:flex-row items-start justify-between">
             <div class="md:w-1/3 mb-8 md:mb-0">
                 <div class="flex items-center mb-4">
-                    <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                    <p class="text-sm text-gray-400">OUR SERVICES</p>
+                    <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2">
+                    </div>
+                    <p class="text-sm text-gray-400">
+                        OUR FEATURES
+                    </p>
                 </div>
                 <h2 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">
-                    Best Innovative
+                    Cutting-edge
                     <br />
-                    Solution for
+                    Tools for
                     <br />
-                    Modern
+                    Cybersecurity
                     <br />
-                    Businesses.
+                    Education
                 </h2>
                 <p class="text-sm text-gray-400 mb-6">
-                    Specialize in delivering AI-powered solution
-                    revolutionize the
-                    businesses.
+                    Explore our range of interactive tools designed to enhance your cybersecurity knowledge.
                 </p>
                 <button
                     class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                    Explore More
+                    View All Features
                 </button>
             </div>
+
             <div class="md:w-2/3">
                 <div class="space-y-4">
                     <div class="bg-[#1A143A] p-6 rounded-lg flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-400 mb-2">01.</p>
-                            <h3 class="text-xl font-bold mb-2">AI-Powered
-                                Solutions</h3>
+                            <p class="text-sm text-gray-400 mb-2">
+                                01.
+                            </p>
+                            <h3 class="text-xl font-bold mb-2">
+                                Threat Simulations
+                            </h3>
                             <p class="text-sm text-gray-400 mb-4">
-                                Specialize in delivering AI-powered solution
-                                revolutionize the
-                                businesses operate by leveraging our talent.
+                                Experience real-world cyber attacks in a controlled environment.
                             </p>
                             <ul class="list-disc list-inside text-gray-400 text-sm">
-                                <li>Personalized Experience</li>
-                                <li>Process Automation</li>
-                                <li>Predictive Analytics</li>
+                                <li>
+                                    Phishing Scenarios
+                                </li>
+                                <li>
+                                    DDoS Attack Simulations
+                                </li>
+                                <li>
+                                    Malware Analysis
+                                </li>
                             </ul>
                         </div>
-                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <i class="fas fa-arrow-right text-gray-400">
+                        </i>
+
                     </div>
                     <div class="bg-[#1A143A] p-6 rounded-lg flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-400 mb-2">02.</p>
-                            <h3 class="text-xl font-bold mb-2">Custom
-                                Technology</h3>
+                            <p class="text-sm text-gray-400 mb-2">
+                                02.
+                            </p>
+                            <h3 class="text-xl font-bold mb-2">
+                                Risk Assessment Tools
+                            </h3>
                             <p class="text-sm text-gray-400 mb-4">
-                                Specialize in delivering AI-powered solution
-                                revolutionize the
-                                businesses operate by leveraging our talent.
+                                Evaluate and understand potential cybersecurity risks for your organization.
                             </p>
                             <ul class="list-disc list-inside text-gray-400 text-sm">
-                                <li>Personalized Experience</li>
-                                <li>Process Automation</li>
-                                <li>Predictive Analytics</li>
+                                <li>
+                                    Vulnerability Scanning
+                                </li>
+                                <li>
+                                    Threat Modeling
+                                </li>
+                                <li>
+                                    Security Audits
+                                </li>
                             </ul>
                         </div>
-                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <i class="fas fa-arrow-right text-gray-400">
+                        </i>
                     </div>
+
                     <div class="bg-[#1A143A] p-6 rounded-lg flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-400 mb-2">03.</p>
-                            <h3 class="text-xl font-bold mb-2">Predictive
-                                Analytics</h3>
+                            <p class="text-sm text-gray-400 mb-2">
+                                03.
+                            </p>
+                            <h3 class="text-xl font-bold mb-2">
+                                Interactive Threat Map
+                            </h3>
                             <p class="text-sm text-gray-400 mb-4">
-                                Specialize in delivering AI-powered solution
-                                revolutionize the
-                                businesses operate by leveraging our talent.
+                                Visualize global cyber threats in real-time with our interactive map.
                             </p>
                             <ul class="list-disc list-inside text-gray-400 text-sm">
-                                <li>Personalized Experience</li>
-                                <li>Process Automation</li>
-                                <li>Predictive Analytics</li>
+                                <li>
+                                    Real-time Updates
+                                </li>
+                                <li>
+                                    Geographical Analysis
+                                </li>
+                                <li>
+                                    Threat Type Categorization
+                                </li>
                             </ul>
                         </div>
-                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <i class="fas fa-arrow-right text-gray-400">
+                        </i>
                     </div>
+
                     <div class="bg-[#1A143A] p-6 rounded-lg flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-400 mb-2">04.</p>
-                            <h3 class="text-xl font-bold mb-2">Machine
-                                Learning</h3>
+                            <p class="text-sm text-gray-400 mb-2">
+                                04.
+                            </p>
+                            <h3 class="text-xl font-bold mb-2">
+                                Cybersecurity Cost Calculator
+                            </h3>
                             <p class="text-sm text-gray-400 mb-4">
-                                Specialize in delivering AI-powered solution
-                                revolutionize the
-                                businesses operate by leveraging our talent.
+                                Estimate the potential cost of cyber attacks on your organization.
                             </p>
                             <ul class="list-disc list-inside text-gray-400 text-sm">
-                                <li>Personalized Experience</li>
-                                <li>Process Automation</li>
-                                <li>Predictive Analytics</li>
+                                <li>
+                                    Data Breach Cost Estimation
+                                </li>
+                                <li>
+                                    Recovery Time Analysis
+                                </li>
+                                <li>
+                                    Preventive Measures ROI
+                                </li>
                             </ul>
                         </div>
-                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <i class="fas fa-arrow-right text-gray-400">
+                        </i>
+                    </div>
+
+                    <div>
+                        <div class="bg-[#1A143A] p-6 rounded-lg flex items-start justify-between">
+                            <div>
+                                <p class="text-sm text-gray-400 mb-2">
+                                    05.
+                                </p>
+                                <h3 class="text-xl font-bold mb-2">
+                                    Encryption and Decryption tools
+                                </h3>
+                                <p class="text-sm text-gray-400 mb-4">
+                                    Feel free to encrypt and decrypt your data with our tools.
+                                </p>
+                                <ul class="list-disc list-inside text-gray-400 text-sm">
+                                    <li>
+                                        Using advanced algorithms (AES, DES, SHA-256, .etc)
+                                    </li>
+                                    <li>
+                                        Encrypting and decrypting files
+                                    </li>
+                                    <li>
+                                        Secure your data, texts or messages
+                                    </li>
+                                </ul>
+                            </div>
+                            <i class="fas fa-arrow-right text-gray-400">
+                            </i>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </section>
-    <section class="container mx-auto px-6 py-16">
+    <section class="container mx-auto px-4 md:px-6 py-16">
         <div class="text-center mb-12">
             <div class="flex justify-center items-center mb-4">
-                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                <p class="text-sm text-gray-400">OUR PROJECTS</p>
+                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2">
+                </div>
+                <p class="text-sm text-gray-400">
+                    CYBER THREATS
+                </p>
             </div>
             <h2 class="text-2xl md:text-3xl font-bold">
-                Crafting Tomorrow's
+                Explore Various
                 <br />
-                Solutions Now.
+                Cyber Threats
             </h2>
         </div>
-        <div class="flex flex-col md:flex-row overflow-x-auto space-y-6 md:space-y-0 md:space-x-6">
-            <div class="relative w-full md:w-80 flex-shrink-0">
-                <img alt="AI generated woman with futuristic makeup" class="rounded-lg w-full" height="300"
-                    src="https://replicate.delivery/xezq/fNYf52X3b8heXI0GVQmC2MfPo7mXA2eFeAQytv2lzXgouj3CF/out-0.png"
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Phishing attack illustration" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/iY1a92Wx10rfYq8jG4tdhWYfjhOiJyXJ2H9yW2kTpZMBGgLUA/out-0.png"
                     width="300" />
-                <div class="absolute bottom-4 left-4">
-                    <p class="text-sm text-gray-400">AI HUMAN</p>
-                    <h3 class="text-lg font-bold">
-                        Redefining Intelligence for
-                        <br />
-                        Tomorrow Tech
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        PHISHING
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Deceptive Attempts to Steal Information
                     </h3>
-                    <i class="fas fa-arrow-right text-pink-500 mt-2"></i>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Learn about deceptive attempts to steal sensitive information through fake websites and emails.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
                 </div>
             </div>
-            <div class="relative w-full md:w-80 flex-shrink-0">
-                <img alt="AI generated woman with futuristic helmet" class="rounded-lg w-full" height="300"
-                    src="https://replicate.delivery/xezq/LvPzpUyA88KTLxgtwwb2gmoxeIB79wQ3OLQWEihwAB1cHvFKA/out-0.png"
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Spoofing concept" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/MzM9PIXEgYISLNFXV3TvoOZfCXwQSJ12UsRkp5miII1fFgLUA/out-0.png"
                     width="300" />
-                <div class="absolute bottom-4 left-4">
-                    <p class="text-sm text-gray-400">QUANTUM</p>
-                    <h3 class="text-lg font-bold">
-                        Elevating Possibilities with
-                        <br />
-                        Intelligence
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        SPOOFING
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Impersonating Legitimate Entities
                     </h3>
-                    <i class="fas fa-arrow-right text-pink-500 mt-2"></i>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Understand how attackers impersonate legitimate entities to gain unauthorized access.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
                 </div>
             </div>
-            <div class="relative w-full md:w-80 flex-shrink-0">
-                <img alt="AI generated robot with glowing lines" class="rounded-lg w-full" height="300"
-                    src="https://replicate.delivery/xezq/nOiPmgxqfAT4UiD2yHzvh3lA5g2fqLGQ0eMyomlPBd8zd8WoA/out-0.png"
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Adware and Malvertising" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/AZVf06eUxSvdQkUsyVRLO9nRPeKI5AWQbIRBlB7cQ7mfXAuQB/out-0.png"
                     width="300" />
-                <div class="absolute bottom-4 left-4">
-                    <p class="text-sm text-gray-400">INNOVATE</p>
-                    <h3 class="text-lg font-bold">
-                        Transforming Business with
-                        <br />
-                        Intelligence
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        ADWARE AND MALVERTISING
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Unwanted Ads and Malicious Campaigns
                     </h3>
-                    <i class="fas fa-arrow-right text-pink-500 mt-2"></i>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Explore the risks of unwanted advertisements and malicious advertising campaigns.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="DDoS attack visualization" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/01Pra9dbPyLhM9sYEiWQKYORYNt75ZsbBH4sdC4QYSAgB4CF/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        DDoS
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Overwhelming Systems and Networks
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Explore how distributed denial-of-service attacks overwhelm systems and networks.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Man-in-the-Middle attack" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/mWjIpzcNYFpdG5CKdgiVtJKddzVP2NxaeZAY1pDZPBnfFgLUA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        MitM
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Intercepting Communications
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Learn about Man-in-the-Middle attacks and how they intercept communications.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="SQL Injection concept" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/wdmNbCHZLw4cFp4kfVDfee6E32gCcCzcqjrKLuTCeYDEwAchC/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        SQL INJECTION
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Exploiting Database Vulnerabilities
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Understand how attackers exploit vulnerabilities in database queries.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Zero Day Exploit illustration" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/r87xseeB7stSPkjqKMSw2QRxjDlyoHREtU8ZHqtGp3OAGgLUA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        ZERO DAY EXPLOITS
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Unknown Vulnerabilities
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Discover the dangers of unknown vulnerabilities and how they're exploited.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Ransomware concept" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/Xm3n1W0YXWa7LBXKTSL4eRQj6fmotufPjgoPlbi4MsXAMAXoA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        RANSOMWARE
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Encrypting Files for Ransom
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Learn about malware that encrypts files and demands ransom for decryption.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Advanced Persistent Threat" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/xfwhx0guQ2wWOKv8bKdzFg3ftkJFxOh4tvxUwBhGbhuAGgLUA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        APT
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Long-term Sophisticated Attacks
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Explore Advanced Persistent Threats and their long-term impact on organizations.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Credential Stuffing attack" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/9Xdwj9P07H4PBtjePsi7KeW3qzMoXgkF3egXLi5SOiUDMAXoA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        CREDENTIAL STUFFING
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Using Stolen Credentials
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Understand how attackers use stolen credentials to gain unauthorized access.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Cross-Site Scripting illustration" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/zDCU2hf4SRSgK67JNzpnGNrAcy7NGvavfkpB9UnGY8GCGgLUA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        CROSS-SITE SCRIPTING (XSS)
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Injecting Malicious Scripts
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Learn about injecting malicious scripts into web applications.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="AI-Powered Attacks concept" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/qh0oI1OVdWJtMJiRE3cwrtMNWeLOSeGJedwojEz8389AMAXoA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        AI-POWERED ATTACKS
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Artificial Intelligence in Cyber Attacks
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Explore how artificial intelligence is being used in cyber attacks.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Clickjacking illustration" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/YewCjJe8ZePvMo63Q4wY0ebDeaXxtfxRkebRC7fG9UMjAGgLUA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        CLICKJACKING
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Tricking Users into Clicking
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Understand how attackers trick users into clicking on disguised elements.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Session Hijacking concept" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/qrLIqeKoAay9RKrPdUW1u3yxwOWfg2WOjR1WgQyCNuIAGgLUA/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        SESSION HIJACKING
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Taking Over Active Sessions
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Learn how attackers can take over active user sessions.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
+                </div>
+            </div>
+            <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
+                <img alt="Social Engineering tactics" class="w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/FPSE9J8y7WawDJgYNaM2coxvTyavYJMqp2tG6PP3LrOgB4CF/out-0.png"
+                    width="300" />
+                <div class="p-4">
+                    <p class="text-sm text-gray-400">
+                        SOCIAL ENGINEERING
+                    </p>
+                    <h3 class="text-lg font-bold mb-2">
+                        Psychological Manipulation
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Explore psychological manipulation techniques used in cyber attacks.
+                    </p>
+                    <i class="fas fa-arrow-right text-pink-500">
+                    </i>
                 </div>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-6 py-16">
+    <section class="container mx-auto px-4 md:px-6 py-16">
         <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 mb-8 md:mb-0">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0">
                 <div class="flex items-center mb-4">
                     <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                    <p class="text-sm text-gray-400">INNOVATING TOGETHER</p>
+                    <p class="text-sm text-gray-400">USER TESTIMONIALS</p>
                 </div>
                 <h2 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">
-                    Trusted Collaborations
-                    <br />
-                    Leading Innovators
+                    What Our Users<br />Say About Us
                 </h2>
                 <p class="text-sm text-gray-400 mb-6">
-                    Specialize in delivering AI-powered solution
-                    revolutionize the way
-                    businesses operate. By leveraging the latest.
+                    Hear from cybersecurity professionals who have used our platform to enhance their skills.
                 </p>
                 <div class="flex items-center mb-6">
-                    <p class="text-4xl md:text-5xl font-bold mr-4">4.8</p>
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-gray-500"></i>
-                        <p class="text-sm text-gray-400 ml-2">(20+ Clients
-                            Review)</p>
+                    <p class="text-3xl md:text-4xl lg:text-5xl font-bold mr-4">4.9</p>
+                    <div class="flex items-center flex-wrap">
+                        <div class="flex">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <i class="fas fa-star text-yellow-500"></i>
+                        </div>
+                        <p class="text-sm text-gray-400 ml-2">(500+ Reviews)</p>
                     </div>
                 </div>
                 <div class="flex space-x-4">
-                    <button
-                        class="bg-transparent border border-white hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                        <i class="fas fa-minus"></i>
+                    <button class="bg-transparent border border-white hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button
-                        class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
-                        <i class="fas fa-plus"></i>
+                    <button class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
-            <div class="md:w-1/2">
-                <div class="bg-[#1A143A] p-6 rounded-lg">
-                    <i class="fas fa-quote-left text-pink-500 text-3xl mb-4"></i>
-                    <p class="text-sm text-gray-400 mb-4">
-                        Working with Rinex has been a game-changer for us.
-                        Their AI
-                        solutions helped streamline our operations,
-                        resulting in a 50%
-                        increase in efficiency within just three months. We
-                        couldn't be
-                        happier with the results. They truly understood our
-                        challenges and
-                        provided a tailored AI solution that met our
-                        expectations.
-                    </p>
-                    <div class="flex items-center">
-                        <img alt="User profile picture" class="rounded-full mr-4" height="50"
-                            src="https://replicate.delivery/xezq/q0rhBQ1QGLJeSysxueXRYhTVWr5C8swh9SvmVM6IKLS7OeWoA/out-0.png"
-                            width="50" />
-                        <div>
-                            <p class="font-bold">Elina Renne</p>
-                            <p class="text-sm text-gray-400">Python
-                                Expert</p>
+            <div class="w-full md:w-1/2 overflow-hidden">
+                <div class="flex transition-transform duration-300 ease-in-out" id="testimonialSlider">
+                    <div class="bg-[#1A143A] p-6 rounded-lg flex-shrink-0 w-full">
+                        <i class="fas fa-quote-left text-pink-500 text-3xl mb-4"></i>
+                        <p class="text-sm text-gray-400 mb-4">
+                            "CyberSec Learning Hub has been an invaluable resource in my cybersecurity journey. The
+                            interactive simulations and real-world scenarios have significantly improved my ability to
+                            identify and mitigate threats. I highly recommend this platform to anyone looking to enhance
+                            their cybersecurity skills."
+                        </p>
+                        <div class="flex items-center">
+                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="https://replicate.delivery/xezq/B91IIekBPVWbCyBBRrT60Me69eapmmm9y0XW726detTiL9tQB/out-0.png" />
+                            <div>
+                                <p class="font-bold">Sarah Johnson</p>
+                                <p class="text-sm text-gray-400">Security Analyst</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#1A143A] p-6 rounded-lg flex-shrink-0 w-full">
+                        <i class="fas fa-quote-left text-pink-500 text-3xl mb-4"></i>
+                        <p class="text-sm text-gray-400 mb-4">
+                            "As a cybersecurity consultant, I'm always looking for ways to stay ahead of the curve.
+                            CyberSec Learning Hub provides cutting-edge content and hands-on exercises that have helped
+                            me sharpen my skills and better serve my clients. The platform's user interface is intuitive
+                            and engaging."
+                        </p>
+                        <div class="flex items-center">
+                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="https://replicate.delivery/xezq/nRq2IeuDwLwTfEillqfWjMonMSDIgZ4ONeF9vGVeMVoCjBchC/out-0.png" />
+                            <div>
+                                <p class="font-bold">Michael Chen</p>
+                                <p class="text-sm text-gray-400">Cybersecurity Consultant</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#1A143A] p-6 rounded-lg flex-shrink-0 w-full">
+                        <i class="fas fa-quote-left text-pink-500 text-3xl mb-4"></i>
+                        <p class="text-sm text-gray-400 mb-4">
+                            "I've tried several online cybersecurity learning platforms, but CyberSec Learning Hub
+                            stands out from the rest. The depth of content, coupled with the interactive threat
+                            simulations, has given me a practical understanding of complex security concepts. It's been
+                            instrumental in advancing my career."
+                        </p>
+                        <div class="flex items-center">
+                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="https://replicate.delivery/xezq/nRq2IeuDwLwTfEillqfWjMonMSDIgZ4ONeF9vGVeMVoCjBchC/out-0.png" />
+                            <div>
+                                <p class="font-bold">Emily Rodriguez</p>
+                                <p class="text-sm text-gray-400">Network Security Engineer</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-6 py-16">
+    <section class="container mx-auto px-4 md:px-6 py-16">
         <div class="text-center mb-12">
             <div class="flex justify-center items-center mb-4">
-                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                <p class="text-sm text-gray-400">CHOOSE PLAN</p>
+                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2">
+                </div>
+                <p class="text-sm text-gray-400">
+                    OUR PRICING
+                </p>
             </div>
             <h2 class="text-2xl md:text-3xl font-bold">
-                Flexible Pricing, Powerful
+                Choose the Right Plan
                 <br />
-                Tangible Results
+                for Your Cybersecurity Journey
             </h2>
         </div>
         <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-8">
             <div class="bg-[#1A143A] p-6 rounded-lg relative">
                 <div class="absolute top-0 right-0 bg-pink-500 text-white px-2 py-1 rounded-bl-lg">
-                    50% OFF
+                    Basic
                 </div>
-                <h3 class="text-xl font-bold mb-4">Basic</h3>
+                <h3 class="text-xl font-bold mb-4">
+                    Starter
+                </h3>
                 <p class="text-4xl md:text-5xl font-bold mb-4">
-                    $20
-                    <span class="text-sm font-normal"> /month </span>
+                    $29
+                    <span class="text-sm font-normal">
+                        /month
+                    </span>
                 </p>
                 <p class="text-sm text-gray-400 mb-6">
-                    Specialize in delivering AI-powered solution
-                    revolutionize the way
-                    businesses.
+                    Perfect for beginners looking to start their cybersecurity journey.
                 </p>
                 <button
                     class="bg-transparent border border-white hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex items-center justify-between w-full mb-6">
-                    <span> Choose Package </span>
-                    <i class="fas fa-arrow-right"></i>
+                    <span>
+                        Get Started
+                    </span>
+                    <i class="fas fa-arrow-right">
+                    </i>
                 </button>
-                <h4 class="text-lg font-bold mb-2">Included:</h4>
+                <h4 class="text-lg font-bold mb-2">
+                    Included:
+                </h4>
                 <ul class="list-disc list-inside text-gray-400 text-sm">
-                    <li>AI-powered tools for businesses</li>
-                    <li>10 hours of tech support</li>
-                    <li>Basic data analysis</li>
-                    <li>Email support</li>
-                    <li>Access to online resources</li>
-                    <li>Reporting &amp; tutorials</li>
+                    <li>
+                        Access to basic threat simulations
+                    </li>
+                    <li>
+                        Interactive quizzes
+                    </li>
+                    <li>
+                        Cybersecurity fundamentals course
+                    </li>
+                    <li>
+                        Community forum access
+                    </li>
+                    <li>
+                        Monthly webinars
+                    </li>
                 </ul>
             </div>
             <div class="bg-[#1A143A] p-6 rounded-lg relative">
                 <div class="absolute top-0 right-0 bg-pink-500 text-white px-2 py-1 rounded-bl-lg">
                     Popular
                 </div>
-                <h3 class="text-xl font-bold mb-4">Pro Plan</h3>
+                <h3 class="text-xl font-bold mb-4">
+                    Professional
+                </h3>
                 <p class="text-4xl md:text-5xl font-bold mb-4">
-                    $60
-                    <span class="text-sm font-normal"> /month </span>
+                    $79
+                    <span class="text-sm font-normal">
+                        /month
+                    </span>
                 </p>
                 <p class="text-sm text-gray-400 mb-6">
-                    Specialize in delivering AI-powered solution
-                    revolutionize the way
-                    businesses.
+                    Ideal for cybersecurity professionals looking to advance their skills.
                 </p>
                 <button
                     class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded flex items-center justify-between w-full mb-6">
-                    <span> Choose Package </span>
-                    <i class="fas fa-plus"></i>
+                    <span>
+                        Get Started
+                    </span>
+                    <i class="fas fa-plus">
+                    </i>
                 </button>
-                <h4 class="text-lg font-bold mb-2">Included:</h4>
+                <h4 class="text-lg font-bold mb-2">
+                    Included:
+                </h4>
                 <ul class="list-disc list-inside text-gray-400 text-sm">
-                    <li>Everything in the Basic Plan</li>
-                    <li>Advanced Annotations</li>
-                    <li>30 hours of tech support</li>
-                    <li>Customizable data dashboards</li>
-                    <li>Priority email &amp; phone</li>
-                    <li>System optimizations</li>
+                    <li>
+                        Everything in Starter plan
+                    </li>
+                    <li>
+                        Advanced threat simulations
+                    </li>
+                    <li>
+                        Risk assessment tools
+                    </li>
+                    <li>
+                        Real-time threat map access
+                    </li>
+                    <li>
+                        Personalized learning path
+                    </li>
+                    <li>
+                        Priority support
+                    </li>
                 </ul>
             </div>
             <div class="bg-[#1A143A] p-6 rounded-lg relative">
                 <div class="absolute top-0 right-0 bg-pink-500 text-white px-2 py-1 rounded-bl-lg">
-                    Essential
+                    Enterprise
                 </div>
-                <h3 class="text-xl font-bold mb-4">Iventure</h3>
+                <h3 class="text-xl font-bold mb-4">
+                    Team
+                </h3>
                 <p class="text-4xl md:text-5xl font-bold mb-4">
-                    $90
-                    <span class="text-sm font-normal"> /month </span>
+                    Custom
+                    <span class="text-sm font-normal">
+                        pricing
+                    </span>
                 </p>
                 <p class="text-sm text-gray-400 mb-6">
-                    Specialize in delivering AI-powered solution
-                    revolutionize the way
-                    businesses.
+                    Tailored solutions for organizations and large teams.
                 </p>
                 <button
                     class="bg-transparent border border-white hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex items-center justify-between w-full mb-6">
-                    <span> Choose Package </span>
-                    <i class="fas fa-arrow-right"></i>
+                    <span>
+                        Contact Us
+                    </span>
+                    <i class="fas fa-arrow-right">
+                    </i>
                 </button>
-                <h4 class="text-lg font-bold mb-2">Included:</h4>
+                <h4 class="text-lg font-bold mb-2">
+                    Included:
+                </h4>
                 <ul class="list-disc list-inside text-gray-400 text-sm">
-                    <li>Everything in the Pro Plan</li>
-                    <li>Tailored AI solutions</li>
-                    <li>Unlimited tech support</li>
-                    <li>Real-time analytics</li>
-                    <li>24/7 priority support</li>
-                    <li>Full system integration</li>
+                    <li>
+                        Everything in Professional plan
+                    </li>
+                    <li>
+                        Custom threat simulations
+                    </li>
+                    <li>
+                        Team management dashboard
+                    </li>
+                    <li>
+                        API access
+                    </li>
+                    <li>
+                        Dedicated account manager
+                    </li>
+                    <li>
+                        On-site training options
+                    </li>
                 </ul>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-6 py-16">
+    <section class="container mx-auto px-4 md:px-6 py-16">
         <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2">
-                <img alt="AI generated woman with futuristic helmet" class="rounded-lg" height="400"
-                    src="https://replicate.delivery/xezq/LvPzpUyA88KTLxgtwwb2gmoxeIB79wQ3OLQWEihwAB1cHvFKA/out-0.png"
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <img alt="Cybersecurity professional working" class="rounded-lg w-full md:w-auto" height="400"
+                    src="https://replicate.delivery/xezq/aX1dSaM8uQJ7NFr1ucvYWWFnHvoPBTfhEu4wGeiRhAk5SfWoA/out-0.png"
                     width="400" />
             </div>
             <div class="md:w-1/2">
                 <div class="flex items-center mb-4">
-                    <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                    <p class="text-sm text-gray-400">HOW IT'S WORK</p>
+                    <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2">
+                    </div>
+                    <p class="text-sm text-gray-400">
+                        HOW IT WORKS
+                    </p>
                 </div>
                 <h2 class="text-3xl font-bold mb-4 leading-tight">
-                    Building Success, One
+                    Start Your Cybersecurity
                     <br />
-                    Step at a Time.
+                    Learning Journey
                 </h2>
                 <div class="space-y-4">
                     <div class="bg-[#1A143A] p-4 rounded-lg flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-400 mb-2">Step
-                                01</p>
-                            <h3 class="text-lg font-bold mb-2">Discovery
-                                &amp; Strategy</h3>
+                            <p class="text-sm text-gray-400 mb-2">
+                                Step 01
+                            </p>
+                            <h3 class="text-lg font-bold mb-2">
+                                Public Access
+                            </h3>
                             <p class="text-sm text-gray-400">
-                                Understanding client needs, defining goals,
-                                and designing
-                                tailored AI solutions.
+                                Feel free to access our website and take our skill assessment to determine your starting
+                                point.
                             </p>
                         </div>
-                        <i class="fas fa-search text-pink-500"></i>
+                        <i class="fas fa-user-plus text-pink-500">
+                        </i>
                     </div>
                     <div class="bg-[#1A143A] p-4 rounded-lg flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-400 mb-2">Step
-                                02</p>
+                            <p class="text-sm text-gray-400 mb-2">
+                                Step 02
+                            </p>
                             <h3 class="text-lg font-bold mb-2">
-                                Development &amp; Integration
+                                Explore Interactive Content
                             </h3>
                             <p class="text-sm text-gray-400">
-                                Building, training, and deploying AI models,
-                                seamlessly
-                                integrating them into existing systems.
+                                Dive into our library of simulations, quizzes, and courses tailored to your skill level.
                             </p>
                         </div>
-                        <i class="fas fa-cog text-pink-500"></i>
+                        <i class="fas fa-laptop-code text-pink-500">
+                        </i>
                     </div>
                     <div class="bg-[#1A143A] p-4 rounded-lg flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-400 mb-2">Step
-                                03</p>
+                            <p class="text-sm text-gray-400 mb-2">
+                                Step 03
+                            </p>
                             <h3 class="text-lg font-bold mb-2">
-                                Optimisation &amp; Support
+                                Practice and Improve
                             </h3>
                             <p class="text-sm text-gray-400">
-                                Monitoring performance, refining algorithms,
-                                and providing
-                                ongoing technical support.
+                                Apply your knowledge in real-world scenarios and track your progress over time.
                             </p>
                         </div>
-                        <i class="fas fa-chart-line text-pink-500"></i>
+                        <i class="fas fa-chart-line text-pink-500">
+                        </i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-6 py-16">
+    <section class="container mx-auto px-4 md:px-6 py-16">
         <div class="text-center mb-12">
             <div class="flex justify-center items-center mb-4">
-                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2"></div>
-                <p class="text-sm text-gray-400">INSIGHTS &amp; UPDATES</p>
-            </div>
-            <h2 class="text-3xl font-bold">Read Our Blog &amp; News.</h2>
-        </div>
-        <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-8">
-            <div class="bg-[#1A143A] p-4 rounded-lg">
-                <img alt="AI generated woman with futuristic makeup" class="rounded-lg mb-4" height="200"
-                    src="https://replicate.delivery/xezq/fNYf52X3b8heXI0GVQmC2MfPo7mXA2eFeAQytv2lzXgouj3CF/out-0.png"
-                    width="300" />
-                <div class="flex items-center mb-2">
-                    <p class="text-xs text-gray-400 mr-2">By Brandon</p>
-                    <p class="text-xs text-gray-400">Jan 10, 2023</p>
+                <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] w-2 h-8 mr-2">
                 </div>
-                <h3 class="text-lg font-bold mb-2">
-                    Unlocking the Power of Data for Business Success.
-                </h3>
-            </div>
-            <div class="bg-[#1A143A] p-4 rounded-lg">
-                <img alt="AI generated hands typing on a keyboard" class="rounded-lg mb-4" height="200"
-                    src="https://replicate.delivery/xezq/Op0MfdvJ7JyGFqj8UeBFFzRIXd9W9eE91gs9mIV1Oqep74tQB/out-0.png"
-                    width="300" />
-                <div class="flex items-center mb-2">
-                    <p class="text-xs text-gray-400 mr-2">By Brandon</p>
-                    <p class="text-xs text-gray-400">Jan 15, 2023</p>
-                </div>
-                <h3 class="text-lg font-bold mb-2">
-                    The Future of Work: Embracing Digital Transformation.
-                </h3>
-            </div>
-            <div class="bg-[#1A143A] p-4 rounded-lg">
-                <img alt="AI generated robot with glowing lines" class="rounded-lg mb-4" height="200"
-                    src="https://replicate.delivery/xezq/nOiPmgxqfAT4UiD2yHzvh3lA5g2fqLGQ0eMyomlPBd8zd8WoA/out-0.png"
-                    width="300" />
-                <div class="flex items-center mb-2">
-                    <p class="text-xs text-gray-400 mr-2">By Brandon</p>
-                    <p class="text-xs text-gray-400">Jan 18, 2023</p>
-                </div>
-                <h3 class="text-lg font-bold mb-2">
-                    How AI is Revolutionizing Business and Industry Today.
-                </h3>
-            </div>
-        </div>
-    </section>
-    <section class="container mx-auto px-6 py-16">
-        <div class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] p-8 rounded-lg flex items-center justify-between">
-            <div>
-                <h2 class="text-3xl font-bold mb-2">
-                    Ready to Elevate Your
-                    <br />
-                    Business with AI?
-                </h2>
-            </div>
-            <div>
-                <button class="bg-white text-black font-bold py-2 px-4 rounded">
-                    Get Started Today
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-    <footer class="bg-[#1A143A] py-16">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between">
-            <div class="mb-8 md:mb-0">
-                <img alt="Rinex logo" class="h-5 mb-4" height="20"
-                    src="https://replicate.delivery/xezq/D5nioKoufV2kIyrOFMkTqTYAQ8vrNjgqmgaqT62kiAjdHvFKA/out-0.png"
-                    width="60" />
-                <p class="text-sm text-gray-400 mb-4">
-                    Understanding client needs, defining goals, and
-                    designing tailored
-                    AI solutions.
+                <p class="text-sm text-gray-400">
+                    LATEST INSIGHTS
                 </p>
-                <div class="flex space-x-4">
-                    <a class="hover:text-gray-400" href="#">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="hover:text-gray-400" href="#">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="hover:text-gray-400" href="#">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="hover:text-gray-400" href="#">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold">
+                Cybersecurity News &amp; Tips
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-[#1A143A] p-4 rounded-lg">
+                <img alt="Phishing attack prevention" class="rounded-lg mb-4 w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/xvbgtk9Jtd4sLJWkqLmFpsomqT78dvaJeTMDxKmRgIY3IwFKA/out-0.png"
+                    width="300" />
+                <div class="flex items-center mb-2">
+                    <p class="text-xs text-gray-400 mr-2">
+                        May 15, 2023
+                    </p>
+                    <span class="text-xs bg-pink-500 text-white px-2 py-1 rounded">
+                        Article
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">
+                    10 Ways to Prevent Phishing Attacks
+                </h3>
+                <p class="text-sm text-gray-400 mb-4">
+                    Learn the latest techniques to protect yourself and your organization from sophisticated phishing
+                    attempts.
+                </p>
+                <a class="text-pink-500 hover:text-pink-400" href="#">
+                    Read More
+                    <i class="fas fa-arrow-right ml-1">
+                    </i>
+                </a>
+            </div>
+            <div class="bg-[#1A143A] p-4 rounded-lg">
+                <img alt="AI in cybersecurity" class="rounded-lg mb-4 w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/pIKM8cBppLoyNtkfmc8lmK9vFas4nufpdUdGDEZ74WguRgLUA/out-0.png"
+                    width="300" />
+                <div class="flex items-center mb-2">
+                    <p class="text-xs text-gray-400 mr-2">
+                        May 10, 2023
+                    </p>
+                    <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded">
+                        Research
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">
+                    The Role of AI in Modern Cybersecurity
+                </h3>
+                <p class="text-sm text-gray-400 mb-4">
+                    Explore how artificial intelligence is revolutionizing the field of cybersecurity and shaping future
+                    defense strategies.
+                </p>
+                <a class="text-pink-500 hover:text-pink-400" href="#">
+                    Read More
+                    <i class="fas fa-arrow-right ml-1">
+                    </i>
+                </a>
+            </div>
+            <div class="bg-[#1A143A] p-4 rounded-lg">
+                <img alt="Ransomware attack" class="rounded-lg mb-4 w-full h-48 object-cover" height="200"
+                    src="https://replicate.delivery/xezq/RtnsegITViUpYyfRqOfwvM9nT1VEfLKqbBTddkJPqpv5GBuQB/out-0.png"
+                    width="300" />
+                <div class="flex items-center mb-2">
+                    <p class="text-xs text-gray-400 mr-2">
+                        May 5, 2023
+                    </p>
+                    <span class="text-xs bg-green-500 text-white px-2 py-1 rounded">
+                        News
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">
+                    Major Corporation Hit by Ransomware Attack
+                </h3>
+                <p class="text-sm text-gray-400 mb-4">
+                    A Fortune 500 company faces a severe ransomware attack. Learn about the incident and key takeaways
+                    for your organization.
+                </p>
+                <a class="text-pink-500 hover:text-pink-400" href="#">
+                    Read More
+                    <i class="fas fa-arrow-right ml-1">
+                    </i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-[#0D0923] text-white py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CyberSec Learning Hub</h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Empowering cybersecurity professionals with cutting-edge knowledge and hands-on experience.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-pink-500">Home</a></li>
+                        <li><a href="#" class="hover:text-pink-500">About Us</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Courses</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-pink-500">Threat Database</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Cybersecurity Tools</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Whitepapers</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Webinars</a></li>
+                        <li><a href="#" class="hover:text-pink-500">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Stay updated with the latest in cybersecurity. Subscribe to our newsletter.
+                    </p>
+                    <form class="flex flex-col sm:flex-row">
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            class="bg-[#1A143A] text-white px-4 py-2 rounded-t-lg sm:rounded-l-lg sm:rounded-r-none focus:outline-none focus:ring-1 focus:ring-pink-500 w-full mb-2 sm:mb-0"
+                        />
+                        <button
+                            type="submit"
+                            class="bg-gradient-to-r from-[#E900FF] to-[#7E00FF] text-white px-4 py-2 rounded-b-lg sm:rounded-r-lg sm:rounded-l-none hover:opacity-90 w-full sm:w-auto"
+                        >
+                            Subscribe
+                        </button>
+                    </form>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-16">
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>
-                            <a class="hover:text-gray-300" href="#"> Home
-                            </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#"> About
-                                Us </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#">
-                                Services </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#"> Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#">
-                                Portfolio </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#"> Contact
-                                Us </a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Our Services</h4>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li>
-                            <a class="hover:text-gray-300" href="#">
-                                AI Powered Solutions
-                            </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#"> Custom
-                                Technology </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#">
-                                Predictive Analytics
-                            </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#"> Machine
-                                Learning </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#">
-                                Language Processing
-                            </a>
-                        </li>
-                        <li>
-                            <a class="hover:text-gray-300" href="#">
-                                Computer Vision </a>
-                        </li>
-                    </ul>
-                </div>
-                <div>&lt;h4 class="text-lg font-bold mb-</div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-sm text-gray-400">© 2025 CyberSec Learning Hub. All rights reserved.</p>
+                <p class="text-sm text-gray-400 mt-2">Made with ❤️ by June Nguyen</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.getElementById('testimonialSlider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < slider.children.length - 1) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const searchResults = document.getElementById('searchResults');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileDropdowns.forEach(dropdown => {
+                const button = dropdown.querySelector('button');
+                const menu = dropdown.querySelector('.mobile-dropdown-menu');
+
+                button.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    button.querySelector('i').classList.toggle('fa-angle-up');
+                    button.querySelector('i').classList.toggle('fa-angle-down');
+                });
+            });
+
+            function performSearch() {
+                const query = searchInput.value.toLowerCase();
+                const content = document.body.innerText.toLowerCase();
+                const words = content.split(/\s+/);
+                const matches = words.filter(word => word.includes(query));
+
+                searchResults.innerHTML = '';
+                if (matches.length > 0) {
+                    matches.slice(0, 10).forEach(match => {
+                        const resultItem = document.createElement('div');
+                        resultItem.textContent = match;
+                        resultItem.className = 'p-2 hover:bg-gray-700 cursor-pointer';
+                        searchResults.appendChild(resultItem);
+                    });
+                    searchResults.classList.remove('hidden');
+                } else {
+                    searchResults.classList.add('hidden');
+                }
+            }
+
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!searchResults.contains(e.target) && e.target !== searchInput) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -11,17 +11,51 @@
             font-family: "Poppins", sans-serif;
         }
 
+        /* Dropdown fix - ensuring menus are hidden by default */
+        .dropdown {
+            position: relative;
+        }
+        
         .dropdown-menu {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            display: none !important; /* Force hide by default */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            margin-top: 15px;
+            z-index: 50;
         }
-
+        
+        /* Create an invisible connection between button and dropdown */
+        .dropdown::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 15px;
+            width: 100%;
+            bottom: -15px;
+            left: 0;
+            z-index: 40;
+        }
+        
+        /* Show menu ONLY on hover */
         .dropdown:hover .dropdown-menu {
-            display: flex;
-            opacity: 1;
+            display: flex !important; /* Force show only on hover */
+        }
+        
+        /* Add pointer from menu to button */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #1A143A;
         }
 
+        /* Rest of your styles remain unchanged */
         .mobile-dropdown-menu {
             max-height: 0;
             overflow: hidden;
@@ -61,7 +95,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <img alt="CyberSec Hub logo" class="h-8"
-                        src="https://replicate.delivery/xezq/IbrFozAyw85HENtOsKP8OGfbsQPCUeAgomfCiIl7rXzyletQB/out-0.png"
+                        src="images/logo.jpg"
                         width="32" />
                     <span
                         class="ml-2 text-lg md:text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">CyberSec
@@ -74,7 +108,7 @@
                             Threats <i class="fas fa-angle-down ml-1"></i>
                         </button>
                         <div
-                            class="dropdown-menu absolute bg-[#1A143A] shadow-lg rounded-lg mt-2 p-4 flex flex-wrap w-[600px] left-1/2 transform -translate-x-1/2">
+                            class="dropdown-menu bg-[#1A143A] shadow-lg rounded-lg p-4 flex flex-wrap w-[600px]">
                             <div class="w-1/3 mb-4">
                                 <h3 class="font-bold mb-2 text-purple-400">Common Threats</h3>
                                 <a href="phishing.html"
@@ -127,7 +161,7 @@
                             Features <i class="fas fa-angle-down ml-1"></i>
                         </button>
                         <div
-                            class="dropdown-menu absolute bg-[#1A143A] shadow-lg rounded-lg mt-2 p-4 flex flex-wrap w-[400px] left-1/2 transform -translate-x-1/2">
+                            class="dropdown-menu bg-[#1A143A] shadow-lg rounded-lg p-4 flex flex-wrap w-[400px]">
                             <div class="w-1/2 mb-4">
                                 <h3 class="font-bold mb-2 text-purple-400">Assessment Tools</h3>
                                 <a href="risk_assessment.html"
@@ -248,7 +282,7 @@
             </div>
             <div class="md:w-1/3 relative">
                 <img alt="Cybersecurity concept image" class="rounded-lg w-full" height="300"
-                    src="https://replicate.delivery/xezq/EYW57NPcrlbqEFFXO1foXpHyfAcRN9miLMwEvEi4NqeyletQB/out-0.png"
+                    src="images/Cybersecurity concept image.jpg"
                     width="300" />
                 <div class="absolute bottom-0 right-0 bg-[#1A143A] p-4 rounded-md">
                     <p class="text-sm text-gray-400">
@@ -278,7 +312,7 @@
     </section>
     <section class="container mx-auto px-4 py-1">
         <img alt="Cybersecurity threat landscape" class="rounded-lg w-full" height="200"
-            src="https://replicate.delivery/xezq/l7YwEY7fUmQeNkixGukKJkD8oisMed1vlPGmFAXtLApzletQB/out-0.png"
+            src="images/Cybersecurity threat landscape.jpg"
             width="1200" />
     </section>
     <section class="container mx-auto px-6 py-16">
@@ -289,22 +323,22 @@
         </div>
         <div class="flex flex-wrap justify-center space-x-4 mt-4">
             <img alt="Company logo 1" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/fRK4I7FsmcTHJieGqgJ8Nby2aDwuZeAXCLcg6cDXAbRxletQB/out-0.png"
+                src="images/c1.webp"
                 width="80" />
             <img alt="Company logo 2" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/sMftLliHhehmTEbqmN3UpGN9JlsOmh10mEttbHJslME4SfWoA/out-0.png"
+                src="images/c2.png"
                 width="80" />
             <img alt="Company logo 3" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/fl6QKeWSFeDFzpgxjIm3RZfRy54o2ciozYdjXkoI9KKhL9tQB/out-0.png"
+                src="images/c3.png"
                 width="80" />
             <img alt="Company logo 4" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/V1WeXenEfITtXIq1u63JYGGDjOi49H4ATlSIDUywDZuyletQB/out-0.png"
+                src="images/c4.png"
                 width="80" />
             <img alt="Company logo 5" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/fQ8gPnuiK4zaa6W92Ooqsx9fh6SZwMwBm3ges2cANieiL9tQB/out-0.png"
+                src="images/c5.png"
                 width="80" />
             <img alt="Company logo 6" class="h-8 mb-4" height="30"
-                src="https://replicate.delivery/xezq/4NVVHwxWNoY2I5zYoJZqkEW2XsLzKjRfitRkwUr5oFf4SfWoA/out-0.png"
+                src="images/c6.jpg"
                 width="80" />
         </div>
     </section>
@@ -351,7 +385,7 @@
             </div>
             <div class="md:w-1/3">
                 <img alt="Cybersecurity professional at work" class="rounded-lg w-full" height="400"
-                    src="https://replicate.delivery/xezq/uTOxfD1ESkyLVyJmve5fcjz2HRVfevxKOueGxUM8qQaAu03CF/out-0.png"
+                    src="images/cybersecurity-career-path.jpg"
                     width="400" />
             </div>
         </div>
@@ -593,7 +627,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Phishing attack illustration" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/iY1a92Wx10rfYq8jG4tdhWYfjhOiJyXJ2H9yW2kTpZMBGgLUA/out-0.png"
+                    src="images/Phising.png"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -611,7 +645,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Spoofing concept" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/MzM9PIXEgYISLNFXV3TvoOZfCXwQSJ12UsRkp5miII1fFgLUA/out-0.png"
+                    src="images/what-is-spoofing-banner-628x353.png"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -629,7 +663,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Adware and Malvertising" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/AZVf06eUxSvdQkUsyVRLO9nRPeKI5AWQbIRBlB7cQ7mfXAuQB/out-0.png"
+                    src="images/Adware.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -647,7 +681,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="DDoS attack visualization" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/01Pra9dbPyLhM9sYEiWQKYORYNt75ZsbBH4sdC4QYSAgB4CF/out-0.png"
+                    src="images/What-is-a-DDoS-attack.png"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -665,7 +699,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Man-in-the-Middle attack" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/mWjIpzcNYFpdG5CKdgiVtJKddzVP2NxaeZAY1pDZPBnfFgLUA/out-0.png"
+                    src="images/main-in-the-middle-attack-mitm.webp"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -683,7 +717,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="SQL Injection concept" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/wdmNbCHZLw4cFp4kfVDfee6E32gCcCzcqjrKLuTCeYDEwAchC/out-0.png"
+                    src="images/sql.png"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -701,7 +735,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Zero Day Exploit illustration" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/r87xseeB7stSPkjqKMSw2QRxjDlyoHREtU8ZHqtGp3OAGgLUA/out-0.png"
+                    src="images/Zero-Day-Attack.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -719,7 +753,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Ransomware concept" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/Xm3n1W0YXWa7LBXKTSL4eRQj6fmotufPjgoPlbi4MsXAMAXoA/out-0.png"
+                    src="images/ransom.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -737,7 +771,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Advanced Persistent Threat" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/xfwhx0guQ2wWOKv8bKdzFg3ftkJFxOh4tvxUwBhGbhuAGgLUA/out-0.png"
+                    src="images/APT.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -755,7 +789,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Credential Stuffing attack" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/9Xdwj9P07H4PBtjePsi7KeW3qzMoXgkF3egXLi5SOiUDMAXoA/out-0.png"
+                    src="images/credential.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -773,7 +807,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Cross-Site Scripting illustration" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/zDCU2hf4SRSgK67JNzpnGNrAcy7NGvavfkpB9UnGY8GCGgLUA/out-0.png"
+                    src="images/XSS.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -791,7 +825,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="AI-Powered Attacks concept" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/qh0oI1OVdWJtMJiRE3cwrtMNWeLOSeGJedwojEz8389AMAXoA/out-0.png"
+                    src="images/AI.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -809,7 +843,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Clickjacking illustration" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/YewCjJe8ZePvMo63Q4wY0ebDeaXxtfxRkebRC7fG9UMjAGgLUA/out-0.png"
+                    src="images/click.webp"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -827,7 +861,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Session Hijacking concept" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/qrLIqeKoAay9RKrPdUW1u3yxwOWfg2WOjR1WgQyCNuIAGgLUA/out-0.png"
+                    src="images/session.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -845,7 +879,7 @@
             </div>
             <div class="relative bg-[#1A143A] rounded-lg overflow-hidden">
                 <img alt="Social Engineering tactics" class="w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/FPSE9J8y7WawDJgYNaM2coxvTyavYJMqp2tG6PP3LrOgB4CF/out-0.png"
+                    src="images/social.jpg"
                     width="300" />
                 <div class="p-4">
                     <p class="text-sm text-gray-400">
@@ -909,7 +943,7 @@
                             their cybersecurity skills."
                         </p>
                         <div class="flex items-center">
-                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="https://replicate.delivery/xezq/B91IIekBPVWbCyBBRrT60Me69eapmmm9y0XW726detTiL9tQB/out-0.png" />
+                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="images/sarah.jpg" />
                             <div>
                                 <p class="font-bold">Sarah Johnson</p>
                                 <p class="text-sm text-gray-400">Security Analyst</p>
@@ -925,7 +959,7 @@
                             and engaging."
                         </p>
                         <div class="flex items-center">
-                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="https://replicate.delivery/xezq/nRq2IeuDwLwTfEillqfWjMonMSDIgZ4ONeF9vGVeMVoCjBchC/out-0.png" />
+                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="images/mich.jpg" />
                             <div>
                                 <p class="font-bold">Michael Chen</p>
                                 <p class="text-sm text-gray-400">Cybersecurity Consultant</p>
@@ -941,7 +975,7 @@
                             instrumental in advancing my career."
                         </p>
                         <div class="flex items-center">
-                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="https://replicate.delivery/xezq/nRq2IeuDwLwTfEillqfWjMonMSDIgZ4ONeF9vGVeMVoCjBchC/out-0.png" />
+                            <img alt="User profile picture" class="rounded-full mr-4 w-12 h-12" src="images/emily.jpg" />
                             <div>
                                 <p class="font-bold">Emily Rodriguez</p>
                                 <p class="text-sm text-gray-400">Network Security Engineer</p>
@@ -1115,7 +1149,7 @@
         <div class="flex flex-col md:flex-row items-center justify-between">
             <div class="md:w-1/2 mb-8 md:mb-0">
                 <img alt="Cybersecurity professional working" class="rounded-lg w-full md:w-auto" height="400"
-                    src="https://replicate.delivery/xezq/aX1dSaM8uQJ7NFr1ucvYWWFnHvoPBTfhEu4wGeiRhAk5SfWoA/out-0.png"
+                    src="images/Cybersecurity professional working.jpg"
                     width="400" />
             </div>
             <div class="md:w-1/2">
@@ -1198,7 +1232,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="bg-[#1A143A] p-4 rounded-lg">
                 <img alt="Phishing attack prevention" class="rounded-lg mb-4 w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/xvbgtk9Jtd4sLJWkqLmFpsomqT78dvaJeTMDxKmRgIY3IwFKA/out-0.png"
+                    src="images/protect-against-phishing-atacks.png"
                     width="300" />
                 <div class="flex items-center mb-2">
                     <p class="text-xs text-gray-400 mr-2">
@@ -1223,7 +1257,7 @@
             </div>
             <div class="bg-[#1A143A] p-4 rounded-lg">
                 <img alt="AI in cybersecurity" class="rounded-lg mb-4 w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/pIKM8cBppLoyNtkfmc8lmK9vFas4nufpdUdGDEZ74WguRgLUA/out-0.png"
+                    src="images/modern.jpg"
                     width="300" />
                 <div class="flex items-center mb-2">
                     <p class="text-xs text-gray-400 mr-2">
@@ -1248,7 +1282,7 @@
             </div>
             <div class="bg-[#1A143A] p-4 rounded-lg">
                 <img alt="Ransomware attack" class="rounded-lg mb-4 w-full h-48 object-cover" height="200"
-                    src="https://replicate.delivery/xezq/RtnsegITViUpYyfRqOfwvM9nT1VEfLKqbBTddkJPqpv5GBuQB/out-0.png"
+                    src="images/aa.jpg"
                     width="300" />
                 <div class="flex items-center mb-2">
                     <p class="text-xs text-gray-400 mr-2">
